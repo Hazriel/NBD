@@ -33,6 +33,10 @@ body {
     text-decoration: none;
 }
 
+.nav-logo:focus {
+    text-decoration: none;
+}
+
 .nav-list-item {
     position: relative;
     vertical-align: middle;
