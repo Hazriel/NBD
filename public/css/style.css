@@ -92,6 +92,25 @@ input[type="submit"]:hover {
     padding: 5px 10px;
 }
 
+/* PANELS */
+.panel-inverted {
+    background-color: #3f3b3b;
+}
+
+.panel-inverted > .panel-heading {
+    background-color: #2b2727;
+    border-bottom: 1px solid #202020;
+    font-size: 18px;
+}
+
+.panel-inverted .form-control {
+    color: #303030;
+}
+
+.panel-body label {
+    font-weight: normal;
+}
+
 /* Added fonts */
 @font-face {
     font-family: "Flatwheat";

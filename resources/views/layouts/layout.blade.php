@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+    @yield('styles')
     <title>{{ $pageTitle }} - NeverBackDown</title>
 </head>
 <body>
@@ -33,9 +34,6 @@
                 <li class="nav-list-item @if ($pageTitle === "Members") active @endif">
                 <a class="nav-link" href="#">Members</a>
                 </li>
-                <li class="nav-list-item @if ($pageTitle === "About") active @endif">
-                <a class="nav-link" href="#">About</a>
-                </li>
                 @if (Auth::check())
                     <li class="nav-list-item">
                         <a class="nav-link" href="#">{{ Auth::user()->username }}</a>
@@ -54,13 +52,16 @@
                     <li class="nav-list-item @if ($pageTitle === "Login") active @endif">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>
                     </li>
+                    <li class="nav-list-item @if ($pageTitle === "Register") active @endif">
+                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                    </li>
                 @endif
             </ul>
         </div>
     </div>
 </nav>
 <div class="container body-content">
-    @yield('body')
+    @yield('content')
 </div>
 
 <footer>

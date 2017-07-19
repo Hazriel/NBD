@@ -68,4 +68,13 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    /**
+     * Override the default function
+     */
+    protected function showRegistrationForm()
+    {
+        $pageTitle = "Register";
+        return view('auth.register', compact('pageTitle'));
+    }
 }
