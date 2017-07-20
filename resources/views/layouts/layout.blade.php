@@ -6,7 +6,11 @@
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
     @yield('styles')
-    <title>{{ $pageTitle }} - NeverBackDown</title>
+    @if (isset($pageTitle))
+        <title>{{ $pageTitle }} - NeverBackDown</title>
+    @else
+        <title>NeverBackDown</title>
+    @endif
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -22,16 +26,16 @@
         </div>
         <div class="collapse navbar-collapse navbar-right" id="bs-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="nav-list-item @if ($pageTitle === "Home") active @endif">
+                <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "Home") active @endif">
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
-                <li class="nav-list-item @if ($pageTitle === "Forum") active @endif">
+                <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "Forum") active @endif">
                     <a class="nav-link" href="#">Forum</a>
                 </li>
-                <li class="nav-list-item @if ($pageTitle === "News") active @endif">
+                <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "News") active @endif">
                     <a class="nav-link" href="#">News</a>
                 </li>
-                <li class="nav-list-item @if ($pageTitle === "Members") active @endif">
+                <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "Members") active @endif">
                 <a class="nav-link" href="#">Members</a>
                 </li>
                 @if (Auth::check())
@@ -49,10 +53,10 @@
                         </form>
                     </li>
                 @else
-                    <li class="nav-list-item @if ($pageTitle === "Login") active @endif">
+                    <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "Login") active @endif">
                     <a class="nav-link" href="{{ route('login') }}">Login</a>
                     </li>
-                    <li class="nav-list-item @if ($pageTitle === "Register") active @endif">
+                    <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "Register") active @endif">
                         <a class="nav-link" href="{{ route('register') }}">Register</a>
                     </li>
                 @endif

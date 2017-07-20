@@ -115,10 +115,35 @@ input[type="submit"]:hover {
     font-weight: normal;
 }
 
+/* SECTIONS */
+
+.nbd-section {
+    background-color: rgba(16, 16, 16, 0.7);
+    margin: 10px 0;
+    padding: 0 10px;
+    border: 1px solid transparent;
+}
+
+/* News */
+.news-section {
+}
+
+.server-info {
+}
+
+/* TEXT FORMATTING */
+p {
+    text-align: justify;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: PassionOne;
+}
+
 /* Added fonts */
 @font-face {
     font-family: "Flatwheat";
-    src: url("../fonts/Flatwheat-Regular.ttf");
+    src: url("../fonts/Flatwheat-Regular.ttf") format("truetype");
 }
 
 @font-face {
@@ -129,4 +154,36 @@ input[type="submit"]:hover {
 @font-face {
     font-family: "Huggable";
     src: url("../fonts/Huggable.ttf");
+}
+
+@font-face {
+    font-family: "Aller";
+    src: url("../fonts/AllerDisplay.ttf");
+}
+
+@font-face {
+    font-family: "Lalezar";
+    src: url("../fonts/Lalezar-Regular.ttf");
+}
+
+@font-face {
+    font-family: "PassionOne";
+    src: url("../fonts/PassionOne-Regular.ttf"),
+         url("../fonts/PassionOne-Bold.ttf"),
+         url("../fonts/PassionOne-Black.ttf");
+}
+
+@font-face {
+    font-family: "LuckiestGuy";
+    src: url("../fonts/LuckiestGuy.ttf");
+}
+
+@font-face {
+    font-family: "RammettoOne";
+    src: url("../fonts/RammettoOne-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Tipo-Capital";
+    src: url("../fonts/Tipo-Capital.ttf");
 }
