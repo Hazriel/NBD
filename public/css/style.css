@@ -128,7 +128,9 @@ input[type="submit"]:hover {
 .news-section {
 }
 
+/* Server section */
 .server-info {
+    padding-left: 0;
 }
 
 /* TEXT FORMATTING */
