@@ -10,7 +10,7 @@ body, pre {
 body {
     margin-top: 20px;
     background-color: #0e0e0e;
-    background-image: url("../images/background.png");
+    background-image: url("../images/background1.jpg");
 }
 
 /* NAVIGATION */
@@ -118,19 +118,49 @@ input[type="submit"]:hover {
 /* SECTIONS */
 
 .nbd-section {
-    background-color: rgba(16, 16, 16, 0.7);
+    background-color: rgba(16, 16, 16, 0.95);
     margin: 10px 0;
-    padding: 0 10px;
     border: 1px solid transparent;
 }
 
+.nbd-section-header h1 {
+    margin: 0;
+    padding: 10px 0px;
+    color: #db6a1d;
+}
+
+.nbd-section-header {
+    background-color: rgba(14, 27, 41, 0.7);
+}
+
+.nbd-section-header,
+.nbd-section-body {
+    padding: 0 10px;
+}
+
+.nbd-section-body {
+    margin-top: 15px;
+}
+
 /* News */
-.news-section {
+.news {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: dashed 2px rgb(0, 54, 83);
+}
+
+.news-header h1,
+.news-header h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.news-info {
+    margin-bottom: 10px;
 }
 
 /* Server section */
 .server-info {
-    padding-left: 0;
 }
 
 /* TEXT FORMATTING */
