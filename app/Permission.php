@@ -9,8 +9,8 @@ class Permission extends Model
     public $timestamps = false;
     protected $fillable = ['name', 'slug', 'required_power'];
 
-    public function permissionPowers()
+    public function roles()
     {
-        return $this->hasMany('App\RolePermissionPower');
+        return $this->belongsToMany('App\Role');
     }
 }

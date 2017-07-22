@@ -17,7 +17,6 @@ class CreatePermissionsTable extends Migration
             $table->increments('id');
             $table->string('slug', 30)->unique();
             $table->text('description')->nullable();
-            $table->integer('required_power')->unsigned()->default(0);
         });
     }
 
