@@ -34,7 +34,22 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'auth', 'as' => 'admin.'], f
 
         Route::post('create', [
             'as'   => 'create',
-            'uses' => 'AdminController@create'
+            'uses' => 'RoleController@create'
+        ]);
+
+        Route::get('update/{role}', [
+            'as'   => 'update',
+            'uses' => 'AdminController@updateRoleForm'
+        ]);
+
+        Route::post('update/{role}', [
+            'as'   => 'update',
+            'uses' => 'RoleController@update'
+        ]);
+
+        Route::get('delete/{role}', [
+            'as'   => 'delete',
+            'uses' => 'RoleController@delete'
         ]);
 
     });

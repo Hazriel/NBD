@@ -2,6 +2,15 @@
 
 @section('content')
     <div class="row">
+        @if(session()->has('success'))
+            <div class="col-lg-12">
+                <div class="alert alert-success">
+                    <p>{{ session()->get('success') }}</p>
+                </div>
+            </div>
+        @endif
+    </div>
+    <div class="row">
         <div class="col-lg-2">
             <div class="nbd-section">
                 <div class="nbd-section-header">
@@ -28,8 +37,30 @@
                         </div>
                         <div id="roles" class="tab-pane fade">
                             <a href="{{ route('admin.role.create') }}"><button type="button" class="btn btn-success">Add Role <span class="glyphicon glyphicon-plus"></span></button></a>
-                            <table>
-
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Slug</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($roles as $role)
+                                    <tr>
+                                        <td>{{ $role->id }}</td>
+                                        <td>{{ $role->name }}</td>
+                                        <td>{{ $role->slug }}</td>
+                                        <td>{{ $role->description }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.role.update', $role) }}"><button type="button" class="btn btn-info">Edit</button></a>
+                                            <a href="{{ route('admin.role.delete', $role) }}"><button type="button" class="btn btn-danger">Delete</button></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
                             </table>
                         </div>
                         <div id="forums" class="tab-pane fade">
