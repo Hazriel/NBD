@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Permission;
 use App\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
 class RoleController extends Controller
@@ -22,6 +25,25 @@ class RoleController extends Controller
         $validator = $this->validator($input);
         if ($validator->fails())
             return redirect()->route('admin.role.create')->withErrors($validator)->withInput();
+    }
+
+    public function createRoleForm()
+    {
+        $pageTitle = "Create Role";
+        return view('admin.role.create');
+    }
+
+    public function updateRoleForm($role)
+    {
+        $pageTitle = "Update Role";
+        $role = Role::find($role);
+
+        $permissions = [];
+        foreach(Permission::all() as $permission) {
+            $parts = explode('.',$permission->slug);
+            $permissions[ucfirst($parts[0])][] = ['access'=> ucfirst($parts[1]), 'description'=>$permission->description];
+        }
+        return view('admin.role.update', compact('role', 'permissions'));
     }
 
     public function create(Request $request)
@@ -49,7 +71,12 @@ class RoleController extends Controller
             'description' => $input['description']
         ]);
 
-        return redirect()->route('admin.dashboard')->with('success', 'Role ' . $role->name . ' was successfully updated.');
+        // Get the new permissions
+        $permissions = is_null(Input::get('permissions')) ? [] : Permission::whereIn('slug', array_keys(Input::get('permissions')))->pluck('id')->all();
+        $role->permissions()->sync($permissions);
+        $role->save();
+
+        return \Redirect::route('admin.dashboard')->withSuccess('The role ' . $role->name . ' has been successfully updated.');
     }
 
     public function delete(Role $role)

@@ -22,34 +22,39 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'auth', 'as' => 'admin.'], f
 
     Route::get('/', [
         'as'   => 'dashboard',
-        'uses' => 'AdminController@dashboard'
+        'uses' => 'Admin\AdminController@dashboard'
+    ]);
+
+    Route::get('/permissiongenerate', [
+        'as'   => 'permissionGenerate',
+        'uses' => 'Admin\AdminController@generatePermissionSet'
     ]);
 
     Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
 
         Route::get('create', [
             'as'   => 'create',
-            'uses' => 'AdminController@createRoleForm'
+            'uses' => 'Admin\RoleController@createRoleForm'
         ]);
 
         Route::post('create', [
             'as'   => 'create',
-            'uses' => 'RoleController@create'
+            'uses' => 'Admin\RoleController@create'
         ]);
 
         Route::get('update/{role}', [
             'as'   => 'update',
-            'uses' => 'AdminController@updateRoleForm'
+            'uses' => 'Admin\RoleController@updateRoleForm'
         ]);
 
         Route::post('update/{role}', [
             'as'   => 'update',
-            'uses' => 'RoleController@update'
+            'uses' => 'Admin\RoleController@update'
         ]);
 
         Route::get('delete/{role}', [
             'as'   => 'delete',
-            'uses' => 'RoleController@delete'
+            'uses' => 'Admin\RoleController@delete'
         ]);
 
     });

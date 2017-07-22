@@ -14,6 +14,12 @@ class Role extends Model
         return $this->belongsToMany('App\User');
     }
 
+    public function hasPermission($permSlug)
+    {
+        $permission = Permission::where('slug', $permSlug)->first();
+        return $this->permissions()->get()->contains($permission);
+    }
+
     public function permissions()
     {
         return $this->belongsToMany('App\Permission');
