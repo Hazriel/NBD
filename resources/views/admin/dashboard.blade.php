@@ -33,7 +33,38 @@
                 <div class="nbd-section-body">
                     <div class="tab-content">
                         <div id="users" class="tab-pane fade in active">
-                            <p>Users tab content ...</p>
+                            <table class="table users">
+                                <thead>
+                                <tr>
+                                    <th width="15%">Name</th>
+                                    <th width="25%%">Email</th>
+                                    <th width="30%">Roles</th>
+                                    <th width="30%">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody id="user-container">
+                                @foreach($users as $user)
+                                    <tr>
+                                        <td>{{ $user->username }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->roles->implode('name', ',') }}</td>
+                                        <td>
+                                            <a href="#"><button type="button" class="btn btn-info">Edit</button></a>
+                                            <a href="#"><button type="button" class="btn btn-danger">Delete</button></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            <nav aria-label="user-navigation">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="#" onclick="previousPage();">Previous</a></li>
+                                    @for($i = 1; $i < $pageCount; $i++)
+                                        <li class="page-item"><a class="page-link" href="#" onclick="getUsers({{ $i }});">{{ $i }}</a></li>
+                                    @endfor
+                                    <li class="page-item"><a class="page-link" href="#" onclick="nextPage();">Next</a></li>
+                                </ul>
+                            </nav>
                         </div>
                         <div id="roles" class="tab-pane fade">
                             <a href="{{ route('admin.role.create') }}"><button type="button" class="btn btn-success">Add Role <span class="glyphicon glyphicon-plus"></span></button></a>
@@ -71,4 +102,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" src="{{ url('js/admin.js') }}"></script>
 @endsection

@@ -77,6 +77,10 @@ input {
     border: solid 2px black;
 }
 
+label {
+    font-weight: normal;
+}
+
 /*
 input[type="submit"] {
     background-color: #252525;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Permission;
 use App\Role;
+use App\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -13,7 +14,9 @@ class AdminController extends Controller
     {
         $pageTitle = "Dashboard";
         $roles = Role::all();
-        return view('admin.dashboard', compact('pageTitle', 'roles'));
+        $users = User::all()->sortByDesc('created_at')->take(10);
+        $pageCount = User::all()->count() / 10 + 1;
+        return view('admin.dashboard', compact('pageTitle', 'roles', 'users', 'pageCount'));
     }
 
 
@@ -30,8 +33,8 @@ class AdminController extends Controller
     {
         $this->createPermission('user.create', 'Is able to create users.');
         $this->createPermission('user.update', 'Is able to update users.');
-        $this->createPermission('user.ban', 'Is able to update users.');
         $this->createPermission('user.delete', 'Is able to delete users.');
+        $this->createPermission('user.ban', 'Is able to update users.');
 
         $this->createPermission('role.create', 'Is able to create roles.');
         $this->createPermission('role.update', 'Is able to update roles.');

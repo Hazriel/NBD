@@ -30,6 +30,15 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'auth', 'as' => 'admin.'], f
         'uses' => 'Admin\AdminController@generatePermissionSet'
     ]);
 
+    Route::group(['prefix' => 'user', 'as' => 'user.'], function () {
+
+        Route::get('list/{page}', [
+            'as'   => 'list',
+            'uses' => 'Admin\UserController@userList'
+        ]);
+
+    });
+
     Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
 
         Route::get('create', [
