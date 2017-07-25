@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -37,7 +38,11 @@ class UserController extends Controller
     public function updateForm($user)
     {
         $user = User::find($user);
-        return view('admin.user.update', compact('user'));
+        foreach (Role::all() as $role)
+        {
+            $roles[$role->id] = $role->name;
+        }
+        return view('admin.user.update', compact('user', 'roles'));
     }
 
     public function update(Request $request, User $user)
@@ -55,6 +60,14 @@ class UserController extends Controller
             $user->update(['password' => Hash::make($input['password'])]);
         }
 
+        return redirect()->route('admin.dashboard')->withSuccess('The user ' . $user->username . ' was updated successfully.');
+    }
+
+    public function addToRole(Request $request, User $user)
+    {
+        // Check if the role exists
+        $role = Role::findOrFail($request->all()['role']);
+        $user->addRole($role->id);
         return redirect()->route('admin.dashboard')->withSuccess('The user ' . $user->username . ' was updated successfully.');
     }
 }

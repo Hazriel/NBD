@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -26,6 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function addRole($roleId)
+    {
+        DB::table('role_user')->insert([
+            'role_id' => $roleId,
+            'user_id' => $this->id
+        ]);
+    }
 
     public function roles()
     {

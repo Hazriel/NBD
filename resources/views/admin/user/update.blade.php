@@ -50,4 +50,24 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="nbd-section">
+                <div class="nbd-section-header">
+                    <h1>Add to Role</h1>
+                </div>
+                <div class="nbd-section-body">
+                    {!! Form::open(['method' => 'post', 'route' => ['admin.user.addToRole', $user->id]]) !!}
+                    <div class="form-group">
+                        {!! Form::label('role', 'Role :') !!}
+                        {!! Form::select('role', $roles, null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::submit('Add', ['class' => 'btn btn-primary']) !!}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

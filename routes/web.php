@@ -47,6 +47,11 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'auth', 'as' => 'admin.'], f
             'uses' => 'Admin\UserController@update'
         ]);
 
+        Route::post('role/{user}', [
+            'as'   => 'addToRole',
+            'uses' => 'Admin\UserController@addToRole'
+        ]);
+
     });
 
     Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
