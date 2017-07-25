@@ -8,6 +8,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -69,5 +71,12 @@ class UserController extends Controller
         $role = Role::findOrFail($request->all()['role']);
         $user->addRole($role->id);
         return redirect()->route('admin.dashboard')->withSuccess('The user ' . $user->username . ' was updated successfully.');
+    }
+
+    public function searchUser(Request $request)
+    {
+        $name = $request->all()['username'];
+        $users = User::where('username', 'LIKE', '%' . $name . '%')->get();
+        return view('admin.user.list', compact('users'));
     }
 }

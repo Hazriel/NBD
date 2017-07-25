@@ -39,18 +39,26 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access']
 
         Route::get('update/{user}', [
             'as'   => 'update',
-            'uses' => 'Admin\UserController@updateForm'
+            'uses' => 'Admin\UserController@updateForm',
+            'middleware' => 'can:update,user'
         ])->where('user', '[0-9]+');
 
         Route::post('update/{user}', [
             'as'   => 'update',
-            'uses' => 'Admin\UserController@update'
+            'uses' => 'Admin\UserController@update',
+            'middleware' => 'can:update,user'
         ])->where('user', '[0-9]+');
 
         Route::post('role/{user}', [
             'as'   => 'addToRole',
-            'uses' => 'Admin\UserController@addToRole'
+            'uses' => 'Admin\UserController@addToRole',
+            'middleware' => 'can:update,user'
         ])->where('user', '[0-9]+');
+
+        Route::post('search', [
+            'as'   => 'search',
+            'uses' => 'Admin\UserController@searchUser'
+        ]);
 
     });
 

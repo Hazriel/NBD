@@ -32,6 +32,10 @@
                 </div>
                 <div class="nbd-section-body">
                     <div class="tab-content">
+                        <div class="search-bar">
+                            <input id="username" type="text" name="username">
+                            <input type="button" value="Search" onclick="searchUser()">
+                        </div>
                         <div id="users" class="tab-pane fade in active">
                             <table class="table users">
                                 <thead>
@@ -96,4 +100,5 @@
 
 @section('scripts')
     <script type="text/javascript" src="{{ url('js/admin.js') }}"></script>
+    <meta name="_token" content="{!! csrf_token() !!}" />
 @endsection
