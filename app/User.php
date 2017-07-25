@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable
 {
@@ -38,6 +39,15 @@ class User extends Authenticatable
 
     public function roles()
     {
-        return $this->belongsToMany('App\Role');
+        return $this->belongsToMany('App\Role', 'role_user');
+    }
+
+    public function hasPermission($slug)
+    {
+        foreach ($this->roles as $role) {
+            if ($role->hasPermission($slug))
+                return true;
+        }
+        return false;
     }
 }

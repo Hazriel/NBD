@@ -11,7 +11,7 @@ class Role extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\User', 'role_user');
     }
 
     public function hasPermission($permSlug)
@@ -22,6 +22,6 @@ class Role extends Model
 
     public function permissions()
     {
-        return $this->belongsToMany('App\Permission');
+        return $this->belongsToMany('App\Permission', 'permission_role');
     }
 }

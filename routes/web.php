@@ -18,7 +18,7 @@ Route::get('/', [
     'uses' => 'HomeController@index'
 ]);
 
-Route::group(['prefix' => 'admin/', 'middleware' => 'auth', 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access'], 'as' => 'admin.', 'permissions' => 'admin.access'], function () {
 
     Route::get('/', [
         'as'   => 'dashboard',
@@ -35,22 +35,22 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'auth', 'as' => 'admin.'], f
         Route::get('list/{page}', [
             'as'   => 'list',
             'uses' => 'Admin\UserController@userList'
-        ]);
+        ])->where('page', '[0-9]+');
 
         Route::get('update/{user}', [
             'as'   => 'update',
             'uses' => 'Admin\UserController@updateForm'
-        ]);
+        ])->where('user', '[0-9]+');
 
         Route::post('update/{user}', [
             'as'   => 'update',
             'uses' => 'Admin\UserController@update'
-        ]);
+        ])->where('user', '[0-9]+');
 
         Route::post('role/{user}', [
             'as'   => 'addToRole',
             'uses' => 'Admin\UserController@addToRole'
-        ]);
+        ])->where('user', '[0-9]+');
 
     });
 
@@ -58,28 +58,33 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'auth', 'as' => 'admin.'], f
 
         Route::get('create', [
             'as'   => 'create',
-            'uses' => 'Admin\RoleController@createRoleForm'
+            'uses' => 'Admin\RoleController@createRoleForm',
+            'middleware' => 'can:create,App\Role'
         ]);
 
         Route::post('create', [
             'as'   => 'create',
-            'uses' => 'Admin\RoleController@create'
+            'uses' => 'Admin\RoleController@create',
+            'middleware' => 'can:create,App\Role'
         ]);
 
         Route::get('update/{role}', [
             'as'   => 'update',
-            'uses' => 'Admin\RoleController@updateRoleForm'
-        ]);
+            'uses' => 'Admin\RoleController@updateRoleForm',
+            'middleware' => 'can:update,role'
+        ])->where('role', '[0-9]+');
 
         Route::post('update/{role}', [
             'as'   => 'update',
-            'uses' => 'Admin\RoleController@update'
-        ]);
+            'uses' => 'Admin\RoleController@update',
+            'middleware' => 'can:update,role'
+        ])->where('role', '[0-9]+');
 
         Route::get('delete/{role}', [
             'as'   => 'delete',
-            'uses' => 'Admin\RoleController@delete'
-        ]);
+            'uses' => 'Admin\RoleController@delete',
+            'middleware' => 'can:delete,role'
+        ])->where('role', '[0-9]+');
 
     });
 
