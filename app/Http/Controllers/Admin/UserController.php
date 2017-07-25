@@ -39,7 +39,6 @@ class UserController extends Controller
 
     public function updateForm($user)
     {
-        $user = User::find($user);
         foreach (Role::all() as $role)
         {
             $roles[$role->id] = $role->name;

@@ -36,7 +36,6 @@ class RoleController extends Controller
     public function updateRoleForm($role)
     {
         $pageTitle = "Update Role";
-        $role = Role::find($role);
 
         $permissions = [];
         foreach(Permission::all() as $permission) {

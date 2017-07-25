@@ -20,7 +20,7 @@ class RolePolicy
      */
     public function view(User $user, Role $role)
     {
-        return $user->hasPermission('role.view', $role);
+        return $user->hasPermission('role.view');
     }
 
     /**
@@ -43,7 +43,9 @@ class RolePolicy
      */
     public function update(User $user, Role $role)
     {
-        return $user->hasPermission('role.update', $role);
+        Log::info('Username : ' . $user->username);
+        Log::info('Name : ' . $role->name);
+        return $user->hasPermission('role.update');
     }
 
     /**
@@ -55,6 +57,6 @@ class RolePolicy
      */
     public function delete(User $user, Role $role)
     {
-        return $user->hasPermission('role.delete', $role);
+        return $user->hasPermission('role.delete');
     }
 }
