@@ -37,6 +37,16 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'auth', 'as' => 'admin.'], f
             'uses' => 'Admin\UserController@userList'
         ]);
 
+        Route::get('update/{user}', [
+            'as'   => 'update',
+            'uses' => 'Admin\UserController@updateForm'
+        ]);
+
+        Route::post('update/{user}', [
+            'as'   => 'update',
+            'uses' => 'Admin\UserController@update'
+        ]);
+
     });
 
     Route::group(['prefix' => 'role', 'as' => 'role.'], function () {
