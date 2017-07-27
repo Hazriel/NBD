@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
@@ -54,4 +55,10 @@ class User extends Authenticatable
     {
         return array($this->username, $this->email);
     }
+
+    public function getBirthDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
+    }
+
 }

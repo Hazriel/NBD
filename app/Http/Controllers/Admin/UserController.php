@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Role;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -20,6 +21,7 @@ class UserController extends Controller
             'username' => 'required|string|max:30|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'string|min:6|confirmed',
+            'birth_date' => 'nullable|date_format:d-m-Y'
         ]);
     }
 
@@ -54,7 +56,7 @@ class UserController extends Controller
         $user->update([
             'username'   => $input['username'],
             'email'      => $input['email'],
-            'birth_date' => $input['birth_date']
+            'birth_date' => Carbon::createFromFormat('d-m-Y', $input['birth_date'])->toDateTimeString()
         ]);
 
         if ($input['password'] && $input['password'] !== "") {
