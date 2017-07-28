@@ -30,6 +30,22 @@ class AdminController extends Controller
         ]);
     }
 
+    private function createRole($name, $slug, $description)
+    {
+        Role::create([
+            'name' => $name,
+            'slug' => $slug,
+            'descritpion' => $description
+        ]);
+    }
+
+    public function generateRoleSet()
+    {
+        $this->createRole('Admin', 'admin', 'Admin group.');
+        $this->createRole('Moderator', 'mod', 'Moderator group.');
+        $this->createRole('Member', 'member', 'Member group.');
+    }
+
     public function generatePermissionSet()
     {
         $this->createPermission('user.create', 'Is able to create users.');

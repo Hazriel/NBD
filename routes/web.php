@@ -18,7 +18,26 @@ Route::get('/', [
     'uses' => 'HomeController@index'
 ]);
 
-Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access'], 'as' => 'admin.', 'permissions' => 'admin.access'], function () {
+Route::group(['prefix' => 'user/', 'middleware' => ['auth'], 'as' => 'user.'], function () {
+
+    Route::get('{user}', [
+        'as'   => 'profile',
+        'uses' => 'UserController@profile'
+    ]);
+
+    Route::get('update/{user}', [
+        'as'   => 'update',
+        'uses' => 'UserController@updateForm'
+    ]);
+
+    Route::post('update/{user}', [
+        'as'   => 'update',
+        'uses' => 'Admin\UserController@update'
+    ]);
+
+});
+
+Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access'], 'as' => 'admin.'], function () {
 
     Route::get('/', [
         'as'   => 'dashboard',

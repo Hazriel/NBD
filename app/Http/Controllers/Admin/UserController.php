@@ -54,7 +54,6 @@ class UserController extends Controller
         $this->redirectIfValidationFail($input);
 
         $user->update([
-            'username'   => $input['username'],
             'email'      => $input['email'],
             'birth_date' => Carbon::createFromFormat('d-m-Y', $input['birth_date'])->toDateTimeString()
         ]);
@@ -63,7 +62,7 @@ class UserController extends Controller
             $user->update(['password' => Hash::make($input['password'])]);
         }
 
-        return redirect()->route('admin.dashboard')->withSuccess('The user ' . $user->username . ' was updated successfully.');
+        return redirect()->back()->withSuccess('The user ' . $user->username . ' was updated successfully.');
     }
 
     public function addToRole(Request $request, User $user)

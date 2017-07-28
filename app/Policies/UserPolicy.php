@@ -41,7 +41,7 @@ class UserPolicy
      */
     public function update(User $user, User $obj)
     {
-        return $user->hasPermission('user.update');
+        return $user->id === $obj->id || $user->hasPermission('user.update');
     }
 
     /**

@@ -40,7 +40,7 @@
                 </li>
                 @if (Auth::check())
                     <li class="nav-list-item">
-                        <a class="nav-link" href="#">{{ Auth::user()->username }}</a>
+                        <a class="nav-link" href="{{ route('user.profile', Auth::user()) }}">{{ Auth::user()->username }}</a>
                     </li>
                     <li class="nav-list-item">
                         <a class="nav-link" href="{{ route('logout') }}"
