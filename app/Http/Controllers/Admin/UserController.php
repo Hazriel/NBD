@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -53,9 +54,16 @@ class UserController extends Controller
         $input = $request->all();
         $this->redirectIfValidationFail($input);
 
+        // Upload the avatar if there is one
+        if ($request->file('avatar')) {
+            $path = Storage::disk('public')->putFile('avatars', $request->file('avatar'));
+            $user->update(['avatar' => $path]);
+        }
+
         $user->update([
             'email'      => $input['email'],
-            'birth_date' => Carbon::createFromFormat('d-m-Y', $input['birth_date'])->toDateTimeString()
+            'birth_date' => Carbon::createFromFormat('d-m-Y', $input['birth_date'])->toDateTimeString(),
+            'description' => $input['description'],
         ]);
 
         if ($input['password'] && $input['password'] !== "") {
