@@ -18,6 +18,10 @@ Route::get('/', [
     'uses' => 'HomeController@index'
 ]);
 
+Route::get('/blyat', [
+    'uses' => 'Admin\AdminController@generatePermissionSet'
+]);
+
 Route::group(['prefix' => 'user/', 'middleware' => ['auth'], 'as' => 'user.'], function () {
 
     Route::get('{user}', [

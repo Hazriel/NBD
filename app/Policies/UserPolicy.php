@@ -18,7 +18,7 @@ class UserPolicy
      */
     public function view(User $user, User $obj)
     {
-        return $user->hasPermission('user.view');
+        return $user->hasRole('admin') || $user->hasPermission('user.view');
     }
 
     /**
@@ -29,7 +29,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        return $user->hasPermission('user.create');
+        return $user->hasRole('admin') || $user->hasPermission('user.create');
     }
 
     /**
@@ -41,7 +41,7 @@ class UserPolicy
      */
     public function update(User $user, User $obj)
     {
-        return $user->id === $obj->id || $user->hasPermission('user.update');
+        return $user->hasRole('admin') || $user->id === $obj->id || $user->hasPermission('user.update');
     }
 
     /**
@@ -53,6 +53,6 @@ class UserPolicy
      */
     public function delete(User $user, User $obj)
     {
-        return $user->hasPermission('user.delete');
+        return $user->hasRole('admin') || $user->hasPermission('user.delete');
     }
 }

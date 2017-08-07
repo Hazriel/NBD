@@ -51,6 +51,15 @@ class User extends Authenticatable
         return false;
     }
 
+    public function hasRole($slug)
+    {
+        foreach ($this->roles as $role) {
+            if ($role->slug === 'admin')
+                return true;
+        }
+        return false;
+    }
+
     public function toSearchableArray()
     {
         return array($this->username, $this->email);

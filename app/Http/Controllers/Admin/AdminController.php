@@ -15,6 +15,7 @@ class AdminController extends Controller
     {
         $pageTitle = "Dashboard";
         $roles = Role::all();
+        // 10 users per page
         $users = User::all()->sortByDesc('created_at')->take(10);
         $pageCount = User::all()->count() / 10 + 1;
         return view('admin.dashboard', compact('pageTitle', 'roles', 'users', 'pageCount'));
