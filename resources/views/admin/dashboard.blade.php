@@ -32,11 +32,11 @@
                 </div>
                 <div class="nbd-section-body">
                     <div class="tab-content">
-                        <div class="search-bar">
-                            <input id="username" type="text" name="username">
-                            <input type="button" value="Search" onclick="searchUser()">
-                        </div>
                         <div id="users" class="tab-pane fade in active">
+                            <div class="search-bar">
+                                <input id="username" type="text" name="username">
+                                <input type="button" value="Search" onclick="searchUser()">
+                            </div>
                             <table class="table users">
                                 <thead>
                                 <tr>
@@ -80,8 +80,8 @@
                                         <td>{{ $role->slug }}</td>
                                         <td>{{ $role->description }}</td>
                                         <td>
-                                            <a href="{{ route('admin.role.update', $role) }}"><button type="button" class="btn btn-info">Edit</button></a>
-                                            <a href="{{ route('admin.role.delete', $role) }}"><button type="button" class="btn btn-danger">Delete</button></a>
+                                            <a href="{{ route('admin.role.update', $role) }}"><button type="button" class="btn btn-info">Edit <span class="glyphicon glyphicon-wrench"></span></button></a>
+                                            <a href="{{ route('admin.role.delete', $role) }}"><button type="button" class="btn btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></button></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -89,7 +89,7 @@
                             </table>
                         </div>
                         <div id="forums" class="tab-pane fade">
-                            <p>Forums tab content ...</p>
+                            <a href="{{ route('admin.forum.category.create') }}"><button type="button" class="btn btn-success">Add Category <span class="glyphicon glyphicon-plus"></span></button></a>
                         </div>
                     </div>
                 </div>

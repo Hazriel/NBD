@@ -18,10 +18,6 @@ Route::get('/', [
     'uses' => 'HomeController@index'
 ]);
 
-Route::get('/blyat', [
-    'uses' => 'Admin\AdminController@generatePermissionSet'
-]);
-
 Route::group(['prefix' => 'user/', 'middleware' => ['auth'], 'as' => 'user.'], function () {
 
     Route::get('{user}', [
@@ -116,6 +112,24 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access']
             'uses' => 'Admin\RoleController@delete',
             'middleware' => 'can:delete,role'
         ])->where('role', '[0-9]+');
+
+    });
+
+    Route::group(['prefix' => 'forum', 'as' => 'forum.'], function () {
+
+        Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
+
+            Route::get('create', [
+                'as'   => 'create',
+                'uses' => 'Admin\ForumController@createCategoryForm'
+            ]);
+
+            Route::post('create', [
+                'as'   => 'create',
+                'uses' => 'Admin\ForumController@createCategory'
+            ]);
+
+        });
 
     });
 

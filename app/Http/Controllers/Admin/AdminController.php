@@ -36,7 +36,7 @@ class AdminController extends Controller
         Role::create([
             'name' => $name,
             'slug' => $slug,
-            'descritpion' => $description
+            'description' => $description
         ]);
     }
 
