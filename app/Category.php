@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     public $timestamps = false;
-    public $fillable = ['name'];
+    public $fillable = ['title', 'required_view_power', 'required_modify_power', 'required_delete_power'];
 
     public function forums()
     {

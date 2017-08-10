@@ -121,12 +121,12 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access']
 
             Route::get('create', [
                 'as'   => 'create',
-                'uses' => 'Admin\ForumController@createCategoryForm'
+                'uses' => 'Forum\CategoryController@createForm'
             ]);
 
             Route::post('create', [
                 'as'   => 'create',
-                'uses' => 'Admin\ForumController@createCategory'
+                'uses' => 'Forum\CategoryController@create'
             ]);
 
         });

@@ -2,15 +2,6 @@
 
 @section('content')
     <div class="row">
-        @if(session()->has('success'))
-            <div class="col-lg-12">
-                <div class="alert alert-success">
-                    <p>{{ session()->get('success') }}</p>
-                </div>
-            </div>
-        @endif
-    </div>
-    <div class="row">
         <div class="col-lg-2">
             <div class="nbd-section">
                 <div class="nbd-section-header">

@@ -65,6 +65,7 @@
     </div>
 </nav>
 <div class="container body-content">
+    @include('misc.error-success-block')
     @yield('content')
 </div>
 

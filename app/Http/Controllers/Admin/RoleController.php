@@ -20,13 +20,6 @@ class RoleController extends Controller
         ]);
     }
 
-    private function redirectIfValidationFail($input)
-    {
-        $validator = $this->validator($input);
-        if ($validator->fails())
-            return redirect()->route('admin.role.create')->withErrors($validator)->withInput();
-    }
-
     public function createRoleForm()
     {
         $pageTitle = "Create Role";
@@ -48,7 +41,11 @@ class RoleController extends Controller
     public function create(Request $request)
     {
         $input = $request->all();
-        $this->redirectIfValidationFail($input);
+
+        // Check if the form is valid
+        $validator = $this->validator($input);
+        if ($validator->fails())
+            return redirect()->route('admin.role.create')->withErrors($validator)->withInput();
 
         Role::create([
             'name' => $input['name'],
@@ -56,7 +53,7 @@ class RoleController extends Controller
             'description' => $input['description']
         ]);
 
-        return redirect()->route('admin.dashboard')->with('success', 'Successfully created the role ' . $input['name'] . '.');
+        return redirect()->route('admin.dashboard')->withSuccess('Successfully created the role ' . $input['name'] . '.');
     }
 
     public function update(Request $request, Role $role)
@@ -82,6 +79,6 @@ class RoleController extends Controller
     {
         $name = $role->name;
         $role->delete();
-        return redirect()->route('admin.dashboard')->with('success', 'The role ' . $name . ' was successfully deleted.');
+        return redirect()->route('admin.dashboard')->withSuccess('The role ' . $name . ' was successfully deleted.');
     }
 }
