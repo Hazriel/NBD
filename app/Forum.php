@@ -17,6 +17,7 @@ class Forum extends Model
         'required_create_comment_power',
         'required_modify_comment_power',
         'required_delete_comment_power',
+        'display_order',
     ];
 
     public function category()

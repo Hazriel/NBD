@@ -18,6 +18,10 @@ Route::get('/', [
     'uses' => 'HomeController@index'
 ]);
 
+Route::get('/blyat', [
+    'uses' => 'Admin\AdminController@generatePermissionSet'
+]);
+
 Route::group(['prefix' => 'user/', 'middleware' => ['auth'], 'as' => 'user.'], function () {
 
     Route::get('{user}', [
@@ -127,6 +131,16 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access']
             Route::post('create', [
                 'as'   => 'create',
                 'uses' => 'Forum\CategoryController@create'
+            ]);
+
+            Route::get('update/{category}', [
+                'as'   => 'update',
+                'uses' => 'Forum\CategoryController@updateForm'
+            ]);
+
+            Route::post('update/{category}', [
+                'as'   => 'update',
+                'uses' => 'Forum\CategoryController@update'
             ]);
 
         });

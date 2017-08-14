@@ -30,11 +30,13 @@ class CreateForumsTable extends Migration
             $table->integer('required_create_comment_power')->unsigned();
             $table->integer('required_modify_comment_power')->unsigned();
             $table->integer('required_delete_comment_power')->unsigned();
-            $table->timestamps();
+
+            $table->integer('display_order')->unsigned();
 
             // Trouble with this line on mariadb
-            $table->foreign('last_comment_id')->references('id')->on('comments');
+            //$table->foreign('last_comment_id')->references('id')->on('comments');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->timestamps();
         });
     }
 

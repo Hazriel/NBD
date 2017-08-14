@@ -21,7 +21,7 @@ class AdminController extends Controller
         // 10 users per page
         $users = User::all()->sortByDesc('created_at')->take(10);
 
-        $forum_categories = Category::all()->sortBy('title');
+        $forum_categories = Category::all()->sortBy('display_order');
 
         $pageCount = User::all()->count() / 10 + 1;
         return view('admin.dashboard', compact('pageTitle', 'roles', 'users', 'pageCount', 'forum_categories'));
@@ -53,8 +53,10 @@ class AdminController extends Controller
         $this->createRole('Member', 'member', 'Member group.');
     }
 
-    public function generatePermissionSet()
+    public function generatePermissionSet(Request $request)
     {
+        $this->generateRoleSet();
+
         $this->createPermission('user.create', 'Is able to create users.');
         $this->createPermission('user.update', 'Is able to update users.');
         $this->createPermission('user.delete', 'Is able to delete users.');

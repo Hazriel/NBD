@@ -19,6 +19,7 @@ class CreateCategoriesTable extends Migration
             $table->integer('required_view_power')->unsigned();
             $table->integer('required_modify_power')->unsigned();
             $table->integer('required_delete_power')->unsigned();
+            $table->integer('display_order')->unsigned();
             $table->timestamps();
         });
     }
