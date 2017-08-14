@@ -7,7 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Forum extends Model
 {
     public $timestamps = false;
-    public $fillable = ['name', 'description', 'restricted'];
+    public $fillable = [
+        'title',
+        'description',
+        'required_view_post_power',
+        'required_create_post_power',
+        'required_modify_post_power',
+        'required_delete_post_power',
+        'required_create_comment_power',
+        'required_modify_comment_power',
+        'required_delete_comment_power',
+    ];
 
     public function category()
     {
