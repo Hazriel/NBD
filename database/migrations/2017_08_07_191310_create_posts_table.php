@@ -18,14 +18,15 @@ class CreatePostsTable extends Migration
             $table->string('title', 100);
             $table->text('content');
             $table->integer('owner_id')->unsigned();
-            $table->integer('last_comment_id')->unsigned();
+            $table->integer('last_comment_id')->unsigned()->nullable();
             $table->integer('comment_count')->unsigned()->default(0);
             $table->integer('forum_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('owner_id')->references('id')->on('users');
+            // Trouble with this line on mariadb
             $table->foreign('last_comment_id')->references('id')->on('comments');
-            $table->foreign('forum_id')->references('id')->on('forum');
+            $table->foreign('forum_id')->references('id')->on('forums');
         });
     }
 
