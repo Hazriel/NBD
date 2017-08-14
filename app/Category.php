@@ -17,4 +17,9 @@ class Category extends Model
     {
         return $this->belongsToMany('App\Forum');
     }
+
+    public function addForum(array $data)
+    {
+
+    }
 }

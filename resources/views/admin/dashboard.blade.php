@@ -81,6 +81,27 @@
                         </div>
                         <div id="forums" class="tab-pane fade">
                             <a href="{{ route('admin.forum.category.create') }}"><button type="button" class="btn btn-success">Add Category <span class="glyphicon glyphicon-plus"></span></button></a>
+                            @foreach($forum_categories as $category)
+                                <div class="admin-forum-category">
+                                    <table class="admin-category-title">
+                                        <tr>
+                                            <td>
+                                                <h3>{{ $category->title }}</h3>
+                                            </td>
+                                            <td class="category-actions">
+                                                <a href="{{ route('admin.forum.forum.create', $category) }}"><button type="button" class="btn btn-success">New Forum <span class="glyphicon glyphicon-plus"></span></button></a>
+                                                <a href="#"><button type="button" class="btn btn-info">Edit <span class="glyphicon glyphicon-wrench"></span></button></a>
+                                                <a href="#"><button type="button" class="btn btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></button></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    @foreach($category->forums() as $forum)
+                                        <div class="admin-forum">
+                                            <h4>{{  $forum->title }}</h4>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

@@ -33,7 +33,7 @@ class AuthServiceProvider extends ServiceProvider
     private function customPolicies()
     {
         Gate::define('admin-access', function (User $user) {
-            return $user->hasPermission('admin.access');
+            return $user->hasPermission('admin.access') || $user->hasRole('admin');
         });
     }
 }

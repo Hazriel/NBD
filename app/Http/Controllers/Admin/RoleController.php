@@ -14,8 +14,8 @@ class RoleController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:30|unique:roles',
-            'slug' => 'required|string|max:30|unique:roles',
+            'name' => 'required|string|max:30',
+            'slug' => 'required|string|max:30',
             'description' => 'max:200'
         ]);
     }
@@ -59,7 +59,11 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $input = $request->all();
-        $this->redirectIfValidationFail($input);
+
+        // Check if the form is valid
+        $validator = $this->validator($input);
+        if ($validator->fails())
+            return redirect()->route('admin.role.create')->withErrors($validator)->withInput();
 
         $role->update([
             'name' => $input['name'],
@@ -72,7 +76,7 @@ class RoleController extends Controller
         $role->permissions()->sync($permissions);
         $role->save();
 
-        return \Redirect::route('admin.dashboard')->withSuccess('The role ' . $role->name . ' has been successfully updated.');
+        return redirect()->route('admin.dashboard')->withSuccess('The role ' . $role->name . ' has been successfully updated.');
     }
 
     public function delete(Role $role)

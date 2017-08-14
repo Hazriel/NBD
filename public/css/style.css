@@ -154,7 +154,7 @@ input[type="submit"]:hover {
     margin-bottom: 20px;
 }
 
-/* News */
+/* NEWS */
 .news {
     padding-bottom: 10px;
     margin-bottom: 10px;
@@ -193,7 +193,7 @@ input[type="button"] {
     padding: 2px 10px;
 }
 
-/* User profile related */
+/* USER PROFILE */
 .avatar {
     min-width: 100px;
     min-height: 100px;
@@ -215,6 +215,32 @@ input[type="button"] {
 
 .profile-details td {
     padding: 5px 20px;
+}
+
+/* FORUM */
+
+/* ADMIN */
+
+.admin-forum-category {
+    border: 1px solid #333;
+    margin: 10px 0px;
+}
+
+.admin-category-title {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(14, 27, 41, 1);
+    color: #db6a1d;
+}
+
+.admin-forum-category h3 {
+    padding: 0;
+    margin: 0;
+}
+
+.category-actions {
+    text-align: right;
 }
 
 /* Added fonts */

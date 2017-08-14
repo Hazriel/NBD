@@ -131,6 +131,20 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access']
 
         });
 
+        Route::group(['prefix' => 'forum', 'as' => 'forum.'], function () {
+
+            Route::get('create/{category}', [
+                'as'   => 'create',
+                'uses' => 'Forum\ForumController@createForm'
+            ]);
+
+            Route::post('create/{category}', [
+                'as'   => 'create',
+                'uses' => 'Forum\ForumController@create'
+            ]);
+
+        });
+
     });
 
 });
