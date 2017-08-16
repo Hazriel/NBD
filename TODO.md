@@ -3,10 +3,16 @@
 - News design
 - Forum design
 
+### Admin
+- Admin forum actions
+
 ## Back-end
 - News management
 - Forum management
-- Change database table for forum (add category and last comment foreign keys)
+
+### Admin
+- Admin category deletion
+- Admin forum update and deletion
 
 # IMPROVE
 ## Front-end
