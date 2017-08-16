@@ -95,7 +95,7 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    @foreach($category->forums() as $forum)
+                                    @foreach($category->forums as $forum)
                                         <div class="admin-forum">
                                             <h4>{{  $forum->title }}</h4>
                                         </div>

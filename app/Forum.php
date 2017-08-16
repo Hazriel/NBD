@@ -10,7 +10,7 @@ class Forum extends Model
     public $fillable = [
         'title',
         'description',
-        'required_view_post_power',
+        'required_view_power',
         'required_create_post_power',
         'required_modify_post_power',
         'required_delete_post_power',
@@ -18,6 +18,7 @@ class Forum extends Model
         'required_modify_comment_power',
         'required_delete_comment_power',
         'display_order',
+        'category_id',
     ];
 
     public function category()

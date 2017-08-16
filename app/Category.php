@@ -15,11 +15,6 @@ class Category extends Model
 
     public function forums()
     {
-        return $this->belongsToMany('App\Forum');
-    }
-
-    public function addForum(array $data)
-    {
-
+        return $this->hasMany('App\Forum');
     }
 }
