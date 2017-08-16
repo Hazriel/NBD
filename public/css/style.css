@@ -237,10 +237,24 @@ input[type="button"] {
 .admin-forum-category h3 {
     padding: 0;
     margin: 0;
+    margin-left: 5px;
 }
 
 .category-actions {
     text-align: right;
+}
+
+.admin-forums h4 {
+    font-size: 20px;
+}
+
+.admin-forums td,
+.admin-forums th {
+    text-align: center;
+}
+
+.admin-forums .forum-title {
+    text-align: left;
 }
 
 /* Added fonts */

@@ -95,11 +95,35 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    @foreach($category->forums as $forum)
-                                        <div class="admin-forum">
-                                            <h4>{{  $forum->title }}</h4>
-                                        </div>
-                                    @endforeach
+                                    <div class="admin-forums">
+                                        <table class="table">
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Order</th>
+                                                <th>VP</th>
+                                                <th>CPP</th>
+                                                <th>MPP</th>
+                                                <th>DPP</th>
+                                                <th>CCP</th>
+                                                <th>MCP</th>
+                                                <th>DCP</th>
+                                                <td>Actions</td>
+                                            </tr>
+                                            @foreach($category->forums->sortBy('display_order') as $forum)
+                                                <tr>
+                                                    <td class="forum-title">{{  $forum->title }}</td>
+                                                    <td>{{ $forum->display_order }}</td>
+                                                    <td>{{ $forum->required_view_power }}</td>
+                                                    <td>{{ $forum->required_create_post_power }}</td>
+                                                    <td>{{ $forum->required_modify_post_power }}</td>
+                                                    <td>{{ $forum->required_delete_post_power }}</td>
+                                                    <td>{{ $forum->required_create_comment_power }}</td>
+                                                    <td>{{ $forum->required_modify_comment_power }}</td>
+                                                    <td>{{ $forum->required_delete_comment_power }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                    </div>
                                 </div>
                             @endforeach
                         </div>
