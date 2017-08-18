@@ -91,7 +91,7 @@
                                             <td class="category-actions">
                                                 <a href="{{ route('admin.forum.forum.create', $category) }}"><button type="button" class="btn btn-success">New Forum <span class="glyphicon glyphicon-plus"></span></button></a>
                                                 <a href="{{ route('admin.forum.category.update', $category) }}"><button type="button" class="btn btn-info">Edit <span class="glyphicon glyphicon-wrench"></span></button></a>
-                                                <a href="#"><button type="button" class="btn btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></button></a>
+                                                <a href="{{ route('admin.forum.category.warning', $category) }}"><button type="button" class="btn btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></button></a>
                                             </td>
                                         </tr>
                                     </table>
@@ -120,6 +120,10 @@
                                                     <td>{{ $forum->required_create_comment_power }}</td>
                                                     <td>{{ $forum->required_modify_comment_power }}</td>
                                                     <td>{{ $forum->required_delete_comment_power }}</td>
+                                                    <td>
+                                                        <a href="#"><span class="glyphicon glyphicon-cog"></span></a>
+                                                        <a href="#"><span class="glyphicon glyphicon-trash"></span></a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </table>

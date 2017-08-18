@@ -10,7 +10,7 @@
                 <div class="nbd-section-body">
                     {!! Form::model($category, ['method' => 'post', 'route' => ['admin.forum.category.update', $category->id]]) !!}
                     @include('forms.forum.category')
-                    {!! Form::submit('Create', ['class' => 'btn btn-primary']) !!}
+                    {!! Form::submit('Edit', ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>

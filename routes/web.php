@@ -143,6 +143,16 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access']
                 'uses' => 'Forum\CategoryController@update'
             ]);
 
+            Route::get('warning/{category}', [
+                'as'   => 'warning',
+                'uses' => 'Forum\CategoryController@deleteWarning'
+            ]);
+
+            Route::get('delete/{category}', [
+                'as'   => 'delete',
+                'uses' => 'Forum\CategoryController@delete'
+            ]);
+
         });
 
         Route::group(['prefix' => 'forum', 'as' => 'forum.'], function () {

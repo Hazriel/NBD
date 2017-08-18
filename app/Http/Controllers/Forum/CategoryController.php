@@ -76,4 +76,16 @@ class CategoryController extends Controller
 
         return redirect()->route('admin.dashboard')->withSuccess('The category ' . $category->title . ' was updated successfully.');
     }
+
+    public function deleteWarning(Request $request, Category $category)
+    {
+        return view('admin.forum.category.delete', compact('category'));
+    }
+
+    public function delete(Request $request, Category $category)
+    {
+        $category->archiveForums();
+        $category->delete();
+        return redirect()->route('admin.dashboard')->withSuccess('The category ' . $category->title . ' was successfully deleted.');
+    }
 }

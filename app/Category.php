@@ -6,7 +6,9 @@
 
 namespace App;
 
+use App\Forum;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 class Category extends Model
 {
@@ -16,5 +18,12 @@ class Category extends Model
     public function forums()
     {
         return $this->hasMany('App\Forum');
+    }
+
+    public function archiveForums()
+    {
+        Log::info('Archiving Category ' . $this->title . ' ...');
+        foreach ($this->forums as $forum)
+            $forum->archive();
     }
 }
