@@ -121,8 +121,8 @@
                                                     <td>{{ $forum->required_modify_comment_power }}</td>
                                                     <td>{{ $forum->required_delete_comment_power }}</td>
                                                     <td>
-                                                        <a href="#"><span class="glyphicon glyphicon-cog"></span></a>
-                                                        <a href="#"><span class="glyphicon glyphicon-trash"></span></a>
+                                                        <a href="{{ route('admin.forum.forum.update', $forum) }}"><span class="glyphicon glyphicon-cog"></span></a>
+                                                        <a href="{{ route('admin.forum.forum.warning', $forum) }}"><span class="glyphicon glyphicon-trash"></span></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

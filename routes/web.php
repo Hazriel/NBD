@@ -167,6 +167,26 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access']
                 'uses' => 'Forum\ForumController@create'
             ]);
 
+            Route::get('update/{forum}', [
+                'as'   => 'update',
+                'uses' => 'Forum\ForumController@updateForm'
+            ]);
+
+            Route::post('update/{forum}', [
+                'as'   => 'update',
+                'uses' => 'Forum\ForumController@update'
+            ]);
+
+            Route::get('warning/{forum}', [
+                'as'   => 'warning',
+                'uses' => 'Forum\ForumController@warning'
+            ]);
+
+            Route::get('archive/{forum}', [
+                'as'   => 'archive',
+                'uses' => 'Forum\ForumController@archive'
+            ]);
+
         });
 
     });
