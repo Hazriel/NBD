@@ -9,18 +9,7 @@
                 </div>
                 <div class="nbd-section-body">
                     {!! Form::open(['route' => 'admin.role.create', 'method' => 'post']) !!}
-                    <div class="form-group">
-                        {!! Form::label('name', 'Name :') !!}
-                        {!! Form::text('name', null, ['class' => 'form-control']) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('slug', 'Slug :') !!}
-                        {!! Form::text('slug', null, ['class' => 'form-control']) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('description', 'Description :') !!}
-                        {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => '3']) !!}
-                    </div>
+                    @include('forms.role.role')
                     {!! Form::submit('Create', ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}
                 </div>

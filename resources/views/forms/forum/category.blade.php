@@ -11,8 +11,8 @@
     {!! Form::number('required_view_power', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
-    {!! Form::label('required_modify_power', 'Required Modify Power :') !!}
-    {!! Form::number('required_modify_power', null, ['class' => 'form-control']) !!}
+    {!! Form::label('required_update_power', 'Required Update Power :') !!}
+    {!! Form::number('required_update_power', null, ['class' => 'form-control']) !!}
 </div>
 <div class="form-group">
     {!! Form::label('required_delete_power', 'Required Delete Power :') !!}

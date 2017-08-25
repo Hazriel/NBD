@@ -24,11 +24,11 @@ class CreateForumsTable extends Migration
 
             $table->integer('required_view_power')->unsigned();
             $table->integer('required_create_post_power')->unsigned()->default(0);
-            $table->integer('required_modify_post_power')->unsigned()->default(0);
+            $table->integer('required_update_post_power')->unsigned()->default(0);
             $table->integer('required_delete_post_power')->unsigned()->default(0);
 
             $table->integer('required_create_comment_power')->unsigned()->default(0);
-            $table->integer('required_modify_comment_power')->unsigned()->default(0);
+            $table->integer('required_update_comment_power')->unsigned()->default(0);
             $table->integer('required_delete_comment_power')->unsigned()->default(0);
 
             $table->integer('display_order')->unsigned();

@@ -12,7 +12,7 @@ $("#username").on('keypress', function(e) {
 function getUsers(page) {
     $.ajax({
         type: "GET",
-        url: "/nbd/public/admin/user/list/".concat(page),
+        url: "/admin/user/list/".concat(page),
         data: "",
         success: function(response) {
             $("#user-container").html(response);
@@ -31,7 +31,7 @@ function searchUser() {
 
     $.ajax({
         type: "POST",
-        url: "/nbd/public/admin/user/search",
+        url: "/admin/user/search",
         data: {
             username : $("#username").val()
         },

@@ -18,6 +18,7 @@ Route::get('/', [
     'uses' => 'HomeController@index'
 ]);
 
+// TODO: REMOVE THIS WHEN THE PRODUCTION IS OVER
 Route::get('/blyat', [
     'uses' => 'Admin\AdminController@generatePermissionSet'
 ]);

@@ -72,6 +72,8 @@ class AdminController extends Controller
 
         $this->createPermission('admin.access', 'Is able to access the admin interface');
 
+        $request->user()->addRole(1);
+
         return redirect()->route('admin.dashboard')->with('success', 'A basic permission set was successfully created.');
     }
 }

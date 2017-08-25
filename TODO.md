@@ -7,6 +7,7 @@
 - Admin forum actions
 
 ## Back-end
+- Introduce permission power to the groups
 - News management
 - Forum management
 

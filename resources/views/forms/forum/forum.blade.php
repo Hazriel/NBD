@@ -29,8 +29,8 @@
     </div>
     <div class="col-lg-3">
         <div class="form-group">
-            {!! Form::label('required_modify_post_power', 'Required Modify Post Power :') !!}
-            {!! Form::number('required_modify_post_power', null, ['class' => 'form-control']) !!}
+            {!! Form::label('required_update_post_power', 'Required Update Post Power :') !!}
+            {!! Form::number('required_update_post_power', null, ['class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-lg-3">
@@ -49,8 +49,8 @@
     </div>
     <div class="col-lg-3">
         <div class="form-group">
-            {!! Form::label('required_modify_comment_power', 'Required Modify Comment Power :') !!}
-            {!! Form::number('required_modify_comment_power', null, ['class' => 'form-control']) !!}
+            {!! Form::label('required_update_comment_power', 'Required Update Comment Power :') !!}
+            {!! Form::number('required_update_comment_power', null, ['class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-lg-3">

@@ -18,6 +18,23 @@ class CreateRolesTable extends Migration
             $table->string('name', 30)->unique();
             $table->string('slug', 30)->unique();
             $table->text('description')->nullable();
+
+            // Permission powers
+            $table->integer('category_view_power')->unsigned()->default(0);
+            $table->integer('category_update_power')->unsigned()->default(0);
+            $table->integer('category_delete_power')->unsigned()->default(0);
+
+            $table->integer('forum_view_power')->unsigned()->default(0);
+            $table->integer('forum_update_power')->unsigned()->default(0);
+            $table->integer('forum_delete_power')->unsigned()->default(0);
+
+            $table->integer('post_create_power')->unsigned()->default(0);
+            $table->integer('post_update_power')->unsigned()->default(0);
+            $table->integer('post_delete_power')->unsigned()->default(0);
+
+            $table->integer('comment_create_power')->unsigned()->default(0);
+            $table->integer('comment_update_power')->unsigned()->default(0);
+            $table->integer('comment_delete_power')->unsigned()->default(0);
         });
     }
 

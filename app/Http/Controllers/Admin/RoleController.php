@@ -20,21 +20,28 @@ class RoleController extends Controller
         ]);
     }
 
+    private function getPermissions()
+    {
+        $permissions = [];
+        foreach(Permission::all() as $permission) {
+            $parts = explode('.',$permission->slug);
+            $permissions[ucfirst($parts[0])][] = ['access'=> ucfirst($parts[1]), 'description'=>$permission->description];
+        }
+        return $permissions;
+    }
+
     public function createRoleForm()
     {
         $pageTitle = "Create Role";
-        return view('admin.role.create');
+        $permissions = $this->getPermissions();
+        return view('admin.role.create', compact('permissions'));
     }
 
     public function updateRoleForm($role)
     {
         $pageTitle = "Update Role";
 
-        $permissions = [];
-        foreach(Permission::all() as $permission) {
-            $parts = explode('.',$permission->slug);
-            $permissions[ucfirst($parts[0])][] = ['access'=> ucfirst($parts[1]), 'description'=>$permission->description];
-        }
+        $permissions = $this->getPermissions();
         return view('admin.role.update', compact('role', 'permissions'));
     }
 
@@ -47,11 +54,14 @@ class RoleController extends Controller
         if ($validator->fails())
             return redirect()->route('admin.role.create')->withErrors($validator)->withInput();
 
-        Role::create([
+        $role = Role::create([
             'name' => $input['name'],
             'slug' => $input['slug'],
             'description' => $input['description']
         ]);
+
+        $permissions = is_null(Input::get('permissions')) ? [] : Permission::whereIn('slug', array_keys(Input::get('permissions')))->pluck('id')->all();
+        $role->permissions()->sync($permissions);
 
         return redirect()->route('admin.dashboard')->withSuccess('Successfully created the role ' . $input['name'] . '.');
     }
@@ -82,6 +92,10 @@ class RoleController extends Controller
     public function delete(Role $role)
     {
         $name = $role->name;
+        // First detach the role from its users and permissions
+        $role->users()->detach();
+        $role->permissions()->detach();
+        // Delete after
         $role->delete();
         return redirect()->route('admin.dashboard')->withSuccess('The role ' . $name . ' was successfully deleted.');
     }
