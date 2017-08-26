@@ -13,10 +13,10 @@ class Forum extends Model
         'description',
         'required_view_power',
         'required_create_post_power',
-        'required_modify_post_power',
+        'required_update_post_power',
         'required_delete_post_power',
         'required_create_comment_power',
-        'required_modify_comment_power',
+        'required_update_comment_power',
         'required_delete_comment_power',
         'display_order',
         'category_id',
@@ -42,7 +42,7 @@ class Forum extends Model
             $archivesCategory = Category::create([
                 'title' => 'Archives',
                 'required_view_power' => '100',
-                'required_modify_power' => '100',
+                'required_update_power' => '100',
                 'required_delete_power' => '100',
                 'display_order' => '1000',
             ]);

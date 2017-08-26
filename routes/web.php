@@ -42,6 +42,15 @@ Route::group(['prefix' => 'user/', 'middleware' => ['auth'], 'as' => 'user.'], f
 
 });
 
+Route::group(['prefix' => 'forum/', 'as' => 'forum.'], function () {
+
+    Route::get('/', [
+        'as'   => 'categories',
+        'uses' => 'Forum\CategoryController@categories'
+    ]);
+
+});
+
 Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access'], 'as' => 'admin.'], function () {
 
     Route::get('/', [

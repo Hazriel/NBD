@@ -219,6 +219,33 @@ input[type="button"] {
 
 /* FORUM */
 
+.table .category {
+    background-color: rgba(14, 27, 41, 0.95);
+    color: #db6a1d;
+    width: 100%;
+}
+
+.table .category td {
+    border: none;
+    font-family: 'PassionOne';
+    font-size: 32px;
+}
+
+.forums .forum,
+.forums tr {
+    border: 3px solid rgb(14, 27, 41);
+}
+
+.table .forum {
+    background-color: rgba(0, 0, 0, 0.95);
+}
+
+.forums .forum {
+    font-size: 18px;
+    font-family: 'Righteous';
+    padding: 15px 5px;
+}
+
 /* ADMIN */
 
 .admin-forum-category {
@@ -227,11 +254,11 @@ input[type="button"] {
 }
 
 .admin-category-title {
-    width: 100%;
-    margin: 0;
-    padding: 0;
     background-color: rgba(14, 27, 41, 1);
     color: #db6a1d;
+    margin: 0;
+    padding: 0;
+    width: 100%;
 }
 
 .admin-forum-category h3 {

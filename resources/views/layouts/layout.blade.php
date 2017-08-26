@@ -30,7 +30,7 @@
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "Forum") active @endif">
-                    <a class="nav-link" href="#">Forum</a>
+                    <a class="nav-link" href="{{ route('forum.categories') }}">Forum</a>
                 </li>
                 <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "News") active @endif">
                     <a class="nav-link" href="#">News</a>
