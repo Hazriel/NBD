@@ -219,20 +219,23 @@ input[type="button"] {
 
 /* FORUM */
 
-.table .category {
+.table .category,
+.table .forum-title {
     background-color: rgba(14, 27, 41, 0.95);
     color: #db6a1d;
     width: 100%;
 }
 
-.table .category td {
+.table .category td,
+.table .forum-title-td {
     border: none;
     font-family: 'PassionOne';
     font-size: 32px;
 }
 
 .forums .forum,
-.forums tr {
+.forums tr,
+.forum-title {
     border: 3px solid rgb(14, 27, 41);
 }
 
@@ -244,6 +247,12 @@ input[type="button"] {
     font-size: 18px;
     font-family: 'Righteous';
     padding: 15px 5px;
+}
+
+.table .forum-title .post-add-button {
+    border: none;
+    text-align: right;
+    vertical-align: middle;
 }
 
 /* ADMIN */

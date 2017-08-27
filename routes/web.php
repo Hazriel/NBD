@@ -22,6 +22,7 @@ Route::get('/', [
 Route::get('/blyat', [
     'uses' => 'Admin\AdminController@generatePermissionSet'
 ]);
+// TODO: END REMOVE
 
 Route::group(['prefix' => 'user/', 'middleware' => ['auth'], 'as' => 'user.'], function () {
 
@@ -42,11 +43,16 @@ Route::group(['prefix' => 'user/', 'middleware' => ['auth'], 'as' => 'user.'], f
 
 });
 
-Route::group(['prefix' => 'forum/', 'as' => 'forum.'], function () {
+Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']], function () {
 
     Route::get('/', [
         'as'   => 'categories',
         'uses' => 'Forum\CategoryController@categories'
+    ]);
+
+    Route::get('{forum}', [
+        'as'   => 'forum',
+        'uses' => 'Forum\ForumController@posts'
     ]);
 
 });
@@ -56,11 +62,6 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access']
     Route::get('/', [
         'as'   => 'dashboard',
         'uses' => 'Admin\AdminController@dashboard'
-    ]);
-
-    Route::get('/permissiongenerate', [
-        'as'   => 'permissionGenerate',
-        'uses' => 'Admin\AdminController@generatePermissionSet'
     ]);
 
     Route::group(['prefix' => 'user', 'as' => 'user.'], function () {

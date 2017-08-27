@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 
 class ForumController extends Controller
 {
+    public function posts(Request $request, Forum $forum)
+    {
+        return view('forum.forum', compact('forum'));
+    }
+
     public function createForm(Request $request, Category $category)
     {
         return view('admin.forum.forum.create', compact('category'));
