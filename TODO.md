@@ -1,15 +1,16 @@
 # TODO
-## Front-end
-- News design
-- Forum design
+
+### Forum
+- Posts
+- Comments
+- Design
 
 ### Admin
-- Admin forum actions
+- Admin forum actions (post and comment remaining)
 
 ## Back-end
-- Introduce permission power to the groups
 - News management
-- Forum management
+- Forum management for post and comments
 
 ### Admin
 - Admin category deletion
@@ -20,4 +21,6 @@
 - Navbar design
 - Login&Register design
 - Profile page design
+
 ## Back-end
+- Maybe review the management of the forums and categories
