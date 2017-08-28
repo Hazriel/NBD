@@ -35,4 +35,24 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="nbd-section">
+                <div class="nbd-section-header">
+                    <h1>Remove from Role</h1>
+                </div>
+                <div class="nbd-section-body">
+                    {!! Form::open(['method' => 'post', 'route' => ['admin.user.removeFromRole', $user->id]]) !!}
+                    <div class="form-group">
+                        {!! Form::label('role', 'Role :') !!}
+                        {!! Form::select('role', $userRoles, null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::submit('Remove', ['class' => 'btn btn-primary']) !!}
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

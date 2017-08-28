@@ -83,11 +83,17 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access']
             'middleware' => 'can:update,user'
         ])->where('user', '[0-9]+');
 
-        Route::post('role/{user}', [
+        Route::post('add-role/{user}', [
             'as'   => 'addToRole',
             'uses' => 'Admin\UserController@addToRole',
             'middleware' => 'can:update,user'
         ])->where('user', '[0-9]+');
+
+        Route::post('remove-role/{user}', [
+            'as'   => 'removeFromRole',
+            'uses' => 'Admin\UserController@removeFromRole',
+            'middleware' => 'can:update,user'
+        ]);
 
         Route::post('search', [
             'as'   => 'search',

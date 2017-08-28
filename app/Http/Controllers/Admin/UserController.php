@@ -40,13 +40,17 @@ class UserController extends Controller
         return view('admin.user.list', compact('users'));
     }
 
-    public function updateForm($user)
+    public function updateForm(User $user)
     {
+        foreach ($user->roles as $role)
+        {
+            $userRoles[$role->id] = $role->name;
+        }
         foreach (Role::all() as $role)
         {
             $roles[$role->id] = $role->name;
         }
-        return view('admin.user.update', compact('user', 'roles'));
+        return view('admin.user.update', compact('user', 'roles', 'userRoles'));
     }
 
     public function update(Request $request, User $user)
@@ -77,8 +81,19 @@ class UserController extends Controller
     {
         // Check if the role exists
         $role = Role::findOrFail($request->all()['role']);
+        if ($user->hasRole($role->slug))
+            return redirect()->route('admin.dashboard')->withErrors('The user ' . $user->username . ' already has the role ' . $role->name . '.');
         $user->addRole($role->id);
         return redirect()->route('admin.dashboard')->withSuccess('The user ' . $user->username . ' was updated successfully.');
+    }
+
+    public function removeFromRole(Request $request, User $user)
+    {
+        $role = Role::findOrFail($request->all()['role']);
+        if (!$user->hasRole($role->slug))
+            return redirect()->route('admin.dashboard')->withErrors('The user ' . $user->username . ' doesn\'t have the role ' . $role->name . '.');
+        $user->removeRole($role->id);
+        return redirect()->route('admin.dashboard')->withSuccess('The user ' . $user->username . ' was removed from the role ' . $role->name . '.');
     }
 
     public function searchUser(Request $request)

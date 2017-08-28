@@ -37,6 +37,13 @@ class User extends Authenticatable
         ]);
     }
 
+    public function removeRole($roleId)
+    {
+        DB::table('role_user')->where('role_id', $roleId)
+                              ->where('user_id', $this->id)
+                              ->delete();
+    }
+
     public function roles()
     {
         return $this->belongsToMany('App\Role', 'role_user');
