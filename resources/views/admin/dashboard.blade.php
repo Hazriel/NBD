@@ -111,7 +111,7 @@
                                             </tr>
                                             @foreach($category->forums->sortBy('display_order') as $forum)
                                                 <tr>
-                                                    <td class="forum-title">{{  $forum->title }}</td>
+                                                    <td>{{ $forum->title }}</td>
                                                     <td>{{ $forum->display_order }}</td>
                                                     <td>{{ $forum->required_view_power }}</td>
                                                     <td>{{ $forum->required_create_post_power }}</td>

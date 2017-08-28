@@ -17,8 +17,6 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->string('title', 100);
             $table->integer('required_view_power')->unsigned();
-            $table->integer('required_update_power')->unsigned();
-            $table->integer('required_delete_power')->unsigned();
             $table->integer('display_order')->unsigned();
             $table->timestamps();
         });

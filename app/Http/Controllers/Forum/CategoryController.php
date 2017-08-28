@@ -29,8 +29,6 @@ class CategoryController extends Controller
         $this->validate($request, [
             'title' => 'required|string|min:3|max:100',
             'required_view_power' => 'required|int',
-            'required_update_power' => 'required|int',
-            'required_delete_power' => 'required|int',
             'display_order' => 'required|int',
         ]);
 
@@ -38,8 +36,6 @@ class CategoryController extends Controller
         Category::create([
             'title' => $input['title'],
             'required_view_power' => $input['required_view_power'],
-            'required_update_power' => $input['required_update_power'],
-            'required_delete_power' => $input['required_delete_power'],
             'display_order' => $input['display_order'],
         ]);
 
@@ -56,8 +52,6 @@ class CategoryController extends Controller
         $this->validate($request, [
             'title' => 'required|string|min:3|max:100',
             'required_view_power' => 'required|int',
-            'required_update_power' => 'required|int',
-            'required_delete_power' => 'required|int',
             'display_order' => 'required|int',
         ]);
 
@@ -65,8 +59,6 @@ class CategoryController extends Controller
         $category->update([
             'title' => $input['title'],
             'required_view_power' => $input['required_view_power'],
-            'required_update_power' => $input['required_update_power'],
-            'required_delete_power' => $input['required_delete_power'],
             'display_order' => $input['display_order'],
         ]);
 

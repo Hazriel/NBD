@@ -34,3 +34,41 @@
         </table>
     </div>
 </div>
+<div class="row">
+    <div class="col-lg-3">
+        {!! Form::label('category_view_power', 'Category View Power') !!}
+        {!! Form::number('category_view_power', null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="col-lg-3">
+        {!! Form::label('forum_view_power', 'Category View Power') !!}
+        {!! Form::number('forum_view_power', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3">
+        {!! Form::label('post_create_power', 'Post Create Power') !!}
+        {!! Form::number('post_create_power', null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="col-lg-3">
+        {!! Form::label('post_update_power', 'Post Update Power') !!}
+        {!! Form::number('post_update_power', null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="col-lg-3">
+        {!! Form::label('post_delete_power', 'Post Update Power') !!}
+        {!! Form::number('post_delete_power', null, ['class' => 'form-control']) !!}
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3">
+        {!! Form::label('comment_create_power', 'Comment Create Power') !!}
+        {!! Form::number('comment_create_power', null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="col-lg-3">
+        {!! Form::label('comment_update_power', 'Comment Update Power') !!}
+        {!! Form::number('comment_update_power', null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="col-lg-3">
+        {!! Form::label('comment_delete_power', 'Comment Update Power') !!}
+        {!! Form::number('comment_delete_power', null, ['class' => 'form-control']) !!}
+    </div>
+</div>

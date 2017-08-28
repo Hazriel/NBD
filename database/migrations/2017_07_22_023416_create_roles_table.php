@@ -21,12 +21,7 @@ class CreateRolesTable extends Migration
 
             // Permission powers
             $table->integer('category_view_power')->unsigned()->default(0);
-            $table->integer('category_update_power')->unsigned()->default(0);
-            $table->integer('category_delete_power')->unsigned()->default(0);
-
             $table->integer('forum_view_power')->unsigned()->default(0);
-            $table->integer('forum_update_power')->unsigned()->default(0);
-            $table->integer('forum_delete_power')->unsigned()->default(0);
 
             $table->integer('post_create_power')->unsigned()->default(0);
             $table->integer('post_update_power')->unsigned()->default(0);

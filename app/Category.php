@@ -13,7 +13,11 @@ use Illuminate\Support\Facades\Log;
 class Category extends Model
 {
     public $timestamps = false;
-    public $fillable = ['title', 'required_view_power', 'required_update_power', 'required_delete_power', 'display_order'];
+    public $fillable = [
+        'title',
+        'required_view_power',
+        'display_order'
+    ];
 
     public function forums()
     {

@@ -293,6 +293,11 @@ input[type="button"] {
     text-align: left;
 }
 
+.admin-forums .table {
+    border: 1px solid whitesmoke;
+    margin-bottom: 0;
+}
+
 /* Added fonts */
 @font-face {
     font-family: "Flatwheat";
