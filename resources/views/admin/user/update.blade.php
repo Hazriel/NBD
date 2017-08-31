@@ -8,7 +8,7 @@
                     <h1>Editing {{ $user->username }}</h1>
                 </div>
                 <div class="nbd-section-body">
-                    {!! Form::model($user, ['method' => 'post', 'route' => ['admin.user.update', $user->id]]) !!}
+                    {!! Form::model($user, ['method' => 'topic', 'route' => ['admin.user.update', $user->id]]) !!}
                     @include('forms.user.update')
                     {!! Form::close() !!}
                 </div>
@@ -35,6 +35,7 @@
             </div>
         </div>
     </div>
+    @if(isset($userRoles))
     <div class="row">
         <div class="col-lg-12">
             <div class="nbd-section">
@@ -55,4 +56,5 @@
             </div>
         </div>
     </div>
+    @endif
 @endsection

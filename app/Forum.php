@@ -12,12 +12,12 @@ class Forum extends Model
         'title',
         'description',
         'required_view_power',
+        'required_create_topic_power',
+        'required_update_topic_power',
+        'required_delete_topic_power',
         'required_create_post_power',
         'required_update_post_power',
         'required_delete_post_power',
-        'required_create_comment_power',
-        'required_update_comment_power',
-        'required_delete_comment_power',
         'display_order',
         'category_id',
     ];
@@ -29,7 +29,7 @@ class Forum extends Model
 
     public function posts()
     {
-        return $this->hasMany('App\Post');
+        return $this->hasMany('App\Topic');
     }
 
     public function archive()

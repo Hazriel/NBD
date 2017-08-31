@@ -13,18 +13,18 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('topics', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title', 100);
-            $table->text('content');
             $table->integer('owner_id')->unsigned();
-            $table->integer('last_comment_id')->unsigned()->nullable();
-            $table->integer('comment_count')->unsigned()->default(0);
+            $table->integer('last_post_id')->unsigned()->nullable();
+            $table->integer('post_count')->unsigned()->default(0);
             $table->integer('forum_id')->unsigned();
 
             $table->foreign('owner_id')->references('id')->on('users');
+
             // Trouble with this line on mariadb
-            //$table->foreign('last_comment_id')->references('id')->on('comments');
+            $table->foreign('last_post_id')->references('id')->on('posts');
             $table->foreign('forum_id')->references('id')->on('forums');
 
             $table->timestamps();
@@ -38,6 +38,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('topics');
     }
 }

@@ -50,7 +50,7 @@
         {!! Form::number('post_create_power', null, ['class' => 'form-control']) !!}
     </div>
     <div class="col-lg-3">
-        {!! Form::label('post_update_power', 'Post Update Power') !!}
+        {!! Form::label('post_update_power', 'Topic') !!}
         {!! Form::number('post_update_power', null, ['class' => 'form-control']) !!}
     </div>
     <div class="col-lg-3">
@@ -60,7 +60,7 @@
 </div>
 <div class="row">
     <div class="col-lg-3">
-        {!! Form::label('comment_create_power', 'Comment Create Power') !!}
+        {!! Form::label('comment_create_power', 'Post') !!}
         {!! Form::number('comment_create_power', null, ['class' => 'form-control']) !!}
     </div>
     <div class="col-lg-3">
@@ -68,7 +68,7 @@
         {!! Form::number('comment_update_power', null, ['class' => 'form-control']) !!}
     </div>
     <div class="col-lg-3">
-        {!! Form::label('comment_delete_power', 'Comment Update Power') !!}
+        {!! Form::label('comment_delete_power', 'Post') !!}
         {!! Form::number('comment_delete_power', null, ['class' => 'form-control']) !!}
     </div>
 </div>

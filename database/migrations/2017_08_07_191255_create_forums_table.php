@@ -17,10 +17,10 @@ class CreateForumsTable extends Migration
             $table->increments('id');
             $table->string('title', 100);
             $table->string('description', 300)->nullable();
-            $table->integer('last_comment_id')->unsigned()->nullable();
+            $table->integer('last_post_id')->unsigned()->nullable();
             $table->integer('category_id')->unsigned();
+            $table->integer('topic_count')->unsigned()->default(0);
             $table->integer('post_count')->unsigned()->default(0);
-            $table->integer('comment_count')->unsigned()->default(0);
 
             $table->integer('required_view_power')->unsigned();
             $table->integer('required_create_post_power')->unsigned()->default(0);
@@ -34,7 +34,7 @@ class CreateForumsTable extends Migration
             $table->integer('display_order')->unsigned();
 
             // Trouble with this line on mariadb
-            //$table->foreign('last_comment_id')->references('id')->on('comments');
+            $table->foreign('last_post_id')->references('id')->on('posts');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });

@@ -1,20 +1,16 @@
 <?php
 
-/*
- * Forum post
- */
-
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    public $fillable = ['title', 'content'];
+    protected $fillable = ['content'];
 
-    public function comments()
+    public function post()
     {
-        return $this->hasMany('App\Role');
+        return $this->belongsTo('App\Topic');
     }
 
     public function owner()

@@ -8,7 +8,7 @@
                     <h1>Edit Role</h1>
                 </div>
                 <div class="nbd-section-body">
-                    {!! Form::model($role, ['route' => ['admin.role.update', $role->id], 'method' => 'post']) !!}
+                    {!! Form::model($role, ['route' => ['admin.role.update', $role->id], 'method' => 'topic']) !!}
                     @include('forms.role.role')
                     {!! Form::submit('Update', ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}

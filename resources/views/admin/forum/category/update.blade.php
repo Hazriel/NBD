@@ -8,7 +8,7 @@
                     <h1>Update Category</h1>
                 </div>
                 <div class="nbd-section-body">
-                    {!! Form::model($category, ['method' => 'post', 'route' => ['admin.forum.category.update', $category->id]]) !!}
+                    {!! Form::model($category, ['method' => 'topic', 'route' => ['admin.forum.category.update', $category->id]]) !!}
                     @include('forms.forum.category')
                     {!! Form::submit('Edit', ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}

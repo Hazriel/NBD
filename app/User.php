@@ -61,7 +61,7 @@ class User extends Authenticatable
     public function hasRole($slug)
     {
         foreach ($this->roles as $role) {
-            if ($role->slug === 'admin')
+            if ($role->slug === $slug)
                 return true;
         }
         return false;

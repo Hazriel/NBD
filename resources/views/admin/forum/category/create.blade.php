@@ -8,7 +8,7 @@
                     <h1>Create Category</h1>
                 </div>
                 <div class="nbd-section-body">
-                    {!! Form::open(['method' => 'post', 'route' => 'admin.forum.category.create']) !!}
+                    {!! Form::open(['method' => 'topic', 'route' => 'admin.forum.category.create']) !!}
                     @include('forms.forum.category')
                     {!! Form::submit('Create', ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}

@@ -8,7 +8,7 @@
                     <h1>Create New Role</h1>
                 </div>
                 <div class="nbd-section-body">
-                    {!! Form::open(['route' => 'admin.role.create', 'method' => 'post']) !!}
+                    {!! Form::open(['route' => 'admin.role.create', 'method' => 'topic']) !!}
                     @include('forms.role.role')
                     {!! Form::submit('Create', ['class' => 'btn btn-primary']) !!}
                     {!! Form::close() !!}

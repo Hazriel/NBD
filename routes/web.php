@@ -51,10 +51,19 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
     ]);
 
     Route::get('{forum}', [
-        'as'   => 'forum',
+        'as'   => 'view',
         'uses' => 'Forum\ForumController@posts'
     ]);
 
+    Route::get('{forum}/new-topic', [
+        'as'   => 'newTopic',
+        'uses' => 'Forum\TopicController@createForm'
+    ]);
+
+    Route::post('{forum}/new-topic', [
+        'as'   => 'newTopic',
+        'uses' => 'Forum\TopicController@create'
+    ]);
 });
 
 Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access'], 'as' => 'admin.'], function () {
