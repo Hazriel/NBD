@@ -13,3 +13,10 @@
     </div>
 </div>
 @endsection
+
+@section('scripts')
+<script type="text/javascript" src="{{ asset("ckeditor/ckeditor.js") }}"></script>
+<script type="text/javascript">
+	CKEDITOR.replace('content');
+</script>
+@endsection
