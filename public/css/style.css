@@ -235,11 +235,14 @@ input[type="button"] {
 
 .forums .forum,
 .forums tr,
-.forum-title {
+.forum-title,
+.topics tr,
+.topics .topic td {
     border: 3px solid rgb(14, 27, 41);
 }
 
-.table .forum {
+.table .forum,
+.table .topic {
     background-color: rgba(0, 0, 0, 0.95);
 }
 
@@ -249,9 +252,25 @@ input[type="button"] {
     padding: 15px 5px;
 }
 
+.topics .topic td {
+    padding: 20px 5px;
+}
+
 .table .forum-title .post-add-button {
     border: none;
     text-align: right;
+    vertical-align: middle;
+}
+
+.topic .topic-owner,
+.topic .topic-date,
+.topic .topic-last-post {
+    text-align: center;
+}
+.topic .topic-title,
+.topic .topic-owner,
+.topic .topic-date,
+.topic .topic-last-post {
     vertical-align: middle;
 }
 

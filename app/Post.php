@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = ['content', 'owner_id'];
+    protected $fillable = ['message', 'owner_id', 'topic_id'];
 
-    public function post()
+    public function topic()
     {
         return $this->belongsTo('App\Topic');
     }

@@ -31,17 +31,12 @@ class User extends Authenticatable
 
     public function addRole($roleId)
     {
-        DB::table('role_user')->insert([
-            'role_id' => $roleId,
-            'user_id' => $this->id
-        ]);
+        $this->roles()->attach($roleId);
     }
 
     public function removeRole($roleId)
     {
-        DB::table('role_user')->where('role_id', $roleId)
-                              ->where('user_id', $this->id)
-                              ->delete();
+        $this->roles()->detach($roleId);
     }
 
     public function roles()

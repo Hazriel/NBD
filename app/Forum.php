@@ -27,7 +27,7 @@ class Forum extends Model
         return $this->belongsTo('App\Category');
     }
 
-    public function posts()
+    public function topics()
     {
         return $this->hasMany('App\Topic');
     }
