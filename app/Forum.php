@@ -11,6 +11,7 @@ class Forum extends Model
     public $fillable = [
         'title',
         'description',
+        'last_post_id',
         'required_view_power',
         'required_create_topic_power',
         'required_update_topic_power',

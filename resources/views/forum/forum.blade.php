@@ -21,7 +21,7 @@
                             <a href="#">{{ $topic->title}}</a>
                         </td>
                         <td class="topic-owner">
-                            By <a href="#">{{ $topic->owner->username }}</a>
+                            By <a href="{{ route('user.profile', $topic->owner->id) }}">{{ $topic->owner->username }}</a>
                         </td>
                         <td class="topic-date">
                             Created on {{ date_format($topic->created_at, 'd/m/Y') }}, at {{ date_format($topic->created_at, 'H:i') }}

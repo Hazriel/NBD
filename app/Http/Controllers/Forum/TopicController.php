@@ -41,6 +41,10 @@ class TopicController extends Controller
             'last_post_id' => $post->id
         ]);
 
+        $forum->update([
+            'last_post_id' => $post->id
+        ]);
+
         return redirect()->route('forum.view', $forum->id)->withSuccess('Topic was created successfully.');
     }
 }

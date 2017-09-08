@@ -241,6 +241,14 @@ input[type="button"] {
     border: 3px solid rgb(14, 27, 41);
 }
 
+.table .forum {
+    vertical-align: middle;
+}
+
+.table .last-post {
+    text-align: center;
+}
+
 .table .forum,
 .table .topic {
     background-color: rgba(0, 0, 0, 0.95);
