@@ -64,6 +64,16 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
         'as'   => 'newTopic',
         'uses' => 'Forum\TopicController@create'
     ]);
+
+    Route::group(['prefix' => 'topic/', 'as' => 'topic.'], function () {
+
+        Route::get('{topic}', [
+            'as'   => 'view',
+            'uses' => 'Forum\TopicController@view'
+        ]);
+
+    });
+
 });
 
 Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access'], 'as' => 'admin.'], function () {

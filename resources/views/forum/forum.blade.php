@@ -18,7 +18,7 @@
                 @foreach($forum->topics as $topic)
                     <tr class="topic">
                         <td class="topic-title" width="50%">
-                            <a href="#">{{ $topic->title}}</a>
+                            <a href="{{ route('forum.topic.view', $topic->id) }}">{{ $topic->title}}</a>
                         </td>
                         <td class="topic-owner">
                             By <a href="{{ route('user.profile', $topic->owner->id) }}">{{ $topic->owner->username }}</a>

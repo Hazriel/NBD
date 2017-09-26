@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 
 class TopicController extends Controller
 {
+    public function view(Request $request, Topic $topic)
+    {
+        return view('forum.topic.view', compact('topic'));
+    }
+
     public function createForm(Request $request, Forum $forum)
     {
        return view('forum.topic.create', compact('forum'));
