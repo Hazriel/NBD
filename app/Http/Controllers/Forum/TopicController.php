@@ -12,7 +12,8 @@ class TopicController extends Controller
 {
     public function view(Request $request, Topic $topic)
     {
-        return view('forum.topic.view', compact('topic'));
+        $posts = Post::where('topic_id', $topic->id)->paginate(10);
+        return view('forum.topic.view', compact('posts', 'topic'));
     }
 
     public function createForm(Request $request, Forum $forum)

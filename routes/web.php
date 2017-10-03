@@ -72,6 +72,11 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
             'uses' => 'Forum\TopicController@view'
         ]);
 
+        Route::post('{topic}/new-post', [
+            'as'   => 'newPost',
+            'uses' => 'Forum\PostController@create'
+        ]);
+
     });
 
 });
