@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('content')
     <div id="carousel" class="carousel slide" data-ride="carousel">

@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
@@ -16,9 +16,13 @@
                         <tr>
                             <td class="forum" width="70%"><a class="forum-link" href="{{ route('forum.view', $forum) }}">{{ $forum->title }}</a></td>
                             <td class="forum last-post" width="30%">
-                                Last post by <a href="{{ route('user.profile', App\Post::find($forum->last_post_id)->owner_id) }}">{{ App\Post::find($forum->last_post_id)->owner->username }}</a>
-                                on {{ date_format(App\Post::find($forum->last_post_id)->created_at, 'd/m/Y') }},
-                                at {{ date_format(App\Post::find($forum->last_post_id)->created_at, 'H:i') }}
+                                @if ($forum->last_post_id)
+                                    Last post by <a href="{{ route('user.profile', App\Post::find($forum->last_post_id)->owner_id) }}">{{ App\Post::find($forum->last_post_id)->owner->username }}</a>
+                                    on {{ date_format(App\Post::find($forum->last_post_id)->created_at, 'd/m/Y') }},
+                                    at {{ date_format(App\Post::find($forum->last_post_id)->created_at, 'H:i') }}
+                                @else
+                                    None
+                                @endif
                             </td>
                         </tr>
                     @endforeach
