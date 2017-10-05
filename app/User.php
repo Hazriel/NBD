@@ -62,19 +62,12 @@ class User extends Authenticatable
         return false;
     }
 
-    public function canSeeCategory(Category $category) {
-
-    }
-
-    public function canSeeForum(Forum $topic) {
-
-    }
-
-    public function viewCategoryPower() {
-        // Default is zero
-        $power = 0;
+    public function hasPermissionPower($permission, $required) {
         foreach ($this->roles as $role) {
+            if ($role->powers[$permission] >= $required)
+                return true;
         }
+        return false;
     }
 
     public function toSearchableArray()
