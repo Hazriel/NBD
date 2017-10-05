@@ -57,7 +57,15 @@ class RoleController extends Controller
         $role = Role::create([
             'name' => $input['name'],
             'slug' => $input['slug'],
-            'description' => $input['description']
+            'description' => $input['description'],
+            'category_view_power' => $input['category_view_power'],
+            'forum_view_power' => $input['forum_view_power'],
+            'topic_create_power' => $input['topic_create_power'],
+            'topic_update_power' => $input['topic_update_power'],
+            'topic_delete_power' => $input['topic_delete_power'],
+            'post_create_power' => $input['post_create_power'],
+            'post_update_power' => $input['post_update_power'],
+            'post_delete_power' => $input['post_delete_power'],
         ]);
 
         $permissions = is_null(Input::get('permissions')) ? [] : Permission::whereIn('slug', array_keys(Input::get('permissions')))->pluck('id')->all();
@@ -78,7 +86,15 @@ class RoleController extends Controller
         $role->update([
             'name' => $input['name'],
             'slug' => $input['slug'],
-            'description' => $input['description']
+            'description' => $input['description'],
+            'category_view_power' => $input['category_view_power'],
+            'forum_view_power' => $input['forum_view_power'],
+            'topic_create_power' => $input['topic_create_power'],
+            'topic_update_power' => $input['topic_update_power'],
+            'topic_delete_power' => $input['topic_delete_power'],
+            'post_create_power' => $input['post_create_power'],
+            'post_update_power' => $input['post_update_power'],
+            'post_delete_power' => $input['post_delete_power'],
         ]);
 
         // Get the new permissions

@@ -33,7 +33,6 @@ class CreateForumsTable extends Migration
 
             $table->integer('display_order')->unsigned();
 
-            // Trouble with this line on mariadb
             $table->foreign('last_post_id')->references('id')->on('posts');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();

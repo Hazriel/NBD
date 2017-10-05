@@ -30,6 +30,8 @@ class TopicController extends Controller
 
         $input = $request->all();
 
+        DB::beginTransaction();
+
         $topic = Topic::create([
             'title' => $input['title'],
             'owner_id' => $request->user()->id,
@@ -50,6 +52,8 @@ class TopicController extends Controller
         $forum->update([
             'last_post_id' => $post->id
         ]);
+
+        DB::commit();
 
         return redirect()->route('forum.view', $forum->id)->withSuccess('Topic was created successfully.');
     }

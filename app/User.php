@@ -62,6 +62,21 @@ class User extends Authenticatable
         return false;
     }
 
+    public function canSeeCategory(Category $category) {
+
+    }
+
+    public function canSeeForum(Forum $topic) {
+
+    }
+
+    public function viewCategoryPower() {
+        // Default is zero
+        $power = 0;
+        foreach ($this->roles as $role) {
+        }
+    }
+
     public function toSearchableArray()
     {
         return array($this->username, $this->email);
