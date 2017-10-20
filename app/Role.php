@@ -36,7 +36,7 @@ class Role extends Model
         return [
             'category_view_power' => $this->category_view_power,
             'forum_view_power' => $this->forum_view_power,
-            'topic_create_power' , $this->topic_create_power,
+            'topic_create_power' => $this->topic_create_power,
             'topic_update_power' => $this->topic_update_power,
             'topic_delete_power' => $this->topic_delete_power,
             'post_create_power' => $this->post_create_power,

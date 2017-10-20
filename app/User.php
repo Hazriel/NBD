@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable
 {
@@ -63,8 +64,12 @@ class User extends Authenticatable
     }
 
     public function hasPermissionPower($permission, $required) {
+        if ($required == 0)
+            return true;
+
         foreach ($this->roles as $role) {
-            if ($role->powers[$permission] >= $required)
+            Log::info($role->powers());
+            if ($role->powers()[$permission] >= $required)
                 return true;
         }
         return false;

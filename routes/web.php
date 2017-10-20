@@ -52,29 +52,34 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
 
     Route::get('{forum}', [
         'as'   => 'view',
-        'uses' => 'Forum\ForumController@posts'
+        'uses' => 'Forum\ForumController@posts',
+        'middleware' => 'can:view,forum'
     ]);
 
     Route::get('{forum}/new-topic', [
         'as'   => 'newTopic',
-        'uses' => 'Forum\TopicController@createForm'
+        'uses' => 'Forum\TopicController@createForm',
+        'middleware' => 'can:create,App\Topic,forum'
     ]);
 
     Route::post('{forum}/new-topic', [
         'as'   => 'newTopic',
-        'uses' => 'Forum\TopicController@create'
+        'uses' => 'Forum\TopicController@create',
+        'middleware' => 'can:create,App\Topic,forum'
     ]);
 
     Route::group(['prefix' => 'topic/', 'as' => 'topic.'], function () {
 
         Route::get('{topic}', [
             'as'   => 'view',
-            'uses' => 'Forum\TopicController@view'
+            'uses' => 'Forum\TopicController@view',
+            'middleware' => 'can:view,topic'
         ]);
 
         Route::post('{topic}/new-post', [
             'as'   => 'newPost',
-            'uses' => 'Forum\PostController@create'
+            'uses' => 'Forum\PostController@create',
+            'middleware' => 'can:create,App\Post,topic'
         ]);
 
     });

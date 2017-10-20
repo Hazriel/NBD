@@ -13,7 +13,9 @@
                     </td>
                     <td class="forum-title-td"></td>
                     <td class="forum-title-td"></td>
+                    @can('create', App\Topic::class, $forum)
                     <td class="post-add-button"><a href="{{ route('forum.newTopic', $forum) }}"><button type="button" class="btn btn-success">New Post <span class="glyphicon glyphicon-plus"></span></button></a></td>
+                    @endcan
                 </tr>
                 @foreach($forum->topics as $topic)
                     <tr class="topic">

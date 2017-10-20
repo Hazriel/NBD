@@ -8,11 +8,13 @@
                 </thead>
                 <tbody>
                 @foreach($categories as $category)
+                    @can('view', $category)
                     <tr class="category">
                         <td class="category-title">{{ $category->title }}</td>
                         <td></td>
                     </tr>
                     @foreach($category->forums as $forum)
+                        @can('view', $forum)
                         <tr>
                             <td class="forum" width="70%"><a class="forum-link" href="{{ route('forum.view', $forum) }}">{{ $forum->title }}</a></td>
                             <td class="forum last-post" width="30%">
@@ -25,7 +27,9 @@
                                 @endif
                             </td>
                         </tr>
+                        @endcan
                     @endforeach
+                    @endcan
                 @endforeach
                 </tbody>
             </table>

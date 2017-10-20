@@ -70,6 +70,14 @@ class AdminController extends Controller
         $this->createPermission('news.update', 'Is able to update news.');
         $this->createPermission('news.delete', 'Is able to delete news.');
 
+        $this->createPermission('category.create', 'Is able to create a forum category.');
+        $this->createPermission('category.update', 'Is able to create a forum category.');
+        $this->createPermission('category.delete', 'Is able to create a forum category.');
+
+        $this->createPermission('forum.create', 'Is able to create a forum.');
+        $this->createPermission('forum.update', 'Is able to create a forum.');
+        $this->createPermission('forum.delete', 'Is able to create a forum.');
+
         $this->createPermission('admin.access', 'Is able to access the admin interface');
 
         $request->user()->addRole(1);
