@@ -101,12 +101,12 @@
                                                 <th>Title</th>
                                                 <th>Order</th>
                                                 <th>VP</th>
+                                                <th>CTP</th>
+                                                <th>UTP</th>
+                                                <th>DTP</th>
                                                 <th>CPP</th>
-                                                <th>MPP</th>
+                                                <th>UPP</th>
                                                 <th>DPP</th>
-                                                <th>CCP</th>
-                                                <th>MCP</th>
-                                                <th>DCP</th>
                                                 <td>Actions</td>
                                             </tr>
                                             @foreach($category->forums->sortBy('display_order') as $forum)

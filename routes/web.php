@@ -59,13 +59,11 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
     Route::get('{forum}/new-topic', [
         'as'   => 'newTopic',
         'uses' => 'Forum\TopicController@createForm',
-        'middleware' => 'can:create,App\Topic,forum'
     ]);
 
     Route::post('{forum}/new-topic', [
         'as'   => 'newTopic',
         'uses' => 'Forum\TopicController@create',
-        'middleware' => 'can:create,App\Topic,forum'
     ]);
 
     Route::group(['prefix' => 'topic/', 'as' => 'topic.'], function () {
@@ -79,7 +77,6 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
         Route::post('{topic}/new-post', [
             'as'   => 'newPost',
             'uses' => 'Forum\PostController@create',
-            'middleware' => 'can:create,App\Post,topic'
         ]);
 
     });

@@ -13,7 +13,7 @@
                     </td>
                     <td class="forum-title-td"></td>
                     <td class="forum-title-td"></td>
-                    @can('create', App\Topic::class, $forum)
+                    @can('topic.create', $forum->required_create_topic_power)
                     <td class="post-add-button"><a href="{{ route('forum.newTopic', $forum) }}"><button type="button" class="btn btn-success">New Post <span class="glyphicon glyphicon-plus"></span></button></a></td>
                     @endcan
                 </tr>
