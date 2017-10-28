@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Forum;
+use App\Topic;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -43,7 +44,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasPermission('admin.access') || $user->hasRole('admin');
         });
 
-        Gate::define('topic-create', function (User $user, Forum $forum) {
+        Gate::define('topic.create', function (User $user, Forum $forum) {
             Log::debug("Required create power : " . $forum);
             return $forum->required_topic_create_power == 0
                 || $this->hasPermission($user, 'topic_create_power', $forum->required_topic_create_power);
@@ -59,9 +60,9 @@ class AuthServiceProvider extends ServiceProvider
             return $this->hasPermission($user, 'topic_delete_power', $required_power);
         });
 
-        Gate::define('post.create', function (User $user, $required_power) {
-            Log::debug("Required create power : " . $required_power);
-            return $this->hasPermission($user, 'post_create_power', $required_power);
+        Gate::define('post.create', function (User $user, Topic $topic) {
+            Log::debug("Required create power : " . $topic->forum->required_post_create_power);
+            return $this->hasPermission($user, 'post_create_power', $topic->forum->required_post_create_power);
         });
 
         Gate::define('post.update', function (User $user, $required_power) {

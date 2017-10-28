@@ -71,7 +71,6 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
         Route::get('{topic}', [
             'as'   => 'view',
             'uses' => 'Forum\TopicController@view',
-            'middleware' => 'can:view,topic'
         ]);
 
         Route::post('{topic}/new-post', [

@@ -7,6 +7,7 @@ use App\Post;
 use App\Topic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class TopicController extends Controller
 {
@@ -20,7 +21,7 @@ class TopicController extends Controller
     {
         // Check if the user has permission
         if ($request->user() == null
-            || $request->user()->hasPermissionPower('topic_create_power', $forum->required_topic_create_power))
+            || !$request->user()->hasPermissionPower('topic_create_power', $forum->required_topic_create_power))
             abort(403, 'Unauthorized action.');
 
         return view('forum.topic.create', compact('forum'));
@@ -29,7 +30,7 @@ class TopicController extends Controller
     public function create(Request $request, Forum $forum)
     {
         if ($request->user() == null
-            || $request->user()->hasPermissionPower('topic_create_power', $forum->required_topic_create_power))
+            || !$request->user()->hasPermissionPower('topic_create_power', $forum->required_topic_create_power))
             abort(403, 'Unauthorized action.');
 
         $this->validate($request, [
