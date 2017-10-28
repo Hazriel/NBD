@@ -25,7 +25,7 @@ class CreateForumsTable extends Migration
             $table->integer('required_view_power')->unsigned();
             $table->integer('required_topic_create_power')->unsigned()->default(0);
             $table->integer('required_topic_update_power')->unsigned()->default(0);
-            $table->integer('required_topic_update_power')->unsigned()->default(0);
+            $table->integer('required_topic_delete_power')->unsigned()->default(0);
 
             $table->integer('required_post_create_power')->unsigned()->default(0);
             $table->integer('required_post_update_power')->unsigned()->default(0);
