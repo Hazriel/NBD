@@ -18,12 +18,20 @@ class TopicController extends Controller
 
     public function createForm(Request $request, Forum $forum)
     {
-        if ($request->user() == null || $request->user()->hasPermissionPower('topic_create_power', $forum->required_topic_create_power))
-       return view('forum.topic.create', compact('forum'));
+        // Check if the user has permission
+        if ($request->user() == null
+            || $request->user()->hasPermissionPower('topic_create_power', $forum->required_topic_create_power))
+            abort(403, 'Unauthorized action.');
+
+        return view('forum.topic.create', compact('forum'));
     }
 
     public function create(Request $request, Forum $forum)
     {
+        if ($request->user() == null
+            || $request->user()->hasPermissionPower('topic_create_power', $forum->required_topic_create_power))
+            abort(403, 'Unauthorized action.');
+
         $this->validate($request, [
             'title' => 'required|string|max:100',
             'message' => 'required|string'
