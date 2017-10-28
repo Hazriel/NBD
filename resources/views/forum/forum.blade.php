@@ -13,9 +13,10 @@
                     </td>
                     <td class="forum-title-td"></td>
                     <td class="forum-title-td"></td>
-                    @can('topic.create', $forum->required_create_topic_power)
+                    {{-- TODO: Change this when re-writting the permission system, it's ugly --}}
+                    @if(Auth::user()->hasPermissionPower('topic_create_power', $forum->required_topic_create_power))
                     <td class="post-add-button"><a href="{{ route('forum.newTopic', $forum) }}"><button type="button" class="btn btn-success">New Post <span class="glyphicon glyphicon-plus"></span></button></a></td>
-                    @endcan
+                    @endif
                 </tr>
                 @foreach($forum->topics as $topic)
                     <tr class="topic">

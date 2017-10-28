@@ -43,9 +43,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasPermission('admin.access') || $user->hasRole('admin');
         });
 
-        Gate::define('topic.create', function (User $user, $forum) {
-            Log::debug("Required create power : " . $forum->required_create_topic_power);
-            return $this->hasPermission($user, 'topic_create_power', $forum->required_create_topic_power);
+        Gate::define('topic-create', function (User $user, Forum $forum) {
+            Log::debug("Required create power : " . $forum);
+            return $forum->required_topic_create_power == 0
+                || $this->hasPermission($user, 'topic_create_power', $forum->required_topic_create_power);
         });
 
         Gate::define('topic.update', function (User $user, $required_power) {

@@ -18,6 +18,7 @@ class TopicController extends Controller
 
     public function createForm(Request $request, Forum $forum)
     {
+        if ($request->user() == null || $request->user()->hasPermissionPower('topic_create_power', $forum->required_topic_create_power))
        return view('forum.topic.create', compact('forum'));
     }
 

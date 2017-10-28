@@ -23,13 +23,13 @@ class CreateForumsTable extends Migration
             $table->integer('post_count')->unsigned()->default(0);
 
             $table->integer('required_view_power')->unsigned();
-            $table->integer('required_create_topic_power')->unsigned()->default(0);
-            $table->integer('required_update_topic_power')->unsigned()->default(0);
-            $table->integer('required_delete_topic_power')->unsigned()->default(0);
+            $table->integer('required_topic_create_power')->unsigned()->default(0);
+            $table->integer('required_topic_update_power')->unsigned()->default(0);
+            $table->integer('required_topic_update_power')->unsigned()->default(0);
 
-            $table->integer('required_create_post_power')->unsigned()->default(0);
-            $table->integer('required_update_post_power')->unsigned()->default(0);
-            $table->integer('required_delete_post_power')->unsigned()->default(0);
+            $table->integer('required_post_create_power')->unsigned()->default(0);
+            $table->integer('required_post_update_power')->unsigned()->default(0);
+            $table->integer('required_post_delete_power')->unsigned()->default(0);
 
             $table->integer('display_order')->unsigned();
 

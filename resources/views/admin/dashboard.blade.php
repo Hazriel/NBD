@@ -114,12 +114,12 @@
                                                     <td>{{ $forum->title }}</td>
                                                     <td>{{ $forum->display_order }}</td>
                                                     <td>{{ $forum->required_view_power }}</td>
-                                                    <td>{{ $forum->required_create_topic_power }}</td>
-                                                    <td>{{ $forum->required_update_topic_power }}</td>
-                                                    <td>{{ $forum->required_delete_topic_power }}</td>
-                                                    <td>{{ $forum->required_create_post_power }}</td>
-                                                    <td>{{ $forum->required_update_post_power }}</td>
-                                                    <td>{{ $forum->required_delete_post_power }}</td>
+                                                    <td>{{ $forum->required_topic_create_power }}</td>
+                                                    <td>{{ $forum->required_topic_update_power }}</td>
+                                                    <td>{{ $forum->required_topic_delete_power }}</td>
+                                                    <td>{{ $forum->required_post_create_power }}</td>
+                                                    <td>{{ $forum->required_post_update_power }}</td>
+                                                    <td>{{ $forum->required_post_delete_power }}</td>
                                                     <td>
                                                         <a href="{{ route('admin.forum.forum.update', $forum) }}"><span class="glyphicon glyphicon-cog"></span></a>
                                                         <a href="{{ route('admin.forum.forum.warning', $forum) }}"><span class="glyphicon glyphicon-trash"></span></a>
