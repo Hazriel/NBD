@@ -15,7 +15,7 @@
                         @foreach($posts as $post)
                             <tr class="post">
                                 <td width="25%" class="owner-info">
-                                    <img class="avatar" src="{{ asset('storage/' . $post->owner->avatar) }}" alt="Avatar"><br>
+                                    <img class="avatar-small" src="{{ asset('storage/' . $post->owner->avatar) }}" alt="Avatar"><br>
                                     <h4>{{ $post->owner->username }}</h4>
                                     on {{ date_format($post->created_at, 'd/m/Y') }},
                                     at {{ date_format($post->created_at, 'H:i') }}
@@ -28,6 +28,7 @@
                         </tbody>
                     </table>
                     <div class="post-links">{{ $posts->links() }}</div>
+                    @if (Auth::user()->hasPermissionPower('post_create_power', $topic->forum->required_post_create_power))
                     <div class="text-editor">
                         {!! Form::open(['method' => 'post', 'route' => ['forum.topic.newPost', $topic->id]]) !!}
                         <div class="form-group">
@@ -37,6 +38,7 @@
                         {!! Form::submit('Answer', ['class' => 'btn btn-primary']) !!}
                         {!! Form::close() !!}
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

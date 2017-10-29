@@ -13,6 +13,10 @@ class TopicController extends Controller
 {
     public function view(Request $request, Topic $topic)
     {
+        if ($request->user() == null
+            || !$request->user()->hasPermissionPower('post_create_power', $topic->forum->required_post_create_power))
+            abort(403, 'Unauthorized action.');
+
         $posts = Post::where('topic_id', $topic->id)->paginate(10);
         return view('forum.topic.view', compact('posts', 'topic'));
     }

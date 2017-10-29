@@ -42,15 +42,12 @@ class UserController extends Controller
 
     public function updateForm(User $user)
     {
+        $pageTitle = 'Admin';
         foreach ($user->roles as $role)
-        {
             $userRoles[$role->id] = $role->name;
-        }
         foreach (Role::all() as $role)
-        {
             $roles[$role->id] = $role->name;
-        }
-        return view('admin.user.update', compact('user', 'roles', 'userRoles'));
+        return view('admin.user.update', compact('pageTitle', 'user', 'roles', 'userRoles'));
     }
 
     public function update(Request $request, User $user)

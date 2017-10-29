@@ -32,17 +32,16 @@ class RoleController extends Controller
 
     public function createRoleForm()
     {
-        $pageTitle = "Create Role";
+        $pageTitle = "Admin";
         $permissions = $this->getPermissions();
-        return view('admin.role.create', compact('permissions'));
+        return view('admin.role.create', compact('pageTitle', 'permissions'));
     }
 
     public function updateRoleForm($role)
     {
-        $pageTitle = "Update Role";
-
+        $pageTitle = "Admin";
         $permissions = $this->getPermissions();
-        return view('admin.role.update', compact('role', 'permissions'));
+        return view('admin.role.update', compact('pageTitle', 'role', 'permissions'));
     }
 
     public function create(Request $request)

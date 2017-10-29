@@ -47,6 +47,10 @@ class User extends Authenticatable
 
     public function hasPermission($slug)
     {
+        // If the user is admin, grant permission
+        if ($this->hasRole('admin'))
+            return true;
+        
         foreach ($this->roles as $role) {
             if ($role->hasPermission($slug))
                 return true;
@@ -65,6 +69,9 @@ class User extends Authenticatable
 
     public function hasPermissionPower($permission, $required) {
         if ($required == 0)
+            return true;
+        // If the user is admin, grant permission
+        if ($this->hasRole('admin'))
             return true;
 
         foreach ($this->roles as $role) {

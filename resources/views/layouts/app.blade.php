@@ -26,6 +26,11 @@
         </div>
         <div class="collapse navbar-collapse navbar-right" id="bs-navbar-collapse">
             <ul class="nav navbar-nav">
+                @if (Auth::user() != null && Auth::user()->hasRole('admin'))
+                <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "Admin") active @endif">
+                    <a class="nav-link" href="{{ route('admin.dashboard') }}">Admin</a>
+                </li>
+                @endif
                 <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "Home") active @endif">
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
@@ -34,9 +39,6 @@
                 </li>
                 <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "News") active @endif">
                     <a class="nav-link" href="#">News</a>
-                </li>
-                <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "Members") active @endif">
-                <a class="nav-link" href="#">Members</a>
                 </li>
                 @if (Auth::check())
                     <li class="nav-list-item">

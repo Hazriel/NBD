@@ -15,7 +15,7 @@ class PostController extends Controller
     {
         // Check user permission
         if ($request->user() == null
-            || $request->user()->hasPermissionPower('post_create_power', $topic->forum->required_post_create_power))
+            || !$request->user()->hasPermissionPower('post_create_power', $topic->forum->required_post_create_power))
             abort(403, 'Unauthorized action.');
 
         $this->validate($request, [

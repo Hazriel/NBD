@@ -15,7 +15,7 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        $pageTitle = "Dashboard";
+        $pageTitle = "Admin";
         $roles = Role::all();
 
         // 10 users per page
