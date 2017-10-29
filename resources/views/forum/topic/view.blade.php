@@ -22,6 +22,15 @@
                                 </td>
                                 <td class="message">
                                     {!! $post->message !!}
+                                    <div class="post-actions">
+                                        {{-- Try to make this clean --}}
+                                        @if (Auth::user()->canUpdatePost($post))
+                                        <a href="#"><button class="btn btn-post-action"><span class="glyphicon glyphicon-edit"></span> Edit</button></a>
+                                        @endif
+                                        @if (Auth::user()->canDeletePost($post))
+                                        <a href="#"><button class="btn btn-post-action"><span class="glyphicon glyphicon-trash"></span> Delete</button></a>
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -38,6 +47,8 @@
                         {!! Form::submit('Answer', ['class' => 'btn btn-primary']) !!}
                         {!! Form::close() !!}
                     </div>
+                    @else
+                        <p>You cannot post in this topic.</p>
                     @endif
                 </div>
             </div>

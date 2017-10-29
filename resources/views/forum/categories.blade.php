@@ -18,7 +18,9 @@
                         <tr>
                             <td class="forum" width="70%">
                                 <a class="forum-link" href="{{ route('forum.view', $forum) }}">{{ $forum->title }}</a>
+                                @if ($forum->description !== '')
                                 <p class="forum-description">{{ $forum->description }}</p>
+                                @endif
                             </td>
                             <td class="forum last-post" width="30%">
                                 @if ($forum->last_post_id)

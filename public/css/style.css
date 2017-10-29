@@ -328,6 +328,21 @@ input[type="button"] {
     text-align: center;
 }
 
+.message {
+    position: relative;
+}
+
+.message .post-actions {
+    position: absolute;
+    bottom: 10px;
+}
+
+.btn-post-action {
+    font-size: 12px;
+    background-color: #454545;
+    color: #cccccc;
+}
+
 /* ADMIN */
 
 .admin-forum-category {

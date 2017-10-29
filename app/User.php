@@ -82,6 +82,15 @@ class User extends Authenticatable
         return false;
     }
 
+    public function canUpdatePost(Post $post) {
+        return $this->id === $post->owner->id
+            || $this->hasPermissionPower('post_update_power', $post->topic->forum->required_post_update_power);
+    }
+
+    public function canDeletePost(Post $post) {
+        return $this->hasPermissionPower('post_delete_power', $post->topic->forum->required_post_delete_power);
+    }
+
     public function toSearchableArray()
     {
         return array($this->username, $this->email);
