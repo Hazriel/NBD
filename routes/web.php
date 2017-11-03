@@ -56,12 +56,12 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
         'middleware' => 'can:view,forum'
     ]);
 
-    Route::get('{forum}/new-topic', [
+    Route::get('new-topic/{forum}', [
         'as'   => 'newTopic',
         'uses' => 'Forum\TopicController@createForm',
     ]);
 
-    Route::post('{forum}/new-topic', [
+    Route::post('new-topic/{forum}', [
         'as'   => 'newTopic',
         'uses' => 'Forum\TopicController@create',
     ]);
@@ -73,9 +73,27 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
             'uses' => 'Forum\TopicController@view',
         ]);
 
-        Route::post('{topic}/new-post', [
+        Route::post('new-post/{topic}', [
             'as'   => 'newPost',
             'uses' => 'Forum\PostController@create',
+        ]);
+
+        Route::get('update/{topic}', [
+            'as'   => 'update',
+            'uses' => 'Forum\TopicController@updateForm',
+            'middleware' => 'can:update,topic'
+        ]);
+
+        Route::get('edit-post/{post}', [
+            'as'   => 'updatePost',
+            'uses' => 'Forum\PostController@updateForm',
+            'middleware' => 'can:update,post'
+        ]);
+
+        Route::post('edit-post/{post}', [
+            'as'   => 'updatePost',
+            'uses' => 'Forum\PostController@update',
+            'middleware' => 'can:update,post'
         ]);
 
     });

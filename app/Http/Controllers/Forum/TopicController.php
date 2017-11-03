@@ -71,4 +71,30 @@ class TopicController extends Controller
 
         return redirect()->route('forum.view', $forum->id)->withSuccess('Topic was created successfully.');
     }
+
+    public function updateForm(Topic $topic) {
+        return view('forum.topic.update', compact('topic'));
+    }
+
+    public function update(Request $request, Topic $topic) {
+        $this->validate($request, [
+            'title' => 'required|string|max:100',
+            'message' => 'required|string'
+        ]);
+
+        $input = $request->all();
+
+        $topic->update([
+            'title' => $input['title'],
+        ]);
+
+        // Get the first post in the topic and update it aswell
+        $firstPost = Post::where('topic_id', $topic->id)->orderBy('created_at')->first();
+        if ($firstPost != null) {
+            $firstPost->update([
+                'message' => $input['message']
+            ]);
+        }
+        return redirect()->route('forum.topic.view', $topic)->withSuccess('Topic was updated successfully.');
+    }
 }

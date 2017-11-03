@@ -208,6 +208,10 @@ input[type="button"] {
     max-height: 150px
 }
 
+.border-rounded {
+    border-radius: 4px;
+}
+
 .profile-avatar {
     text-align: center;
 }

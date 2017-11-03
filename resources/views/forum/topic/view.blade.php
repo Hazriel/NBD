@@ -15,7 +15,7 @@
                         @foreach($posts as $post)
                             <tr class="post">
                                 <td width="25%" class="owner-info">
-                                    <img class="avatar-small" src="{{ asset('storage/' . $post->owner->avatar) }}" alt="Avatar"><br>
+                                    <img class="avatar-small border-rounded" src="{{ asset('storage/' . $post->owner->avatar) }}" alt="Avatar"><br>
                                     <h4>{{ $post->owner->username }}</h4>
                                     on {{ date_format($post->created_at, 'd/m/Y') }},
                                     at {{ date_format($post->created_at, 'H:i') }}
@@ -25,7 +25,7 @@
                                     <div class="post-actions">
                                         {{-- Try to make this clean --}}
                                         @if (Auth::user()->canUpdatePost($post))
-                                        <a href="#"><button class="btn btn-post-action"><span class="glyphicon glyphicon-edit"></span> Edit</button></a>
+                                        <a href="{{ route('forum.topic.updatePost', $post) }}"><button class="btn btn-post-action"><span class="glyphicon glyphicon-edit"></span> Edit</button></a>
                                         @endif
                                         @if (Auth::user()->canDeletePost($post))
                                         <a href="#"><button class="btn btn-post-action"><span class="glyphicon glyphicon-trash"></span> Delete</button></a>
