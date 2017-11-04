@@ -73,7 +73,9 @@ class TopicController extends Controller
     }
 
     public function updateForm(Topic $topic) {
-        return view('forum.topic.update', compact('topic'));
+        // Get the first post of the topic to pass it's content to the view
+        $firstPost = Post::where('topic_id', $topic->id)->orderBy('created_at')->first();
+        return view('forum.topic.update', compact('topic', 'firstPost'));
     }
 
     public function update(Request $request, Topic $topic) {

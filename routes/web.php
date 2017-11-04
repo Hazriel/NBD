@@ -84,6 +84,12 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
             'middleware' => 'can:update,topic'
         ]);
 
+        Route::post('update/{topic}', [
+            'as'   => 'update',
+            'uses' => 'Forum\TopicController@update',
+            'middleware' => 'can:update,topic'
+        ]);
+
         Route::get('edit-post/{post}', [
             'as'   => 'updatePost',
             'uses' => 'Forum\PostController@updateForm',

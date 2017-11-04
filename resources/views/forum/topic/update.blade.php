@@ -7,7 +7,14 @@
         </div>
         <div class="nbd-section-body">
             {!! Form::model($topic, ['method' => 'post', 'route' => ['forum.topic.update', $topic->id]]) !!}
-            @include('forms.forum.topic')
+            <div class="form-group">
+                {!! Form::label('title' ,'Title') !!}
+                {!! Form::text('title', null, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('message', 'Message') !!}
+                {!! Form::textarea('message', $firstPost->message, ['class' => 'form-control']) !!}
+            </div>
             {!! Form::submit('Update', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}
         </div>
