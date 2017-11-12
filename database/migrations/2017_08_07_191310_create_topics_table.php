@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreateTopicsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,14 +17,13 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title', 100);
             $table->integer('owner_id')->unsigned();
-            $table->integer('last_post_id')->unsigned()->nullable();
+            $table->integer('last_post_id')->unsigned();
             $table->integer('post_count')->unsigned()->default(0);
             $table->integer('forum_id')->unsigned();
 
             $table->foreign('owner_id')->references('id')->on('users');
 
             // Trouble with this line on mariadb
-            $table->foreign('last_post_id')->references('id')->on('posts');
             $table->foreign('forum_id')->references('id')->on('forums');
 
             $table->timestamps();
