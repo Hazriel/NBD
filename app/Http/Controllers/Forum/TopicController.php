@@ -17,8 +17,8 @@ class TopicController extends Controller
             || !$request->user()->hasPermissionPower('post_create_power', $topic->forum->required_post_create_power))
             abort(403, 'Unauthorized action.');
 
-        $posts = Post::where('topic_id', $topic->id)->paginate(10);
-        return view('forum.topic.view', compact('posts', 'topic'));
+        $posts = Post::where('topic_id', $topic->id)->orderBy('created_at')->paginate(10);
+        return view('forum.topic.view', ['posts' => $posts, 'topic' => $topic]);
     }
 
     public function createForm(Request $request, Forum $forum)
@@ -99,4 +99,33 @@ class TopicController extends Controller
         }
         return redirect()->route('forum.topic.view', $topic)->withSuccess('Topic was updated successfully.');
     }
+
+    public function deleteWarning(Request $request, Topic $topic) {
+        $message = 'The topic will be deleted without any possibility to recover it.';
+        $confirmation = 'Do you really want to delete this topic ?';
+        $next = route('forum.topic.delete', $topic);
+        $redirectTo = route('forum.topic.view', $topic);
+
+        return view('misc.confirmation', compact('message', 'confirmation', 'next', 'redirectTo'));
+    }
+
+    public function delete(Request $request, Topic $topic) {
+        // First delete every post in the topic
+        foreach ($topic->posts as $post) {
+            $post->delete();
+        }
+
+        // Update the topic last post since the current last post might be one of the deleted posts
+        $forum = $topic->forum;
+
+        $topic->delete();
+
+        $forum->update([
+            'last_post_id' => $forum->lastPostId()
+        ]);
+
+
+        return redirect()->route('forum.categories')->withSuccess('The topic was successfully deleted.');
+    }
+
 }

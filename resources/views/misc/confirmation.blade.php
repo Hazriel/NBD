@@ -5,7 +5,7 @@
         <div class="col-lg-12">
             <div class="nbd-section">
                 <div class="nbd-section-header">
-                    <h1>Delete Forum</h1>
+                    <h1>Warning !</h1>
                 </div>
                 <div class="nbd-section-body">
                     @if(isset($message))

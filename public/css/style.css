@@ -328,6 +328,7 @@ input[type="button"] {
     padding: 0px 30px;
 }
 
+.topic-links,
 .post-links {
     text-align: center;
 }

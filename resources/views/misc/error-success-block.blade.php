@@ -1,5 +1,5 @@
 <div class="row">
-@if ($errors->any())
+@if (isset($errors) && $errors->any())
     <div class="col-lg-12">
         <div class="alert alert-danger">
             <ul>

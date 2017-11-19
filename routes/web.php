@@ -90,6 +90,18 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
             'middleware' => 'can:update,topic'
         ]);
 
+        Route::get('warning/{topic}', [
+            'as'   => 'deleteWarning',
+            'uses' => 'Forum\TopicController@deleteWarning',
+            'middleware' => 'can:delete,topic'
+        ]);
+
+        Route::get('delete/{topic}', [
+            'as'   => 'delete',
+            'uses' => 'Forum\TopicController@delete',
+            'middleware' => 'can:delete,topic'
+        ]);
+
     });
 
     Route::group(['prefix' => 'post/', 'as' => 'post.'], function () {
@@ -104,6 +116,18 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
             'as'   => 'update',
             'uses' => 'Forum\PostController@update',
             'middleware' => 'can:update,post'
+        ]);
+
+        Route::get('warning/{post}', [
+            'as'   => 'deleteWarning',
+            'uses' => 'Forum\PostController@deleteWarning',
+            'middleware' => 'can:delete,post'
+        ]);
+
+        Route::get('delete/{post}', [
+            'as'   => 'delete',
+            'uses' => 'Forum\PostController@delete',
+            'middleware' => 'can:delete,post'
         ]);
 
     });

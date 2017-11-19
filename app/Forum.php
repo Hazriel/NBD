@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class Forum extends Model
@@ -52,5 +53,19 @@ class Forum extends Model
         $this->update([
             'category_id' => $archivesCategory->id
         ]);
+    }
+
+    public function lastPostId() {
+        $lastPost = DB::table('forums')
+            ->where('forums.id', '=', $this->id)
+            ->join('topics', 'topics.forum_id', '=', 'forums.id')
+            ->join('posts', 'posts.topic_id', '=', 'topics.id')
+            ->select('posts.id')
+            ->orderByDesc('posts.created_at')
+            ->get();
+
+        if ($lastPost->count() == 0)
+            return null;
+        return $lastPost[0]->id;
     }
 }

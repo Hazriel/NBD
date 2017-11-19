@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
-    <div class="col-lg-12">
-        <table class="table table-bordered topics">
-            <thead>
-            </thead>
-            <tbody>
+    <div class="row">
+        <div class="col-lg-12">
+            <table class="table table-bordered topics">
+                <thead>
+                </thead>
+                <tbody>
                 <tr class="forum-title">
                     <td class="forum-title-td">
                         {{ $forum->title }}
@@ -15,10 +15,10 @@
                     <td class="forum-title-td"></td>
                     {{-- TODO: Change this when re-writting the permission system, it's ugly --}}
                     @if(Auth::user()->hasPermissionPower('topic_create_power', $forum->required_topic_create_power))
-                    <td class="post-add-button"><a href="{{ route('forum.newTopic', $forum) }}"><button type="button" class="btn btn-success">New Post <span class="glyphicon glyphicon-plus"></span></button></a></td>
+                        <td class="post-add-button"><a href="{{ route('forum.newTopic', $forum) }}"><button type="button" class="btn btn-success">New Post <span class="glyphicon glyphicon-plus"></span></button></a></td>
                     @endif
                 </tr>
-                @foreach($forum->topics as $topic)
+                @foreach($topics as $topic)
                     <tr class="topic">
                         <td class="topic-title" width="50%">
                             <a href="{{ route('forum.topic.view', $topic->id) }}">{{ $topic->title}}</a>
@@ -30,14 +30,19 @@
                             Created on {{ date_format($topic->created_at, 'd/m/Y') }}, at {{ date_format($topic->created_at, 'H:i') }}
                         </td>
                         <td class="topic-last-post" width="20%">
-                            Last post by <a href="{{ route('user.profile', $topic->lastPost()['owner_id']) }}">{{ App\User::find($topic->lastPost()['owner_id'])->username }}</a>
-                            on {{ date_format($topic->lastPost()['created_at'], 'd/m/Y') }},
-                            at {{ date_format($topic->lastPost()['created_at'], 'H:i') }}
+                            @if ($topic->lastPost() != null)
+                                Last post by <a href="{{ route('user.profile', $topic->lastPost()['owner_id']) }}">{{ App\User::find($topic->lastPost()['owner_id'])->username }}</a>
+                                on {{ date_format($topic->lastPost()['created_at'], 'd/m/Y') }},
+                                at {{ date_format($topic->lastPost()['created_at'], 'H:i') }}
+                            @else
+                                None
+                            @endif
                         </td>
                     </tr>
                 @endforeach
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+            <div class="topic-links">{{ $topics->links() }}</div>
+        </div>
     </div>
-</div>
 @endsection

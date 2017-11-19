@@ -56,7 +56,6 @@ class PostController extends Controller
 
         // Get the first post of the topic and compare it to the one passed as parameter
         $firstPost = Post::where('topic_id', $topic->id)->orderBy('created_at')->first();
-        Log::debug($firstPost);
         if ($firstPost->id === $post->id)
             return redirect()->route('forum.topic.update', $topic);
 
@@ -77,5 +76,41 @@ class PostController extends Controller
         ]);
 
         return redirect()->route('forum.topic.view', $post->topic)->withSuccess('Post was updated successfully.');
+    }
+
+    public function deleteWarning(Request $request, Post $post) {
+        // First determine if the post is the topic's first post
+        $topic = $post->topic;
+        $firstPost = Post::where('topic_id', $topic->id)->orderBy('created_at')->first();
+        if ($firstPost->id === $post->id) {
+            return redirect()->route('forum.topic.deleteWarning', $post->topic);
+        }
+
+        $confirmation = 'Do you really want to delete this post ?';
+        $next = route('forum.post.delete', $post->id);
+        $redirectTo = route('forum.topic.view', $post->topic);
+        return view('misc.confirmation', compact('confirmation', 'next', 'redirectTo'));
+    }
+
+    public function delete(Request $request, Post $post) {
+        $topic = $post->topic;
+        $forum = $topic->forum;
+        $postId = $post->id;
+        $post->delete();
+        // Update the topic's last post
+        if ($topic->last_post_id == $postId) {
+            $topic->update([
+                'last_post_id' => $topic->lastPost()->id
+            ]);
+        }
+
+        // Update the forum's last post if the id matches the deleted one
+        if ($forum->last_post_id == $postId) {
+            $forum->update([
+                'last_post_id' => $forum->lastPostId()
+            ]);
+        }
+
+        return redirect()->route('forum.topic.view', $topic)->withSuccess('The post was successfully deleted.');
     }
 }

@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Forum;
 use App\Category;
 use App\Forum;
 use App\Http\Controllers\Controller;
+use App\Topic;
 use Illuminate\Http\Request;
 
 class ForumController extends Controller
 {
     public function posts(Request $request, Forum $forum)
     {
-        return view('forum.forum', compact('forum'));
+        $topics = Topic::where('forum_id', $forum->id)->orderByDesc('updated_at')->paginate(20);
+        return view('forum.forum', compact('forum', 'topics'));
     }
 
     public function createForm(Request $request, Category $category)
