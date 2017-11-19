@@ -6,7 +6,7 @@
             <h1>Update Post</h1>
         </div>
         <div class="nbd-section-body">
-            {!! Form::model($post, ['method' => 'post', 'route' => ['forum.topic.updatePost', $post->id]]) !!}
+            {!! Form::model($post, ['method' => 'post', 'route' => ['forum.post.update', $post->id]]) !!}
             @include('forms.forum.post')
             {!! Form::submit('Update', ['class' => 'btn btn-primary']) !!}
             {!! Form::close() !!}

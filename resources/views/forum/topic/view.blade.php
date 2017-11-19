@@ -25,7 +25,7 @@
                                     <div class="post-actions">
                                         {{-- Try to make this clean --}}
                                         @if (Auth::user()->canUpdatePost($post))
-                                        <a href="{{ route('forum.topic.updatePost', $post) }}"><button class="btn btn-post-action"><span class="glyphicon glyphicon-edit"></span> Edit</button></a>
+                                        <a href="{{ route('forum.post.update', $post) }}"><button class="btn btn-post-action"><span class="glyphicon glyphicon-edit"></span> Edit</button></a>
                                         @endif
                                         @if (Auth::user()->canDeletePost($post))
                                         <a href="#"><button class="btn btn-post-action"><span class="glyphicon glyphicon-trash"></span> Delete</button></a>

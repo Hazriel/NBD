@@ -90,14 +90,18 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
             'middleware' => 'can:update,topic'
         ]);
 
-        Route::get('edit-post/{post}', [
-            'as'   => 'updatePost',
+    });
+
+    Route::group(['prefix' => 'post/', 'as' => 'post.'], function () {
+
+        Route::get('update/{post}', [
+            'as'   => 'update',
             'uses' => 'Forum\PostController@updateForm',
             'middleware' => 'can:update,post'
         ]);
 
-        Route::post('edit-post/{post}', [
-            'as'   => 'updatePost',
+        Route::post('update/{post}', [
+            'as'   => 'update',
             'uses' => 'Forum\PostController@update',
             'middleware' => 'can:update,post'
         ]);
