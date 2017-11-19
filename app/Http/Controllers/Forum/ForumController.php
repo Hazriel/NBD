@@ -91,7 +91,11 @@ class ForumController extends Controller
 
     public function warning(Request $request, Forum $forum)
     {
-        return view('admin.forum.forum.delete', compact('forum'));
+        $message = "The forum will be archived before to be deleted.";
+        $confirmation = "Are you sure you want to delete the " . $forum->title . " forum ?";
+        $next = route('admin.forum.forum.archive', $forum);
+        $redirectTo = route('admin.dashboard');
+        return view('misc.confirmation', compact('message', 'confirmation', 'next', 'redirectTo'));
     }
 
     public function archive(Request $request, Forum $forum)
