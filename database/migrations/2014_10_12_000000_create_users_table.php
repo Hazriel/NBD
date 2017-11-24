@@ -21,6 +21,9 @@ class CreateUsersTable extends Migration
             $table->timestamp('birth_date')->nullable();
             $table->text('description')->nullable();
             $table->string('avatar')->nullable()->default('avatars/default_avatar.jpg');
+            $table->boolean('activated')->default(false);
+            $table->boolean('banned')->default(false);
+            $table->string('last_ip_address')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
