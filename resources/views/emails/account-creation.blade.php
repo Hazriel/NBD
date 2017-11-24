@@ -1,7 +1,7 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Hazriel
- * Date: 24-Nov-17
- * Time: 21:09
- */
+Thanks for registering to the NBD Website.
+
+In order to fully use your account you need to validate your email by clicking the following link :
+
+{{ $link }}
+
+If you have any question or suggestion for the website, please contact Hazriel
