@@ -25,7 +25,7 @@ class AccountCreated extends Mailable
     public function build()
     {
         return $this->from('no-reply@nbd-clan.com')
-            ->view('emails.account-creation')
+            ->markdown('emails.account-creation')
             ->with([
                 'link' => $this->createToken()
             ]);

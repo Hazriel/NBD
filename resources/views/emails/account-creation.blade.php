@@ -1,7 +1,13 @@
-Thanks for registering to the NBD Website.
+@extends('layouts.mail')
 
-In order to fully use your account you need to validate your email by clicking the following link :
+@section('content')
+    <p>Thank you for registering to the NBD Website</p>
+    <p>Your account needs to be activated. To activate your account please click on the following link :</p>
+    <p><a href="#">{{ $link }}</a></p>
+    <p>If you have any request, question or suggestion please contact Hazriel.</p>
+    <p>Greetings,</p>
+@endsection
 
-{{ $link }}
-
-If you have any question or suggestion for the website, please contact Hazriel
+@section('signature')
+    NBD Team
+@endsection
