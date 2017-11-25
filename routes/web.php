@@ -18,11 +18,13 @@ Route::get('/', [
     'uses' => 'HomeController@index'
 ]);
 
-// TODO: REMOVE THIS WHEN THE PRODUCTION IS OVER
-Route::get('/blyat', [
-    'uses' => 'Admin\AdminController@generatePermissionSet'
-]);
-// TODO: END REMOVE
+Route::get('/account-not-activated', function () {
+    return view('user.account-not-activated');
+})->name('account-not-activated');
+
+Route::get('/account-banned', function () {
+    return view('user.account-banned');
+})->name('account-banned');
 
 Route::group(['prefix' => 'user/', 'middleware' => ['auth'], 'as' => 'user.'], function () {
 
