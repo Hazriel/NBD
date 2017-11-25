@@ -2,7 +2,6 @@
 <html>
 <body>
 @yield('content')
-
 -- <br>
 @yield('signature')
 </body>

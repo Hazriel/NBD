@@ -29,13 +29,10 @@ class UserController extends Controller
 
     public function confirmAccount(Request $request) {
         $queryString = $request->query();
-        Log::info($queryString);
+
         if ($queryString != null && $queryString[config('app.VALIDATE_ACCOUNT_TOKEN_FIELD_NAME')] != null) {
-            Log::debug('not null');
             $token = $queryString[config('app.VALIDATE_ACCOUNT_TOKEN_FIELD_NAME')];
-            Log::debug($token);
             $link = AccountConfirmationLink::where('token', $token)->first();
-            Log::debug($link);
 
             if ($link != null) {
                 $link->validateAccount();
