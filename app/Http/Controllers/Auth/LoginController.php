@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -41,5 +44,26 @@ class LoginController extends Controller
     {
         $pageTitle = "Login";
         return view('auth.login', compact('pageTitle'));
+    }
+
+    protected function attemptLogin(Request $request)
+    {
+        Log::info('attemptLogin()');
+        $input = $request->all();
+        $email = $input['email'];
+
+        $user = User::where('email', $email)->first();
+        Log::info($user);
+
+        if ($user != null) {
+            return $user->activated;
+        }
+
+        return AuthenticatesUsers::attemptLogin($request);
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return view('home')->withErrors('Your account is not activated.');
     }
 }

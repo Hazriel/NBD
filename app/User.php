@@ -18,7 +18,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'birth_date', 'description', 'avatar'
+        'username',
+        'email',
+        'password',
+        'birth_date',
+        'activated',
+        'banned',
+        'description',
+        'avatar'
     ];
 
     /**
@@ -75,6 +82,12 @@ class User extends Authenticatable
                 return true;
         }
         return false;
+    }
+
+    public function activateAccount() {
+        $this->update([
+            'activated' => true
+        ]);
     }
 
     // TODO: Do something about these functions
