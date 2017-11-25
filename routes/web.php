@@ -15,18 +15,21 @@ Auth::routes();
 
 Route::get('/', [
     'as'   => 'home',
-    'uses' => 'HomeController@index'
+    'uses' => 'HomeController@index',
+    'middleware' => 'account.state'
 ]);
 
-Route::get('/account-not-activated', function () {
-    return view('user.account-not-activated');
-})->name('account-not-activated');
+Route::get('/account-not-activated', [
+    'as'   => 'account-not-activated',
+    'uses' => 'UserController@accountNotActivated'
+]);
 
-Route::get('/account-banned', function () {
-    return view('user.account-banned');
-})->name('account-banned');
+Route::get('/account-banned', [
+    'as'   => 'account-banned',
+    'uses' => 'UserController@accountBanned'
+]);
 
-Route::group(['prefix' => 'user/', 'middleware' => ['auth'], 'as' => 'user.'], function () {
+Route::group(['prefix' => 'user/', 'middleware' => ['auth', 'account.state'], 'as' => 'user.'], function () {
 
     Route::get('{user}', [
         'as'   => 'profile',
@@ -45,7 +48,7 @@ Route::group(['prefix' => 'user/', 'middleware' => ['auth'], 'as' => 'user.'], f
 
 });
 
-Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth', 'account.state']], function () {
 
     Route::get('/', [
         'as'   => 'categories',
@@ -136,7 +139,7 @@ Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth']],
 
 });
 
-Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access'], 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access', 'account.state'], 'as' => 'admin.'], function () {
 
     Route::get('/', [
         'as'   => 'dashboard',

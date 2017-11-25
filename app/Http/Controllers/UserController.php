@@ -16,4 +16,12 @@ class UserController extends Controller
     {
         return view('user.update', compact('user'));
     }
+
+    public function accountNotActivated() {
+        return view('user.account-not-activated');
+    }
+
+    public function accountBanned() {
+        return view('user.account-banned');
+    }
 }
