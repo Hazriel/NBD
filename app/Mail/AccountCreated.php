@@ -24,10 +24,13 @@ class AccountCreated extends Mailable
      */
     public function build()
     {
+        // Build a confirmation link
+        $token = $this->createToken();
+
         return $this->from('no-reply@nbd-clan.com')
             ->markdown('emails.account-creation')
             ->with([
-                'link' => $this->createToken()
+                'link' => 'replace-by-token'
             ]);
     }
 
@@ -36,10 +39,14 @@ class AccountCreated extends Mailable
     private function createToken()
     {
         $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $index = rand(0, strlen($characters) - 1);
 
-        $token = '123456789abc';
-        // TODO: Generate token here
+        $token = '';
+
+        for ($i = 0; $i < self::TOKEN_LENGTH; ++$i) {
+            $index = rand(0, strlen($characters) - 1);
+            $token .= $characters[$index];
+        }
+
         return $token;
     }
 }

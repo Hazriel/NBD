@@ -46,24 +46,4 @@ class LoginController extends Controller
         return view('auth.login', compact('pageTitle'));
     }
 
-    protected function attemptLogin(Request $request)
-    {
-        Log::info('attemptLogin()');
-        $input = $request->all();
-        $email = $input['email'];
-
-        $user = User::where('email', $email)->first();
-        Log::info($user);
-
-        if ($user != null) {
-            return $user->activated;
-        }
-
-        return AuthenticatesUsers::attemptLogin($request);
-    }
-
-    protected function sendFailedLoginResponse(Request $request)
-    {
-        return view('home')->withErrors('Your account is not activated.');
-    }
 }
