@@ -2,6 +2,8 @@
 
 namespace App\Mail;
 
+use App\AccountConfirmationLink;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -11,10 +13,11 @@ class AccountCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
+    private $user;
 
-    public function __construct()
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
 
     /**
@@ -27,10 +30,29 @@ class AccountCreated extends Mailable
         // Build a confirmation link
         $token = $this->createToken();
 
+        $unusedToken = false;
+        while ($unusedToken) {
+            // Make sure the token is not already taken
+            $link = AccountConfirmationLink::where('token', $token)->first();
+            if ($link == null)
+                $unusedToken = true;
+            else
+                $token = $this->createToken();
+        }
+
+        $link = route('confirm-account');
+        $link .= '?' . config('app.VALIDATE_ACCOUNT_TOKEN_FIELD_NAME') . '=' . $token;
+
+        // Create a entry in the links table
+        AccountConfirmationLink::create([
+            'user_id' => $this->user->id,
+            'token' => $token
+        ]);
+
         return $this->from('no-reply@nbd-clan.com')
             ->markdown('emails.account-creation')
             ->with([
-                'link' => 'replace-by-token'
+                'link' => $link
             ]);
     }
 

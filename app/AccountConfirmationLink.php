@@ -10,7 +10,7 @@ class AccountConfirmationLink extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'email',
+        'user_id',
         'token'
     ];
 
@@ -19,7 +19,8 @@ class AccountConfirmationLink extends Model
     }
 
     public function validateAccount() {
-        $user = $this->user();
+        $user = $this->user;
         $user->activateAccount();
+        $this->delete();
     }
 }

@@ -13,7 +13,7 @@ class CreateAccountConfirmationLinkTable extends Migration
      */
     public function up()
     {
-        Schema::create('account_confirmation_link', function (Blueprint $table) {
+        Schema::create('account_confirmation_links', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('token')->unique();
@@ -29,6 +29,6 @@ class CreateAccountConfirmationLinkTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('account_confirmation_link');
+        Schema::dropIfExists('account_confirmation_links');
     }
 }

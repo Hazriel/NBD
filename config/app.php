@@ -235,6 +235,6 @@ return [
      | Constants
      */
 
-
+    'VALIDATE_ACCOUNT_TOKEN_FIELD_NAME' => 'token',
 
 ];

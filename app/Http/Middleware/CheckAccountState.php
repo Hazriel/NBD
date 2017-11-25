@@ -19,13 +19,9 @@ class CheckAccountState
      */
     public function handle(Request $request, Closure $next)
     {
-        Log::info('checkAccountState');
         // If the user is not authenticated ignore
-
         $user = auth()->user();
         if ($user != null) {
-            $email = $user->email;
-            Log::info($email);
             if ($user->banned) {
                 auth()->logout();
                 return redirect('account-banned');

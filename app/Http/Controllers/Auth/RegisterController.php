@@ -72,7 +72,7 @@ class RegisterController extends Controller
         ]);
 
         // Send a mail to the newly created user
-        Mail::to($user)->send(new AccountCreated());
+        Mail::to($user)->send(new AccountCreated($user));
 
         return $user;
     }

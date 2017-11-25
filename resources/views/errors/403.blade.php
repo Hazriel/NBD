@@ -5,7 +5,7 @@
     <div class="col-lg-12">
         <div class="nbd-section">
             <div class="nbd-section-header">
-                <h1>{{ $exception->getMessage() }}</h1>
+                <h1>Forbidden</h1>
             </div>
             <div class="nbd-section-body">
                 <p>You don't have the permission required to execute this action.</p>

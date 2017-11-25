@@ -29,6 +29,11 @@ Route::get('/account-banned', [
     'uses' => 'UserController@accountBanned'
 ]);
 
+Route::get('/confirm-account', [
+    'as'   => 'confirm-account',
+    'uses' => 'UserController@confirmAccount'
+]);
+
 Route::group(['prefix' => 'user/', 'middleware' => ['auth', 'account.state'], 'as' => 'user.'], function () {
 
     Route::get('{user}', [
