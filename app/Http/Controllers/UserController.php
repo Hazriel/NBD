@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\AccountConfirmationLink;
+use App\Mail\ConfirmationLink;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -51,6 +53,35 @@ class UserController extends Controller
     }
 
     public function resendMail(Request $request) {
+        $this->validate($request, [
+            'username' => 'required|string',
+            'email' => 'required|string|email'
+        ]);
 
+        if (Auth::check())
+            return redirect()->route('home')->withErrors('You are already connected to an account');
+
+        $input = $request->all();
+
+        $user = User::where('username', $input['username'])->first();
+
+        if ($user == null)
+            return redirect()->route('home')->withErrors('There is no user with that name.');
+
+        if ($user->activated)
+            return redirect()->route('home')->withErrors('This account is already activated.');
+
+        if ($user->email !== $input['email'])
+            return redirect()->route('home')->withErrors('The username and the email don\'t match.');
+
+        // Everything is correct, proceed
+        // If there is already a token in the database, delete it
+        $existingLink = AccountConfirmationLink::where('user_id', $user->id)->first();
+        if ($existingLink != null)
+            $existingLink->delete();
+
+        Mail::to($user)->send(new ConfirmationLink($user));
+
+        return redirect()->route('home')->withSuccess('A new mail has been sent to ' . $input['email']);
     }
 }

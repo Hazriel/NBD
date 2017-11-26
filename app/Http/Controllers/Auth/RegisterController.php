@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Mail\AccountCreated;
+use App\Mail\ConfirmationLink;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
@@ -72,7 +72,7 @@ class RegisterController extends Controller
         ]);
 
         // Send a mail to the newly created user
-        Mail::to($user)->send(new AccountCreated($user));
+        Mail::to($user)->send(new ConfirmationLink($user));
 
         return $user;
     }

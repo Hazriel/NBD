@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AccountCreated extends Mailable
+class ConfirmationLink extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -56,11 +56,11 @@ class AccountCreated extends Mailable
             ]);
     }
 
-    const TOKEN_LENGTH = 20;
+    const TOKEN_LENGTH = 50;
 
     private function createToken()
     {
-        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
         $token = '';
 
