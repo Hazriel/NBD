@@ -34,6 +34,16 @@ Route::get('/confirm-account', [
     'uses' => 'UserController@confirmAccount'
 ]);
 
+Route::get('/resend-mail', [
+    'as'   => 'resend-mail',
+    'uses' => 'UserController@resendMailForm'
+]);
+
+Route::post('/resend-mail', [
+    'as'   => 'resend-mail',
+    'uses' => 'UserController@resendMail'
+]);
+
 Route::group(['prefix' => 'user/', 'middleware' => ['auth', 'account.state'], 'as' => 'user.'], function () {
 
     Route::get('{user}', [

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AccountConfirmationLink;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
@@ -40,5 +41,16 @@ class UserController extends Controller
             }
         }
         return view('errors.403');
+    }
+
+    public function resendMailForm() {
+        // If the user is already connected, redirect
+        if (Auth::check())
+            return redirect()->route('home');
+        return view('user.resend-mail');
+    }
+
+    public function resendMail(Request $request) {
+
     }
 }
