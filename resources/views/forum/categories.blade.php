@@ -13,7 +13,7 @@
                         <td class="category-title">{{ $category->title }}</td>
                         <td></td>
                     </tr>
-                    @foreach($category->forums as $forum)
+                    @foreach($category->forums->sortBy('display_order') as $forum)
                         @can('view', $forum)
                         <tr>
                             <td class="forum" width="70%">

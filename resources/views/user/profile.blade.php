@@ -45,7 +45,7 @@
                                 Birth date :
                             </td>
                             <td>
-                                {{ $user->birthdate }}
+                                {{ $user->birth_date }}
                             </td>
                         </tr>
                         <tr>

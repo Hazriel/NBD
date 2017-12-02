@@ -53,7 +53,6 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $input = $request->all();
-        $this->redirectIfValidationFail($input);
 
         // Upload the avatar if there is one
         if ($request->file('avatar')) {
@@ -61,13 +60,23 @@ class UserController extends Controller
             $user->update(['avatar' => $path]);
         }
 
-        $user->update([
-            'email'      => $input['email'],
-            'birth_date' => Carbon::createFromFormat('d-m-Y', $input['birth_date'])->toDateTimeString(),
-            'description' => $input['description'],
-        ]);
+        if ($input['birth_date'] != null) {
+            Log::debug($input['birth_date']);
+            $user->update([
+                'birth_date' => Carbon::createFromFormat('Y-d-m', $input['birth_date'])->toDateTimeString(),
+            ]);
+        }
 
-        if ($input['password'] && $input['password'] !== "") {
+        if ($input['description'] != null){
+            $user->update([
+                'description' => $input['description'],
+            ]);
+        }
+
+        if ($input['password'] != null) {
+            $this->validate($request, [
+                'password' => 'string|min:6|confirmed'
+            ]);
             $user->update(['password' => Hash::make($input['password'])]);
         }
 

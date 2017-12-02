@@ -7,10 +7,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Collective\Html\Eloquent\FormAccessible;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use FormAccessible;
 
     /**
      * The attributes that are mass assignable.
@@ -117,10 +119,6 @@ class User extends Authenticatable
 
     public function toSearchableArray() {
         return array($this->username, $this->email);
-    }
-
-    public function getBirthDateAttribute($value) {
-        return Carbon::parse($value)->format('d-m-Y');
     }
 
 }
