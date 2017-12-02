@@ -17,7 +17,7 @@ class CreateTopicsTable extends Migration
             $table->increments('id');
             $table->string('title', 100);
             $table->integer('owner_id')->unsigned();
-            $table->integer('last_post_id')->unsigned();
+            $table->integer('last_post_id')->unsigned()->nullable();
             $table->integer('post_count')->unsigned()->default(0);
             $table->integer('forum_id')->unsigned();
 

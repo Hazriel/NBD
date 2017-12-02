@@ -17,7 +17,7 @@ class CreateForumsTable extends Migration
             $table->increments('id');
             $table->string('title', 100);
             $table->string('description', 300)->nullable();
-            $table->integer('last_post_id')->unsigned();
+            $table->integer('last_post_id')->unsigned()->nullable();
             $table->integer('category_id')->unsigned();
             $table->integer('topic_count')->unsigned()->default(0);
             $table->integer('post_count')->unsigned()->default(0);
