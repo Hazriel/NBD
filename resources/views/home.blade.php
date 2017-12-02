@@ -36,27 +36,30 @@
                         <div class="news-header">
                             <h2>Omg there's a NBD website</h2>
                             <div class="news-info">
-                                <i>by <a href="#">wappa</a>, 11/09/2001</i>
+                                <i>by <a href="#">Hazriel</a>, 02/12/2017</i>
                             </div>
                         </div>
                         <div class="news-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut aliquet nibh in cursus sodales. Morbi pellentesque mollis felis ac aliquet. In non neque est. Proin ultricies urna quis iaculis molestie. Nulla elit nisi, viverra eu dui et, pellentesque finibus risus. Fusce eros velit, sollicitudin dignissim metus viverra, dignissim iaculis arcu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam mollis justo nisi, at suscipit risus aliquet in. Suspendisse at nulla pellentesque lacus sagittis bibendum. Aliquam sodales, urna et tempor ultricies, quam dolor interdum ipsum, ut ultricies diam mi rutrum tortor.</p>
-                            <p>Aenean commodo laoreet pretium. Donec imperdiet tortor lorem, blandit elementum risus cursus eget. Maecenas feugiat leo in sollicitudin pharetra. Fusce egestas leo eu pellentesque posuere. Aliquam a ligula eu metus porttitor ultrices sed id nunc. Sed sodales sollicitudin neque eu facilisis. Nunc mollis, arcu sed condimentum egestas, elit ante porta dui, non egestas ante elit ut tellus. Etiam imperdiet ex ac turpis vehicula, a maximus lacus posuere. Donec dictum augue non vulputate scelerisque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed interdum magna lectus, in molestie nisi efficitur faucibus. Integer auctor augue eget vestibulum tempus.</p>
-                            <p>Morbi tempus iaculis mi vitae bibendum. Aenean risus dui, tempus eget lorem sed, bibendum dapibus sem. Sed ac rhoncus nibh, ut interdum justo. Vestibulum et urna sapien. Nulla et libero in magna eleifend venenatis. Donec finibus euismod neque, vel consequat mauris posuere at. Maecenas ullamcorper libero sit amet velit semper, eget imperdiet urna tincidunt. Sed vitae nisi porta, euismod sapien sodales, interdum nunc. </p>
-                        </div>
-                    </div>
+                            <p>Greeting,</p>
 
-                    <div class="news">
-                        <div class="news-header">
-                            <h2>French guy fucked in ass by norwegian water</h2>
-                            <div class="news-info">
-                                <i>by <a href="#">wappa</a>, 22/07/2001</i>
-                            </div>
-                        </div>
-                        <div class="news-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut aliquet nibh in cursus sodales. Morbi pellentesque mollis felis ac aliquet. In non neque est. Proin ultricies urna quis iaculis molestie. Nulla elit nisi, viverra eu dui et, pellentesque finibus risus. Fusce eros velit, sollicitudin dignissim metus viverra, dignissim iaculis arcu. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam mollis justo nisi, at suscipit risus aliquet in. Suspendisse at nulla pellentesque lacus sagittis bibendum. Aliquam sodales, urna et tempor ultricies, quam dolor interdum ipsum, ut ultricies diam mi rutrum tortor.</p>
-                            <p>Aenean commodo laoreet pretium. Donec imperdiet tortor lorem, blandit elementum risus cursus eget. Maecenas feugiat leo in sollicitudin pharetra. Fusce egestas leo eu pellentesque posuere. Aliquam a ligula eu metus porttitor ultrices sed id nunc. Sed sodales sollicitudin neque eu facilisis. Nunc mollis, arcu sed condimentum egestas, elit ante porta dui, non egestas ante elit ut tellus. Etiam imperdiet ex ac turpis vehicula, a maximus lacus posuere. Donec dictum augue non vulputate scelerisque. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed interdum magna lectus, in molestie nisi efficitur faucibus. Integer auctor augue eget vestibulum tempus.</p>
-                            <p>Morbi tempus iaculis mi vitae bibendum. Aenean risus dui, tempus eget lorem sed, bibendum dapibus sem. Sed ac rhoncus nibh, ut interdum justo. Vestibulum et urna sapien. Nulla et libero in magna eleifend venenatis. Donec finibus euismod neque, vel consequat mauris posuere at. Maecenas ullamcorper libero sit amet velit semper, eget imperdiet urna tincidunt. Sed vitae nisi porta, euismod sapien sodales, interdum nunc. </p>
+                            <p>I would like to welcome you all to the NBD website. It took me a lot of time to create from scratch.
+                            For now there are not a lot of features as only a forum is available for normal members. I also created
+                            an admin interface, which only can see :D. Still I hope this will allow us to keep some contacts and
+                            to plan game sessions.</p>
+
+                            <p>In the future I would also like to include these features to the website :</p>
+
+                            <ul>
+                                <li>A quote system, so that you can save the best NBD member quotes.</li>
+                                <li>A event calendar, in order to plan team events</li>
+                                <li>A file sharing system</li>
+                                <li>A vote system, strawpoll-like</li>
+                            </ul>
+
+                            <p>My sincerest thanks for all the funny moments I could witness. My sincerest thanks for the friendship
+                            I was brought by this team. May all these moments and this athmosphere continue for the upcoming years.</p>
+
+                            <p>May the Camel God guide us...</p>
                         </div>
                     </div>
                 </div>

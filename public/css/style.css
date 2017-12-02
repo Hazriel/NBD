@@ -171,6 +171,10 @@ input[type="submit"]:hover {
     margin-bottom: 10px;
 }
 
+.news-body ul {
+    margin: 15px;
+}
+
 /* Server section */
 .server-info {
 }
