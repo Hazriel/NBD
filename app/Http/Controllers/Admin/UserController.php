@@ -61,9 +61,12 @@ class UserController extends Controller
         }
 
         if ($input['birth_date'] != null) {
-            Log::debug($input['birth_date']);
+            Log::debug("Input birth_date : " . $input['birth_date']);
+            $this->validate($request, [
+                'birth_date' => 'date_format:d/m/Y'
+            ]);
             $user->update([
-                'birth_date' => Carbon::createFromFormat('Y-d-m', $input['birth_date'])->toDateTimeString(),
+                'birth_date' => Carbon::createFromFormat('d/m/Y', $input['birth_date'])->toDateTimeString(),
             ]);
         }
 

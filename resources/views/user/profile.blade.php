@@ -34,18 +34,10 @@
                         </tr>
                         <tr>
                             <td>
-                                Email :
-                            </td>
-                            <td>
-                                {{ $user->email }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
                                 Birth date :
                             </td>
                             <td>
-                                {{ $user->birth_date }}
+                                {{ $user->formattedBirthDate() }}
                             </td>
                         </tr>
                         <tr>

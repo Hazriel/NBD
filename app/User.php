@@ -121,4 +121,10 @@ class User extends Authenticatable
         return array($this->username, $this->email);
     }
 
+    public function formattedBirthDate() {
+        if ($this->birth_date == null)
+            return 'Not specified';
+        return Carbon::parse($this->birth_date)->format('d/m/Y');
+    }
+
 }

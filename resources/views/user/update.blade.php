@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link href="{{ asset('css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     <div class="row">
         <div class="nbd-section">
@@ -13,4 +17,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript" src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
 @endsection
