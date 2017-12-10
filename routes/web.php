@@ -305,4 +305,18 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access',
 
     });
 
+    Route::group(['prefix' => 'news', 'as' => 'news.'], function () {
+
+        Route::get('create/', [
+            'as' => 'create',
+            'uses' => 'NewsController@createForm'
+        ]);
+
+        Route::post('create/', [
+            'as' => 'create',
+            'uses' => 'NewsController@create'
+        ]);
+
+    });
+
 });

@@ -22,15 +22,18 @@ class UserController extends Controller
         return view('user.update', compact('user'));
     }
 
-    public function accountNotActivated() {
+    public function accountNotActivated()
+    {
         return view('user.account-not-activated');
     }
 
-    public function accountBanned() {
+    public function accountBanned()
+    {
         return view('user.account-banned');
     }
 
-    public function confirmAccount(Request $request) {
+    public function confirmAccount(Request $request)
+    {
         $queryString = $request->query();
 
         if ($queryString != null && $queryString[config('app.VALIDATE_ACCOUNT_TOKEN_FIELD_NAME')] != null) {
@@ -45,14 +48,16 @@ class UserController extends Controller
         return view('errors.403');
     }
 
-    public function resendMailForm() {
+    public function resendMailForm()
+    {
         // If the user is already connected, redirect
         if (Auth::check())
             return redirect()->route('home');
         return view('user.resend-mail');
     }
 
-    public function resendMail(Request $request) {
+    public function resendMail(Request $request)
+    {
         $this->validate($request, [
             'username' => 'required|string',
             'email' => 'required|string|email'

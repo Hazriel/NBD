@@ -12,6 +12,7 @@
                         <li class="active"><a data-toggle="pill" href="#users">Users</a></li>
                         <li><a data-toggle="pill" href="#roles">Roles</a></li>
                         <li><a data-toggle="pill" href="#forums">Forum</a></li>
+                        <li><a data-toggle="pill" href="#news">News</a></li>
                     </ul>
                 </div>
             </div>
@@ -130,6 +131,12 @@
                                     </div>
                                 </div>
                             @endforeach
+                        </div>
+                        <div id="news" class="tab-pane fade">
+                            <div class="news-action-button">
+                                <a href="{{ route('admin.news.create') }}"><button class="btn btn-success">Add a News <span class="glyphicon glyphicon-plus"></span></button></a>
+                                {{-- Create a list of already posted news here --}}
+                            </div>
                         </div>
                     </div>
                 </div>

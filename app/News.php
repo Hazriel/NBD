@@ -10,7 +10,6 @@ class News extends Model
         'owner_id',
         'title',
         'content',
-        'archived'
     ];
 
     public function owner() {
