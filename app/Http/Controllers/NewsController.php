@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Mockery\Exception;
 
 class NewsController extends Controller
 {
@@ -50,9 +51,31 @@ class NewsController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        $ownerId = $request->user()->id;
+
+        $input['owner_id'] = $ownerId;
+
         $this->create($input);
 
         return redirect()->route('admin.dashboard')->withSuccess('News was successfully posted.');
+    }
+
+    /**
+     * Get a set of news.
+     * @param Request $request
+     * @param $page
+     * @return News[]
+     */
+    public function getNews(Request $request, $page) {
+        // Make sure the page is correctly formatted, if not default is 1
+        if ($page == null || $page < 1)
+            $page = 1;
+
+        $newsPerPage = config('app.ADMIN_NEWS_PER_PAGE', 5);
+        $firstNewsIndex = ($page - 1) * $newsPerPage;
+        $lastNewsIndex = $firstNewsIndex + $newsPerPage;
+
+        return News::all()->sortByDesc('created_at')->slice($firstNewsIndex, $lastNewsIndex);
     }
 
 }

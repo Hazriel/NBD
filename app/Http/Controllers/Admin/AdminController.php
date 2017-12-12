@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Forum;
 use App\Http\Controllers\Controller;
+use App\News;
 use App\Permission;
 use App\Role;
 use App\User;
@@ -19,12 +20,19 @@ class AdminController extends Controller
         $roles = Role::all();
 
         // 10 users per page
-        $users = User::all()->sortByDesc('created_at')->take(10);
+        $users = User::all()->sortByDesc('created_at')->take(config('app.ADMIN_USER_PER_PAGE', 10));
 
         $forum_categories = Category::all()->sortBy('display_order');
 
+        $newsList = News::all()->sortByDesc('created_at')->take(config('app.ADMIN_NEWS_PER_PAGE', 5));
+
         $pageCount = User::all()->count() / 10 + 1;
-        return view('admin.dashboard', compact('pageTitle', 'roles', 'users', 'pageCount', 'forum_categories'));
+        return view('admin.dashboard', compact('pageTitle',
+            'roles',
+            'users',
+            'pageCount',
+            'forum_categories',
+            'newsList'));
     }
 
 }

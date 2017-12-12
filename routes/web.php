@@ -314,7 +314,7 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access',
 
         Route::post('create/', [
             'as' => 'create',
-            'uses' => 'NewsController@create'
+            'uses' => 'NewsController@createNews'
         ]);
 
     });

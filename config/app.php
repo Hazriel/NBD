@@ -236,5 +236,6 @@ return [
      */
 
     'VALIDATE_ACCOUNT_TOKEN_FIELD_NAME' => 'token',
-
+    'ADMIN_NEWS_PER_PAGE' => 5,
+    'ADMIN_USER_PER_PAGE' => 10,
 ];

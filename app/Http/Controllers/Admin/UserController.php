@@ -32,10 +32,11 @@ class UserController extends Controller
         if ($validator->fails())
             return redirect()->route('admin.role.create')->withErrors($validator)->withInput();
     }
+
     public function userList(Request $request, $page)
     {
-        $firstIndex = ($page - 1) * 10;
-        $lastIndex = $page * 10;
+        $firstIndex = ($page - 1) * config('app.ADMIN_USER_PER_PAGE', 10);
+        $lastIndex = $page * config('app.ADMIN_USER_PER_PAGE', 10);
         $users = User::all()->sortByDesc('created_at')->slice($firstIndex, $lastIndex);
         return view('admin.user.list', compact('users'));
     }

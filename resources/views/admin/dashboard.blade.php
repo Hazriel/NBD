@@ -136,6 +136,11 @@
                             <div class="news-action-button">
                                 <a href="{{ route('admin.news.create') }}"><button class="btn btn-success">Add a News <span class="glyphicon glyphicon-plus"></span></button></a>
                                 {{-- Create a list of already posted news here --}}
+                                @foreach($newsList as $news)
+                                    <div class="news">
+                                        <p>{{ $news->title }}</p>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

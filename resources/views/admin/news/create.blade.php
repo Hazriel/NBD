@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="row">
         <div class="nbd-section">
             <div class="nbd-section-header">
@@ -17,5 +16,11 @@
             </div>
         </div>
     </div>
+@endsection
 
+@section('scripts')
+    <script type="text/javascript" src="{{ asset("ckeditor/ckeditor.js") }}"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('content');
+    </script>
 @endsection
