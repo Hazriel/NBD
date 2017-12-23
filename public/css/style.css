@@ -401,6 +401,47 @@ input[type="button"] {
     margin-bottom: 0;
 }
 
+.admin-news {
+    margin-top: 12px;
+    border: 2px solid rgba(14, 27, 41, 1);
+}
+
+.admin-news-header {
+
+}
+
+.admin-news-body {
+
+}
+
+.admin-news-body p {
+    margin: 0;
+}
+
+.admin-news-actions {
+
+}
+
+.admin-news-title h1 {
+    background-color: rgba(14, 27, 41, 1);
+    font-size: 24px;
+    margin: 0;
+    color: #db6a1d;
+}
+
+.admin-news-title h1,
+.admin-news-body {
+    padding: 6px;
+}
+
+.admin-news-actions {
+    margin: 6px;
+}
+
+#news-container {
+    transition: height 1s ease-in-out;
+}
+
 /* Added fonts */
 @font-face {
     font-family: "Flatwheat";

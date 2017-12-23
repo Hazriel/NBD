@@ -66,7 +66,7 @@ class NewsController extends Controller
      * @param $page
      * @return News[]
      */
-    public function getNews(Request $request, $page) {
+    public function getNewsList(Request $request, $page) {
         // Make sure the page is correctly formatted, if not default is 1
         if ($page == null || $page < 1)
             $page = 1;
@@ -75,7 +75,8 @@ class NewsController extends Controller
         $firstNewsIndex = ($page - 1) * $newsPerPage;
         $lastNewsIndex = $firstNewsIndex + $newsPerPage;
 
-        return News::all()->sortByDesc('created_at')->slice($firstNewsIndex, $lastNewsIndex);
-    }
+        $newsList =  News::all()->sortByDesc('created_at')->slice($firstNewsIndex, $lastNewsIndex);
 
+        return view('admin.news.list', compact('newsList'));
+    }
 }

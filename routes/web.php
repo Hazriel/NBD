@@ -317,6 +317,11 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access',
             'uses' => 'NewsController@createNews'
         ]);
 
+        Route::get('list/{page}', [
+            'as' => 'list',
+            'uses' => 'NewsController@getNewsList'
+        ]);
+
     });
 
 });

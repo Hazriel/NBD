@@ -24,6 +24,7 @@
                 </div>
                 <div class="nbd-section-body">
                     <div class="tab-content">
+                        {{-- Users section --}}
                         <div id="users" class="tab-pane fade in active">
                             <div class="search-bar">
                                 <input id="username" type="text" name="username">
@@ -44,14 +45,15 @@
                             </table>
                             <nav aria-label="user-navigation">
                                 <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#" onclick="previousPage();">Previous</a></li>
-                                    @for($i = 1; $i < $pageCount; $i++)
-                                        <li class="page-item"><a class="page-link" href="#" onclick="getUsers({{ $i }});">{{ $i }}</a></li>
+                                    <li><a class="page-link" href="#!" onclick="previousUserPage();">Previous</a></li>
+                                    @for($i = 1; $i < $userPageCount; $i++)
+                                        <li class="user-item"><a class="page-link" href="#!" onclick="getUsers({{ $i }});">{{ $i }}</a></li>
                                     @endfor
-                                    <li class="page-item"><a class="page-link" href="#" onclick="nextPage();">Next</a></li>
+                                    <li><a class="page-link" href="#!" onclick="nextUserPage();">Next</a></li>
                                 </ul>
                             </nav>
                         </div>
+                        {{-- Roles section --}}
                         <div id="roles" class="tab-pane fade">
                             <a href="{{ route('admin.role.create') }}"><button type="button" class="btn btn-success">Add Role <span class="glyphicon glyphicon-plus"></span></button></a>
                             <table class="table">
@@ -80,6 +82,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        {{-- Forums section --}}
                         <div id="forums" class="tab-pane fade">
                             <a href="{{ route('admin.forum.category.create') }}"><button type="button" class="btn btn-success">Add Category <span class="glyphicon glyphicon-plus"></span></button></a>
                             @foreach($forum_categories as $category)
@@ -132,16 +135,42 @@
                                 </div>
                             @endforeach
                         </div>
+
+                        {{-- News section --}}
                         <div id="news" class="tab-pane fade">
                             <div class="news-action-button">
                                 <a href="{{ route('admin.news.create') }}"><button class="btn btn-success">Add a News <span class="glyphicon glyphicon-plus"></span></button></a>
-                                {{-- Create a list of already posted news here --}}
-                                @foreach($newsList as $news)
-                                    <div class="news">
-                                        <p>{{ $news->title }}</p>
-                                    </div>
-                                @endforeach
                             </div>
+                            {{-- Create a list of already posted news here --}}
+                            <div id="news-container">
+                            @foreach($newsList as $news)
+                                <div class="admin-news">
+                                    <div class="admin-news-header">
+                                        <div class="admin-news-title">
+                                            <h1>{{ $news->title }}</h1>
+                                        </div>
+                                        <div class="admin-news-actions">
+                                            <a href="#"><button class="btn btn-info">Edit <span class="glyphicon glyphicon-wrench"></span></button></a>
+                                            <a href="#"><button class="btn btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></button></a>
+                                        </div>
+                                    </div>
+                                    <div class="admin-news-body">
+                                        <p><i>by <a href="{{ route('user.profile', $news->owner->id) }}">{{ $news->owner->username }}</a>, {{ date_format($news->created_at, 'd/m/Y') }}</i></p>
+                                        <br>
+                                        {!! $news->content !!}
+                                    </div>
+                                </div>
+                            @endforeach
+                            </div>
+                            <nav aria-label="news-links">
+                                <ul class="pagination">
+                                    <li><a class="page-link" href="#!" onclick="previousNewsPage();">Previous</a></li>
+                                    @for($i = 1; $i < $newsPageCount; $i++)
+                                        <li class="news-item"><a class="page-link" href="#!" onclick="getNews({{ $i }});">{{ $i }}</a></li>
+                                    @endfor
+                                    <li><a class="page-link" href="#!" onclick="nextNewsPage();">Next</a></li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>

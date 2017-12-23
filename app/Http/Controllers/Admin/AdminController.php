@@ -17,22 +17,25 @@ class AdminController extends Controller
     public function dashboard()
     {
         $pageTitle = "Admin";
+
         $roles = Role::all();
-
-        // 10 users per page
-        $users = User::all()->sortByDesc('created_at')->take(config('app.ADMIN_USER_PER_PAGE', 10));
-
         $forum_categories = Category::all()->sortBy('display_order');
 
-        $newsList = News::all()->sortByDesc('created_at')->take(config('app.ADMIN_NEWS_PER_PAGE', 5));
+        // 10 users per page
+        $userPageCount = User::all()->count() / config('app.ADMIN_USER_PER_PAGE') + 1;
+        $users = User::all()->sortByDesc('created_at')->take(config('app.ADMIN_USER_PER_PAGE'));
 
-        $pageCount = User::all()->count() / 10 + 1;
+
+        $newsPageCount = News::all()->count() / config('app.ADMIN_NEWS_PER_PAGE') + 1;
+        $newsList = News::all()->sortByDesc('created_at')->take(config('app.ADMIN_NEWS_PER_PAGE'));
+
         return view('admin.dashboard', compact('pageTitle',
             'roles',
             'users',
-            'pageCount',
+            'userPageCount',
             'forum_categories',
-            'newsList'));
+            'newsList',
+            'newsPageCount'));
     }
 
 }
