@@ -38,7 +38,7 @@
                     <a class="nav-link" href="{{ route('forum.categories') }}">Forum</a>
                 </li>
                 <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "News") active @endif">
-                    <a class="nav-link" href="#">News</a>
+                    <a class="nav-link" href="{{ route('news.view') }}">News</a>
                 </li>
                 @if (Auth::check())
                     <li class="nav-list-item">

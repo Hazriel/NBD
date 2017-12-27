@@ -6,6 +6,7 @@ use App\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Mockery\Exception;
+use phpDocumentor\Reflection\Types\Integer;
 
 class NewsController extends Controller
 {
@@ -61,12 +62,32 @@ class NewsController extends Controller
     }
 
     /**
-     * Get a set of news.
+     * Get a set of news already formatted to be printed on the news page
+     * @param Request $request
+     * @param $page
+     */
+    public function getNewsList($page) {
+        $newsList = $this->getPage($page);
+        return view('news.list', compact('newsList'));
+    }
+
+    /**
+     * Get a set of news for the admin dashboard.
      * @param Request $request
      * @param $page
      * @return News[]
      */
-    public function getNewsList(Request $request, $page) {
+    public function getAdminNewsList(Request $request, $page) {
+        $newsList = $this->getPage($page);
+        return view('admin.news.list', compact('newsList'));
+    }
+
+    /**
+     * Return a collection of news corresponding to the given page.
+     * @param $page Integer The page to be returned.
+     * @return News[]
+     */
+    private function getPage($page) {
         // Make sure the page is correctly formatted, if not default is 1
         if ($page == null || $page < 1)
             $page = 1;
@@ -75,8 +96,21 @@ class NewsController extends Controller
         $firstNewsIndex = ($page - 1) * $newsPerPage;
         $lastNewsIndex = $firstNewsIndex + $newsPerPage;
 
-        $newsList =  News::all()->sortByDesc('created_at')->slice($firstNewsIndex, $lastNewsIndex);
+        return News::all()->sortByDesc('created_at')->slice($firstNewsIndex, $lastNewsIndex);
+    }
 
-        return view('admin.news.list', compact('newsList'));
+    public function view() {
+        $pageTitle = "News";
+        $newsList = $this->getPage(1);
+        $newsPageCount = $this->getPageCount();
+        return view('news.view', compact('pageTitle', 'newsList', 'newsPageCount'));
+    }
+
+    /**
+     * Gets the number of news pages.
+     * @return int
+     */
+    private function getPageCount() {
+        return News::all()->count() / config('app.NEWS_PER_PAGE') + 1;
     }
 }

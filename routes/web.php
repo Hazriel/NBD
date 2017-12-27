@@ -63,6 +63,20 @@ Route::group(['prefix' => 'user/', 'middleware' => ['auth', 'account.state'], 'a
 
 });
 
+Route::group(['prefix' => 'news/', 'middleware' => ['auth', 'account.state'], 'as' => 'news.'], function () {
+
+    Route::get('/', [
+        'as'   => 'view',
+        'uses' => 'NewsController@view'
+    ]);
+
+    Route::get('/list/{page}', [
+        'as'   => 'list',
+        'uses' => 'NewsController@getNewsList'
+    ]);
+
+});
+
 Route::group(['prefix' => 'forum/', 'as' => 'forum.', 'middleware' => ['auth', 'account.state']], function () {
 
     Route::get('/', [
@@ -319,7 +333,7 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access',
 
         Route::get('list/{page}', [
             'as' => 'list',
-            'uses' => 'NewsController@getNewsList'
+            'uses' => 'NewsController@getAdminNewsList'
         ]);
 
     });
