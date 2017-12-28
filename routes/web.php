@@ -249,6 +249,7 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access',
 
     Route::group(['prefix' => 'forum', 'as' => 'forum.'], function () {
 
+        /* Forum categories */
         Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
 
             Route::get('create', [
@@ -283,6 +284,7 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access',
 
         });
 
+        /* Forum forums*/
         Route::group(['prefix' => 'forum', 'as' => 'forum.'], function () {
 
             Route::get('create/{category}', [
@@ -319,21 +321,37 @@ Route::group(['prefix' => 'admin/', 'middleware' => ['auth', 'can:admin-access',
 
     });
 
+    /* Admin News */
     Route::group(['prefix' => 'news', 'as' => 'news.'], function () {
 
+        Route::get('list/{page}', [
+            'as'   => 'list',
+            'uses' => 'NewsController@getAdminNewsList'
+        ]);
+
         Route::get('create/', [
-            'as' => 'create',
+            'as'   => 'create',
             'uses' => 'NewsController@createForm'
         ]);
 
         Route::post('create/', [
-            'as' => 'create',
+            'as'   => 'create',
             'uses' => 'NewsController@createNews'
         ]);
 
-        Route::get('list/{page}', [
-            'as' => 'list',
-            'uses' => 'NewsController@getAdminNewsList'
+        Route::get('update/{news}', [
+            'as'   => 'update',
+            'uses' => 'NewsController@updateForm'
+        ]);
+
+        Route::post('update/{news}', [
+            'as'   => 'update',
+            'uses' => 'NewsController@update'
+        ]);
+
+        Route::get('delete/{news}', [
+            'as'   => 'delete',
+            'uses' => 'NewsController@delete'
         ]);
 
     });

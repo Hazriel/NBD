@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Mockery\Exception;
 use phpDocumentor\Reflection\Types\Integer;
@@ -38,6 +39,51 @@ class NewsController extends Controller
     public function createForm(Request $request)
     {
         return view('admin.news.create');
+    }
+
+    public function view() {
+        $pageTitle = "News";
+        $newsList = $this->getPage(1);
+        $newsPageCount = $this->getPageCount();
+        return view('news.view', compact('pageTitle', 'newsList', 'newsPageCount'));
+    }
+
+    public function updateForm(News $news) {
+        return view('admin.news.update', compact('news'));
+    }
+
+    public function update(Request $request, News $news) {
+        $input = $request->all();
+        $validator = $this->validator($input);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $news->update([
+            'title' => $input['title'],
+            'content' => $input['content']
+        ]);
+
+        return redirect()->route('admin.dashboard')->withSuccess('News was updated successfully.');
+    }
+
+    /**
+     * Delete a news from the database. First the user has to send a confirmation so that the news can be destroyed.
+     * @param Request $request
+     * @param News $news
+     */
+    public function delete(Request $request, News $news) {
+        $confirm = $request->get('confirm');
+        Log::debug($confirm);
+        if ($confirm) {
+            $title = $news->title;
+            $news->delete();
+            return redirect()->route('admin.dashboard')->withSuccess('News \'' . $title . '\' deleted successfully.');
+        }
+
+        // Return the view where the confirmation is.
+        return view('admin.news.delete', compact('news'));
     }
 
     /**
@@ -97,13 +143,6 @@ class NewsController extends Controller
         $lastNewsIndex = $firstNewsIndex + $newsPerPage;
 
         return News::all()->sortByDesc('created_at')->slice($firstNewsIndex, $lastNewsIndex);
-    }
-
-    public function view() {
-        $pageTitle = "News";
-        $newsList = $this->getPage(1);
-        $newsPageCount = $this->getPageCount();
-        return view('news.view', compact('pageTitle', 'newsList', 'newsPageCount'));
     }
 
     /**

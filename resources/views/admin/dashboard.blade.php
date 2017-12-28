@@ -150,8 +150,8 @@
                                             <h1>{{ $news->title }}</h1>
                                         </div>
                                         <div class="admin-news-actions">
-                                            <a href="#"><button class="btn btn-info">Edit <span class="glyphicon glyphicon-wrench"></span></button></a>
-                                            <a href="#"><button class="btn btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></button></a>
+                                            <a href="{{ route('admin.news.update', $news->id) }}"><button class="btn btn-info">Edit <span class="glyphicon glyphicon-wrench"></span></button></a>
+                                            <a href="{{ route('admin.news.delete', $news->id) }}"><button class="btn btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></button></a>
                                         </div>
                                     </div>
                                     <div class="admin-news-body">
