@@ -46,6 +46,7 @@ The news will be stored in the `news` table.
 
 - All of the above.
 - See news on 'News' page.
+- See reserved news.
 
 ### Admin & Moderator
 
