@@ -13,10 +13,8 @@
                     </td>
                     <td class="forum-title-td"></td>
                     <td class="forum-title-td"></td>
-                    {{-- TODO: Change this when re-writting the permission system, it's ugly --}}
-                    @if(Auth::user()->hasPermissionPower('topic_create_power', $forum->required_topic_create_power))
-                        <td class="post-add-button"><a href="{{ route('forum.newTopic', $forum) }}"><button type="button" class="btn btn-success">New Post <span class="glyphicon glyphicon-plus"></span></button></a></td>
-                    @endif
+                    {{-- FIXME: Add permissions check on this --}}
+                    <td class="post-add-button"><a href="{{ route('forum.newTopic', $forum) }}"><button type="button" class="btn btn-success">New Post <span class="glyphicon glyphicon-plus"></span></button></a></td>
                 </tr>
                 @foreach($topics as $topic)
                     <tr class="topic">

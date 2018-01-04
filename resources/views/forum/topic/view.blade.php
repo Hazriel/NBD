@@ -23,13 +23,10 @@
                                 <td class="message">
                                     {!! $post->message !!}
                                     <div class="post-actions">
-                                        {{-- Try to make this clean --}}
-                                        @if (Auth::user()->canUpdatePost($post))
+                                        {{-- FIXME: If can update post --}}
                                         <a href="{{ route('forum.post.update', $post) }}"><button class="btn btn-post-action"><span class="glyphicon glyphicon-edit"></span> Edit</button></a>
-                                        @endif
-                                        @if (Auth::user()->canDeletePost($post))
+                                        {{-- FIXME: If can delete post --}}
                                         <a href="{{ route('forum.post.deleteWarning', $post) }}"><button class="btn btn-post-action"><span class="glyphicon glyphicon-trash"></span> Delete</button></a>
-                                        @endif
                                     </div>
                                 </td>
                             </tr>
@@ -37,7 +34,7 @@
                         </tbody>
                     </table>
                     <div class="post-links">{{ $posts->links() }}</div>
-                    @if (Auth::user()->hasPermissionPower('post_create_power', $topic->forum->required_post_create_power))
+                    {{-- FIXME: If user can post --}}
                     <div class="text-editor">
                         {!! Form::open(['method' => 'post', 'route' => ['forum.topic.newPost', $topic->id]]) !!}
                         <div class="form-group">
@@ -47,9 +44,9 @@
                         {!! Form::submit('Answer', ['class' => 'btn btn-primary']) !!}
                         {!! Form::close() !!}
                     </div>
-                    @else
+                    {{-- FIXME: else--}}
                         <p>You cannot post in this topic.</p>
-                    @endif
+                    {{-- FIXME: endif --}}
                 </div>
             </div>
         </div>

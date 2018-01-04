@@ -26,11 +26,10 @@
         </div>
         <div class="collapse navbar-collapse navbar-right" id="bs-navbar-collapse">
             <ul class="nav navbar-nav">
-                @if (Auth::user() != null && Auth::user()->hasRole('admin'))
+                {{-- FIXME: Add role verification on this one --}}
                 <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "Admin") active @endif">
                     <a class="nav-link" href="{{ route('admin.dashboard') }}">Admin</a>
                 </li>
-                @endif
                 <li class="nav-list-item @if (isset($pageTitle) && $pageTitle === "Home") active @endif">
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>

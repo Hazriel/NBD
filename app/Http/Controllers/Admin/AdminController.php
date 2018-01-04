@@ -18,7 +18,6 @@ class AdminController extends Controller
     {
         $pageTitle = "Admin";
 
-        $roles = Role::all();
         $forum_categories = Category::all()->sortBy('display_order');
 
         // 10 users per page
@@ -30,7 +29,6 @@ class AdminController extends Controller
         $newsList = News::all()->sortByDesc('created_at')->take(config('app.ADMIN_NEWS_PER_PAGE'));
 
         return view('admin.dashboard', compact('pageTitle',
-            'roles',
             'users',
             'userPageCount',
             'forum_categories',

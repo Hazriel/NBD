@@ -15,7 +15,6 @@ class Category extends Model
     public $timestamps = false;
     public $fillable = [
         'title',
-        'required_view_power',
         'display_order'
     ];
 

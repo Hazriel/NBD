@@ -13,13 +13,6 @@ class Forum extends Model
         'title',
         'description',
         'last_post_id',
-        'required_view_power',
-        'required_topic_create_power',
-        'required_topic_update_power',
-        'required_topic_delete_power',
-        'required_post_create_power',
-        'required_post_update_power',
-        'required_post_delete_power',
         'display_order',
         'category_id',
     ];
@@ -55,8 +48,11 @@ class Forum extends Model
         ]);
     }
 
-    public function lastPostId() {
-        $lastPost = DB::table('forums')
+    /**
+     * Returns the last post in the forum or null if there are no posts.
+     */
+    public function lastPost() {
+        $lastPosts = DB::table('forums')
             ->where('forums.id', '=', $this->id)
             ->join('topics', 'topics.forum_id', '=', 'forums.id')
             ->join('posts', 'posts.topic_id', '=', 'topics.id')
@@ -64,8 +60,16 @@ class Forum extends Model
             ->orderByDesc('posts.created_at')
             ->get();
 
-        if ($lastPost->count() == 0)
+        if ($lastPosts->count() == 0)
             return null;
-        return $lastPost[0]->id;
+        return $lastPosts[0];
+    }
+
+    public function getPosts() {
+        $posts = array();
+        foreach ($this->topics as $topic) {
+            $posts->append($topic->posts);
+        }
+        return $posts;
     }
 }

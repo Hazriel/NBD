@@ -14,10 +14,7 @@ class PostController extends Controller
 {
     public function create(Request $request, Topic $topic)
     {
-        // Check user permission
-        if ($request->user() == null
-            || !$request->user()->hasPermissionPower('post_create_power', $topic->forum->required_post_create_power))
-            abort(403, 'Unauthorized action.');
+        // FIXME: Check user permission
 
         $this->validate($request, [
             'message' => 'required'
@@ -49,8 +46,7 @@ class PostController extends Controller
     }
 
     public function updateForm(Request $request, Post $post) {
-        if (!$request->user()->canUpdatePost($post))
-            abort(403, "Cannot update this post");
+        // FIXME: Check permission
 
         $topic = $post->topic;
 
@@ -63,8 +59,7 @@ class PostController extends Controller
     }
 
     public function update(Request $request, Post $post) {
-        if (!$request->user()->canUpdatePost($post))
-            abort(403, "Cannot update this post");
+        // FIXME: Check permission
 
         $this->validate($request, [
             'message' => 'required'
@@ -96,7 +91,20 @@ class PostController extends Controller
         $topic = $post->topic;
         $forum = $topic->forum;
         $postId = $post->id;
+
+        DB::beginTransaction();
+
+        // Avoid foreign keys by removing the topic and forum last post id
+        $topic->update([
+            'last_post_id' => null
+        ]);
+
+        $forum->update([
+            'last_post_id' => null
+        ]);
+
         $post->delete();
+
         // Update the topic's last post
         if ($topic->last_post_id == $postId) {
             $topic->update([
@@ -107,9 +115,11 @@ class PostController extends Controller
         // Update the forum's last post if the id matches the deleted one
         if ($forum->last_post_id == $postId) {
             $forum->update([
-                'last_post_id' => $forum->lastPostId()
+                'last_post_id' => $forum->lastPost()->id
             ]);
         }
+
+        DB::commit();
 
         return redirect()->route('forum.topic.view', $topic)->withSuccess('The post was successfully deleted.');
     }

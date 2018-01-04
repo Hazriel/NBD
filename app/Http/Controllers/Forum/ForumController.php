@@ -26,13 +26,6 @@ class ForumController extends Controller
         $this->validate($request, [
             'title' => 'required|string|max:30|min:3',
             'description' => 'string|nullable',
-            'required_view_power' => 'required|int|min:0',
-            'required_topic_create_power' => 'required|int|min:0',
-            'required_topic_update_power' => 'required|int|min:0',
-            'required_topic_delete_power' => 'required|int|min:0',
-            'required_post_create_power' => 'required|int|min:0',
-            'required_post_update_power' => 'required|int|min:0',
-            'required_post_delete_power' => 'required|int|min:0',
             'display_order' => 'required',
         ]);
 
@@ -40,13 +33,6 @@ class ForumController extends Controller
         Forum::create([
             'title' => $input['title'],
             'description' => $input['description'],
-            'required_view_power' => $input['required_view_power'],
-            'required_topic_create_power' => $input['required_topic_create_power'],
-            'required_topic_update_power' => $input['required_topic_update_power'],
-            'required_topic_delete_power' => $input['required_topic_delete_power'],
-            'required_post_create_power' => $input['required_post_create_power'],
-            'required_post_update_power' => $input['required_post_update_power'],
-            'required_post_delete_power' => $input['required_post_delete_power'],
             'display_order' => $input['display_order'],
             'category_id' => $category->id,
         ]);
@@ -64,13 +50,6 @@ class ForumController extends Controller
         $this->validate($request, [
             'title' => 'required|string|max:30|min:3',
             'description' => 'string|nullable',
-            'required_view_power' => 'required|int|min:0',
-            'required_topic_create_power' => 'required|int|min:0',
-            'required_topic_update_power' => 'required|int|min:0',
-            'required_topic_delete_power' => 'required|int|min:0',
-            'required_post_create_power' => 'required|int|min:0',
-            'required_post_update_power' => 'required|int|min:0',
-            'required_post_delete_power' => 'required|int|min:0',
             'display_order' => 'required',
         ]);
 
@@ -78,13 +57,6 @@ class ForumController extends Controller
         $forum->update([
             'title' => $input['title'],
             'description' => $input['description'],
-            'required_view_power' => $input['required_view_power'],
-            'required_topic_create_power' => $input['required_topic_create_power'],
-            'required_topic_update_power' => $input['required_topic_update_power'],
-            'required_topic_delete_power' => $input['required_topic_delete_power'],
-            'required_post_create_power' => $input['required_post_create_power'],
-            'required_post_update_power' => $input['required_post_update_power'],
-            'required_post_delete_power' => $input['required_post_delete_power'],
             'display_order' => $input['display_order'],
         ]);
 

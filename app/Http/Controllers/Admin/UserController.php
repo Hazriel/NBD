@@ -26,13 +26,6 @@ class UserController extends Controller
         ]);
     }
 
-    private function redirectIfValidationFail($input)
-    {
-        $validator = $this->validator($input);
-        if ($validator->fails())
-            return redirect()->route('admin.role.create')->withErrors($validator)->withInput();
-    }
-
     public function userList(Request $request, $page)
     {
         $firstIndex = ($page - 1) * config('app.ADMIN_USER_PER_PAGE', 10);
@@ -89,20 +82,13 @@ class UserController extends Controller
 
     public function addToRole(Request $request, User $user)
     {
-        // Check if the role exists
-        $role = Role::findOrFail($request->all()['role']);
-        if ($user->hasRole($role->slug))
-            return redirect()->route('admin.dashboard')->withErrors('The user ' . $user->username . ' already has the role ' . $role->name . '.');
-        $user->addRole($role->id);
+        // FIXME: Add the user to the role specified in the request input
         return redirect()->route('admin.dashboard')->withSuccess('The user ' . $user->username . ' was updated successfully.');
     }
 
     public function removeFromRole(Request $request, User $user)
     {
-        $role = Role::findOrFail($request->all()['role']);
-        if (!$user->hasRole($role->slug))
-            return redirect()->route('admin.dashboard')->withErrors('The user ' . $user->username . ' doesn\'t have the role ' . $role->name . '.');
-        $user->removeRole($role->id);
+        // FIXME: Remove the user from the role specified in the request input
         return redirect()->route('admin.dashboard')->withSuccess('The user ' . $user->username . ' was removed from the role ' . $role->name . '.');
     }
 

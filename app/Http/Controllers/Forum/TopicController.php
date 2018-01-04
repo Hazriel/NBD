@@ -13,29 +13,21 @@ class TopicController extends Controller
 {
     public function view(Request $request, Topic $topic)
     {
-        if ($request->user() == null
-            || !$request->user()->hasPermissionPower('post_create_power', $topic->forum->required_post_create_power))
-            abort(403, 'Unauthorized action.');
-
+        // FIXME: Check permission
         $posts = Post::where('topic_id', $topic->id)->orderBy('created_at')->paginate(10);
         return view('forum.topic.view', ['posts' => $posts, 'topic' => $topic]);
     }
 
     public function createForm(Request $request, Forum $forum)
     {
-        // Check if the user has permission
-        if ($request->user() == null
-            || !$request->user()->hasPermissionPower('topic_create_power', $forum->required_topic_create_power))
-            abort(403, 'Unauthorized action.');
+        // FIXME: Check permissions
 
         return view('forum.topic.create', compact('forum'));
     }
 
     public function create(Request $request, Forum $forum)
     {
-        if ($request->user() == null
-            || !$request->user()->hasPermissionPower('topic_create_power', $forum->required_topic_create_power))
-            abort(403, 'Unauthorized action.');
+        // FIXME: Check permissions
 
         $this->validate($request, [
             'title' => 'required|string|max:100',
@@ -110,20 +102,39 @@ class TopicController extends Controller
     }
 
     public function delete(Request $request, Topic $topic) {
+        $forum = $topic->forum;
+
+        DB::beginTransaction();
+
+        // Change the forum and topic last post id to avoid troubles with foreign keys
+        $forum->update([
+            'last_post_id' => null
+        ]);
+
+        $topic->update([
+            'last_post_id' => null
+        ]);
+
         // First delete every post in the topic
         foreach ($topic->posts as $post) {
             $post->delete();
         }
 
-        // Update the topic last post since the current last post might be one of the deleted posts
-        $forum = $topic->forum;
-
         $topic->delete();
 
+        // Update the forum's last post id
+        $lastForumPost = $forum->lastPost();
+        if (is_null($lastForumPost)) {
+            $id = null;
+        } else {
+            $id = $lastForumPost->id;
+        }
+
         $forum->update([
-            'last_post_id' => $forum->lastPostId()
+            'last_post_id' => $id
         ]);
 
+        DB::commit();
 
         return redirect()->route('forum.categories')->withSuccess('The topic was successfully deleted.');
     }
