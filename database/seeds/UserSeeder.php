@@ -18,14 +18,5 @@ class UserSeeder extends Seeder
             'activated' => true,
             'banned' => false
         ]);
-
-        $admin = \App\Role::where('slug', 'admin')->first();
-
-        if ($admin != null) {
-            \Illuminate\Support\Facades\DB::table('role_user')->insert([
-                'user_id' => $user->id,
-                'role_id' => $admin->id
-            ]);
-        }
     }
 }

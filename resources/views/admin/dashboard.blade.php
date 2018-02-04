@@ -67,6 +67,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                {{-- TODO: Display each role and information
                                 @foreach($roles as $role)
                                     <tr>
                                         <td>{{ $role->id }}</td>
@@ -79,6 +80,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                --}}
                                 </tbody>
                             </table>
                         </div>

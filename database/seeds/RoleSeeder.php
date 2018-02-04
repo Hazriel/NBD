@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Role;
 
 class RoleSeeder extends Seeder
 {
@@ -11,17 +12,9 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        $this->createRole('Admin', 'admin', 'Admin group.');
-        $this->createRole('Moderator', 'mod', 'Moderator group.');
-        $this->createRole('Member', 'member', 'Member group.');
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'moderator']);
+        Role::create(['name' => 'member']);
     }
 
-    private function createRole($name, $slug, $description)
-    {
-        \App\Role::create([
-            'name' => $name,
-            'slug' => $slug,
-            'description' => $description
-        ]);
-    }
 }

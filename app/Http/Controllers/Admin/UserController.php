@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Role;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -37,11 +36,13 @@ class UserController extends Controller
     public function updateForm(User $user)
     {
         $pageTitle = 'Admin';
-        foreach ($user->roles as $role)
-            $userRoles[$role->id] = $role->name;
-        foreach (Role::all() as $role)
-            $roles[$role->id] = $role->name;
-        return view('admin.user.update', compact('pageTitle', 'user', 'roles', 'userRoles'));
+        // TODO: get each role id
+//        foreach ($user->roles as $role)
+//            $userRoles[$role->id] = $role->name;
+        // TODO: get each available role
+//        foreach (Role::all() as $role)
+//            $roles[$role->id] = $role->name;
+        return view('admin.user.update', compact('pageTitle', 'user'));
     }
 
     public function update(Request $request, User $user)
@@ -89,7 +90,7 @@ class UserController extends Controller
     public function removeFromRole(Request $request, User $user)
     {
         // FIXME: Remove the user from the role specified in the request input
-        return redirect()->route('admin.dashboard')->withSuccess('The user ' . $user->username . ' was removed from the role ' . $role->name . '.');
+        return redirect()->route('admin.dashboard')->withSuccess('The user ' . $user->username . ' was removed from the role.');
     }
 
     public function searchUser(Request $request)

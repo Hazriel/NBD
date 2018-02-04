@@ -11,21 +11,14 @@ class ForumSeeder extends Seeder
      */
     public function run()
     {
-        $general = $this->createCategory('General', 0, 10);
-        $games = $this->createCategory('Games', 0, 20);
-        $members = $this->createCategory('Members', 50, 30);
-        $archives = $this->createCategory('Archives', 100, 100);
+        $general = $this->createCategory('General', 10);
+        $games = $this->createCategory('Games',  20);
+        $members = $this->createCategory('Members',  30);
+        $archives = $this->createCategory('Archives',  100);
 
         $recruitement = $this->createForum([
             'title' => 'Recruitement',
             'description' => '',
-            'required_view_power' => 0,
-            'required_topic_create_power' => 0,
-            'required_topic_update_power' => 100,
-            'required_topic_delete_power' => 100,
-            'required_post_create_power' => 0,
-            'required_post_update_power' => 100,
-            'required_post_delete_power' => 100,
             'display_order' => 10,
             'category_id' => $general->id
         ]);
@@ -33,13 +26,6 @@ class ForumSeeder extends Seeder
         $pubg = $this->createForum([
             'title' => 'PLAYERUNKNOW\'S BATTLEGROUNDS',
             'description' => '',
-            'required_view_power' => 0,
-            'required_topic_create_power' => 0,
-            'required_topic_update_power' => 100,
-            'required_topic_delete_power' => 100,
-            'required_post_create_power' => 0,
-            'required_post_update_power' => 100,
-            'required_post_delete_power' => 100,
             'display_order' => 10,
             'category_id' => $games->id
         ]);
@@ -47,13 +33,6 @@ class ForumSeeder extends Seeder
         $bfh = $this->createForum([
             'title' => 'Battlefield Heroes',
             'description' => '',
-            'required_view_power' => 0,
-            'required_topic_create_power' => 0,
-            'required_topic_update_power' => 100,
-            'required_topic_delete_power' => 100,
-            'required_post_create_power' => 0,
-            'required_post_update_power' => 100,
-            'required_post_delete_power' => 100,
             'display_order' => 20,
             'category_id' => $games->id
         ]);
@@ -61,13 +40,6 @@ class ForumSeeder extends Seeder
         $csgo = $this->createForum([
             'title' => 'Counter-Strike: Global Offensive',
             'description' => '',
-            'required_view_power' => 0,
-            'required_topic_create_power' => 0,
-            'required_topic_update_power' => 100,
-            'required_topic_delete_power' => 100,
-            'required_post_create_power' => 0,
-            'required_post_update_power' => 100,
-            'required_post_delete_power' => 100,
             'display_order' => 10,
             'category_id' => $games->id
         ]);
@@ -75,13 +47,6 @@ class ForumSeeder extends Seeder
         $videos = $this->createForum([
             'title' => 'Videos',
             'description' => '',
-            'required_view_power' => 50,
-            'required_topic_create_power' => 50,
-            'required_topic_update_power' => 100,
-            'required_topic_delete_power' => 100,
-            'required_post_create_power' => 50,
-            'required_post_update_power' => 100,
-            'required_post_delete_power' => 100,
             'display_order' => 10,
             'category_id' => $members->id
         ]);
@@ -89,13 +54,6 @@ class ForumSeeder extends Seeder
         $videos = $this->createForum([
             'title' => 'Screenshots',
             'description' => '',
-            'required_view_power' => 50,
-            'required_topic_create_power' => 50,
-            'required_topic_update_power' => 100,
-            'required_topic_delete_power' => 100,
-            'required_post_create_power' => 50,
-            'required_post_update_power' => 100,
-            'required_post_delete_power' => 100,
             'display_order' => 20,
             'category_id' => $members->id
         ]);
@@ -103,22 +61,14 @@ class ForumSeeder extends Seeder
         $votes = $this->createForum([
             'title' => 'Votes',
             'description' => '',
-            'required_view_power' => 50,
-            'required_topic_create_power' => 50,
-            'required_topic_update_power' => 100,
-            'required_topic_delete_power' => 100,
-            'required_post_create_power' => 50,
-            'required_post_update_power' => 100,
-            'required_post_delete_power' => 100,
             'display_order' => 30,
             'category_id' => $members->id
         ]);
     }
 
-    private function createCategory($title, $power, $order) {
+    private function createCategory($title, $order) {
         return \App\Category::create([
             'title' => $title,
-            'required_view_power' => $power,
             'display_order' => $order
         ]);
     }
@@ -127,13 +77,6 @@ class ForumSeeder extends Seeder
         return \App\Forum::create([
             'title' => $details['title'],
             'description' => $details['description'],
-            'required_view_power' => $details['required_view_power'],
-            'required_topic_create_power' => $details['required_topic_create_power'],
-            'required_topic_update_power' => $details['required_topic_update_power'],
-            'required_topic_delete_power' => $details['required_topic_delete_power'],
-            'required_post_create_power' => $details['required_post_create_power'],
-            'required_post_update_power' => $details['required_post_update_power'],
-            'required_post_delete_power' => $details['required_post_delete_power'],
             'display_order' => $details['display_order'],
             'category_id' => $details['category_id'],
         ]);

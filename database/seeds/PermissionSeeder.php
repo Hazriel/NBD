@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 
 class PermissionSeeder extends Seeder
 {
@@ -11,35 +12,23 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        $this->createPermission('user.create', 'Is able to create users.');
-        $this->createPermission('user.update', 'Is able to update users.');
-        $this->createPermission('user.delete', 'Is able to delete users.');
-        $this->createPermission('user.ban', 'Is able to update users.');
+        // Admin
+        $this->createPermission('admin.access');
+        $this->createPermission('admin.ban');
+        $this->createPermission('admin.update-users');
+        $this->createPermission('admin.delete-users');
 
-        $this->createPermission('role.create', 'Is able to create roles.');
-        $this->createPermission('role.update', 'Is able to update roles.');
-        $this->createPermission('role.delete', 'Is able to delete roles.');
+        // Forum
+        $this->createPermission('category.create');
 
-        $this->createPermission('news.create', 'Is able to create news.');
-        $this->createPermission('news.update', 'Is able to update news.');
-        $this->createPermission('news.delete', 'Is able to delete news.');
-
-        $this->createPermission('category.create', 'Is able to create a forum category.');
-        $this->createPermission('category.update', 'Is able to create a forum category.');
-        $this->createPermission('category.delete', 'Is able to create a forum category.');
-
-        $this->createPermission('forum.create', 'Is able to create a forum.');
-        $this->createPermission('forum.update', 'Is able to create a forum.');
-        $this->createPermission('forum.delete', 'Is able to create a forum.');
-
-        $this->createPermission('admin.access', 'Is able to access the admin interface');
+        // News
+        $this->createPermission('news.create');
+        $this->createPermission('news.update');
+        $this->createPermission('news.delete');
     }
 
-    private function createPermission($slug, $description)
+    private function createPermission($name)
     {
-        \App\Permission::create([
-            'slug' => $slug,
-            'description' => $description
-        ]);
+        Permission::create(['name' => $name]);
     }
 }
