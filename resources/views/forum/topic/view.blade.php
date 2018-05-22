@@ -21,7 +21,9 @@
                                     at {{ date_format($post->created_at, 'H:i') }}
                                 </td>
                                 <td class="message">
-                                    {!! $post->message !!}
+                                    <div class="post-content">
+                                        {!! $post->message !!}
+                                    </div>
                                     <div class="post-actions">
                                         {{-- FIXME: If can update post --}}
                                         <a href="{{ route('forum.post.update', $post) }}"><button class="btn btn-post-action"><span class="glyphicon glyphicon-edit"></span> Edit</button></a>

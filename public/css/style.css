@@ -348,8 +348,6 @@ input[type="button"] {
 }
 
 .message .post-actions {
-    position: absolute;
-    bottom: 10px;
 }
 
 .btn-post-action {
